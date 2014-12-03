@@ -3,11 +3,10 @@ FROM ubuntu:14.10
 RUN apt-get update
 
 RUN apt-get install -y build-essential curl wget
-RUN apt-get install -y ruby=1:2.1.0.0~ubuntu3 rubygems
+RUN apt-get install -y ruby=1:2.1.0.0~ubuntu3 ruby-dev rubygems
 RUN apt-get install -y nodejs=0.10.25~dfsg2-2ubuntu1
 RUN apt-get install -y postgresql=9.4+162 libpq-dev
 RUN gem install rails -v 4.1.8
-RUN apt-get install -y ruby-dev
 RUN gem install pg
 
 ENV PORT 3000
