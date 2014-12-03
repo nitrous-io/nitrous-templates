@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# start postgres if necessary
+if ! ps -C postgres >/dev/null; then
+  sudo /etc/init.d/postgresql start
+fi
+
+# create and migrate database if necessary
+if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w app-development >/dev/null; then
+  rake db:create db:migrate
+fi
+
+rails server -p $PORT
