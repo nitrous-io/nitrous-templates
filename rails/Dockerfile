@@ -36,7 +36,7 @@ ADD support/web /home/action/workspace/bin/web
 RUN chmod +x /home/action/workspace/bin/web
 RUN rm config/database.yml
 
-# app ownership
+# fix ownership
 RUN chown -R action:action /home/action
 
 # nitrous config
