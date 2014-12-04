@@ -34,8 +34,6 @@ WORKDIR /home/action/workspace
 RUN rails new . --database=postgresql
 ADD support/web /home/action/workspace/bin/web
 RUN chmod +x /home/action/workspace/bin/web
-
-# tweak rails app
 RUN rm config/database.yml
 
 # app ownership
