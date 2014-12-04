@@ -3,7 +3,7 @@
 export PATH="/home/action/.rbenv/bin:/home/action/.rbenv/shims:$PATH"
 
 # create and migrate database if necessary
-if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w app-development >/dev/null; then
+if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w development >/dev/null; then
   rake db:create db:migrate
 fi
 
