@@ -31,7 +31,8 @@ ADD support/database.yml /home/action/workspace/app/config/database.yml
 RUN chown action:action /home/action/workspace/app/config/database.yml
 
 # nitrous config
-ENV NITROUS_SHELL  "bash -l"
-ENV NITROUS_SERVER "bin/web"
+ENV NITROUS_SHELL "bash -l"
+ENV NITROUS_USERNAME "action"
+ENV NITROUS_CMD "bin/web"
 
 WORKDIR /home/action/workspace
