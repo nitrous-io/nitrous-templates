@@ -1,4 +1,4 @@
-FROM nitrousio/ruby
+FROM nitrousio/ruby:latest
 
 RUN apt-get update
 
