@@ -31,7 +31,7 @@ ADD support/database.yml /home/action/workspace/app/config/database.yml
 RUN chown action:action /home/action/workspace/app/config/database.yml
 
 # nitrous config
-ENV NITROUS_SHELL "bash -l"
-ENV NITROUS_USERNAME "action"
-ENV NITROUS_CMD "bin/web"
+ENV NITROUS_USERNAME action
+# use a subshell so that cd works properly
+ENV NITROUS_CMD (cd /home/action/workspace/app && bin/web)
 
