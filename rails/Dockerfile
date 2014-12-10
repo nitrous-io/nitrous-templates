@@ -35,4 +35,3 @@ ENV NITROUS_SHELL "bash -l"
 ENV NITROUS_USERNAME "action"
 ENV NITROUS_CMD "bin/web"
 
-WORKDIR /home/action/workspace
