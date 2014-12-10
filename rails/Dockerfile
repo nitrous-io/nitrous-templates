@@ -22,7 +22,12 @@ EXPOSE 3000
 RUN chown -R action:action /home/action
 
 # create rails app
-RUN su action -l -c /bin/bash -c 'mkdir -p /home/action/workspace && cd /home/action/workspace && rails new app --database=postgresql'
+RUN su action -l -c /bin/bash -c 'mkdir -p /home/action/workspace && cd /home/action/workspace && rails new app --database=postgresql --skip-bundle'
+
+# install bundle to system gems
+# we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.
+RUN su action -l -c /bin/bash -c 'rm -rf /home/action/.bundle'
+RUN su action -l -c /bin/bash -c 'cd /home/action/workspace/app && bundle install --system'
 
 ADD support/web /home/action/workspace/app/bin/web
 RUN chmod +x /home/action/workspace/app/bin/web
