@@ -21,14 +21,15 @@ RUN \
   su action -l -c /bin/bash -c 'npm install -g bower@1.3.12 grunt-cli@0.1.13 mean-cli@0.9.10'
 
 ADD support/meaninit /tmp/meaninit
-
 RUN \
   chmod +x /tmp/meaninit && \
   su action -l -c /bin/bash -c /tmp/meaninit
 
-# PORT
-ENV NITROUS_PREVIEW_PORT 3000
+ADD support/start-app /home/action/workspace/start-app
+RUN chmod +x /home/action/workspace/start-app
+
 EXPOSE 3000
 
 ENV NITROUS_USERNAME action
-ENV NITROUS_CMD /home/action/workspace/app/grunt
+ENV NITROUS_CMD /home/action/workspace/start-app
+ENV NITROUS_PREVIEW_PORT 3000

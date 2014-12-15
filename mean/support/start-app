@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd /home/action/workspace/app
+export PORT=$NITROUS_PREVIEW_PORT
+grunt --force
