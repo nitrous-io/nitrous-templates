@@ -14,10 +14,6 @@ ENV PGDATABASE development
 # install rails
 RUN su action -l -c /bin/bash -c 'gem install rails -v 4.1.8'
 
-# PORT
-ENV PORT 3000
-EXPOSE 3000
-
 # fix ownership
 RUN chown -R action:action /home/action
 
@@ -35,7 +31,10 @@ RUN chmod +x /home/action/workspace/app/bin/web
 ADD support/database.yml /home/action/workspace/app/config/database.yml
 RUN chown action:action /home/action/workspace/app/config/database.yml
 
+EXPOSE 3000
+
 # nitrous config
 ENV NITROUS_USERNAME action
 ENV NITROUS_CMD /home/action/workspace/app/bin/web
+ENV NITROUS_PREVIEW_PORT 3000
 
