@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd $HOME/workspace
+virtualenv -p /usr/bin/python3.4 app
+
+cd $HOME/workspace/app
+source bin/activate
+
+pip install -r requirements.txt
+
+django-admin startproject app .
+
+
+# Replace DATABASES config, looks like:
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
+sed -i -e '/^DATABASES =/,/^}/d' app/settings.py
+cat >> app/settings.py <<EOF
+# Database
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'development',
+        'USER': 'action',
+        'HOST': 'localhost',
+        'PORT': '', # Set to empty string for default.
+    }
+}
+EOF
+
+python manage.py syncdb --noinput
+
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('myadmin', 'admin@example.com', 'adminpass')" | python manage.py shell
+
+# vim:ft=sh
