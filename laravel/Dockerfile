@@ -22,18 +22,20 @@ RUN php5enmod mcrypt
 RUN su action -l -c /bin/bash -c 'composer global require "laravel/installer=~1.1"'
 
 # create laravel app
-RUN su action -l -c /bin/bash -c 'composer create-project laravel/laravel workspace --prefer-dist'
+RUN su action -l -c /bin/bash -c 'mkdir -p /home/action/workspace && composer create-project laravel/laravel /home/action/workspace/app 4.2 --prefer-dist'
 
 # web starter script
-ADD support/web /home/action/workspace/bin/web
-RUN chmod +x /home/action/workspace/bin/web
+COPY support/start-app /home/action/workspace/start-app
 
 # database configuration
-ADD support/database.php /home/action/workspace/app/config/database.php
+COPY support/database.php /home/action/workspace/app/config/database.php
 
 # set proper ownership
 RUN chown -R action:action /home/action
 
+EXPOSE 3000
+
 # nitrous config
 ENV NITROUS_USERNAME action
-ENV NITROUS_CMD /home/action/workspace/bin/web
+ENV NITROUS_CMD /home/action/workspace/start-app
+ENV NITROUS_PREVIEW_PORT 3000
