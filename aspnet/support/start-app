@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/nitrous/workspace/starter
+
+./script/server
