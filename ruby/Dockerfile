@@ -27,4 +27,4 @@ RUN \
   su nitrous -l -c /bin/bash -c \
   'rbenv install 2.1.5 && \
   rbenv global 2.1.5 && \
-  gem install bundler'
+  gem install bundler --version=1.7.9'
