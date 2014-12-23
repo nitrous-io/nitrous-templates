@@ -4,13 +4,13 @@ MAINTAINER Nitrous.IO <hello@nitrous.io>
 # Disable root password
 RUN passwd -l root
 
-# Create action user and give sudo
+# Create nitrous user and give sudo
 RUN \
-  useradd --create-home -s /bin/bash action && \
-  adduser action sudo && \
+  useradd --create-home -s /bin/bash nitrous && \
+  adduser nitrous sudo && \
   mkdir -p /etc/sudoers.d && \
-  echo %action ALL=NOPASSWD:ALL > /etc/sudoers.d/action && \
-  chmod 0440 /etc/sudoers.d/action
+  echo %nitrous ALL=NOPASSWD:ALL > /etc/sudoers.d/nitrous && \
+  chmod 0440 /etc/sudoers.d/nitrous
 
 RUN \
   mkdir -p /nitrous/init /nitrous/initonce && \
@@ -34,7 +34,7 @@ ADD files/init/0010-inject-env.sh  /nitrous/init/0010-inject-env.sh
 ADD files/initonce/0010-generate-pw.sh /nitrous/initonce/0010-generate-pw.sh
 
 ENV NITROUS_IMAGE_VERSION 2
-ENV NITROUS_USERNAME action
+ENV NITROUS_USERNAME nitrous
 ENV NITROUS_SSH_ENABLED true
 
 CMD ["/sbin/init", "--default-console", "none"]
