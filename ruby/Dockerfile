@@ -25,6 +25,6 @@ RUN \
 
 RUN \
   su nitrous -l -c /bin/bash -c \
-  'rbenv install 2.1.3 && \
-  rbenv global 2.1.3 && \
-  gem install bundler rails'
+  'rbenv install 2.1.5 && \
+  rbenv global 2.1.5 && \
+  gem install bundler'
