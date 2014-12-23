@@ -11,9 +11,10 @@ RUN \
     php5-gd \
     php5-mysql \
     php-apc \
-    php-pear
+    php-pear && \
+  apt-get clean
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer version=1.0.0-alpha9
 
 RUN \
   ln -s /var/www/html /home/nitrous/www && \
