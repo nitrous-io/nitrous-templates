@@ -6,7 +6,7 @@ RUN \
   chown -R nitrous:nitrous /usr/local/opt/go
 
 RUN \
-  su nitrous -c /bin/bash -c 'curl -s https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar -v -C /usr/local/opt -xz'
+  su nitrous -c /bin/bash -c 'curl -s https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz | tar -v -C /usr/local/opt -xz'
 
 RUN \
   echo 'export GOROOT=/usr/local/opt/go' >> /etc/profile && \
