@@ -7,7 +7,7 @@ docker build -t nitrousio/docker:latest .
 docker run -i -t -d nitrousio/docker:latest
 docker logs <CID>
 docker ps <CID>
-ssh -p <port> action@<ip>
+ssh -p <port> nitrous@<ip>
 ```
 
 Enter the password `docker logs` command displays.

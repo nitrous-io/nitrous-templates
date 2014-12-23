@@ -3,11 +3,11 @@ MAINTAINER Nitrous.IO <hello@nitrous.io>
 
 RUN \
   mkdir -p /usr/local/opt/rbenv && \
-  chown -R action:action /usr/local/opt/rbenv
+  chown -R nitrous:nitrous /usr/local/opt/rbenv
 
 RUN \
-  su action -l -c /bin/bash -c \
-  'mkdir /home/action/.bundle && \
+  su nitrous -l -c /bin/bash -c \
+  'mkdir /home/nitrous/.bundle && \
   git clone https://github.com/sstephenson/rbenv.git /usr/local/opt/rbenv && \
   git clone https://github.com/sstephenson/ruby-build.git /usr/local/opt/rbenv/plugins/ruby-build'
 
@@ -17,14 +17,14 @@ RUN \
   echo 'eval "$($RBENV_ROOT/bin/rbenv init -)"' >> /etc/profile && \
   echo 'export PATH=.bundle/binstubs:$PATH' >> /etc/profile
 
-ADD files/.gemrc /home/action/.gemrc
-ADD files/bundle-config /home/action/.bundle/config
+ADD files/.gemrc /home/nitrous/.gemrc
+ADD files/bundle-config /home/nitrous/.bundle/config
 
 RUN \
-  chown -R action:action /home/action/.gemrc /home/action/.bundle
+  chown -R nitrous:nitrous /home/nitrous/.gemrc /home/nitrous/.bundle
 
 RUN \
-  su action -l -c /bin/bash -c \
+  su nitrous -l -c /bin/bash -c \
   'rbenv install 2.1.3 && \
   rbenv global 2.1.3 && \
   gem install bundler rails'
