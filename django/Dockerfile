@@ -10,8 +10,8 @@ RUN apt-get install -yy python3.4-dev python-virtualenv
 RUN apt-get install -y postgresql=9.3+154 libpq-dev
 ADD support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 
-RUN mkdir -p /home/nitrous/workspace/app
-ADD support/requirements.txt /home/nitrous/workspace/app/requirements.txt
+RUN mkdir -p /home/nitrous/workspace/starter
+ADD support/requirements.txt /home/nitrous/workspace/starter/requirements.txt
 
 # fix ownership
 RUN chown -R nitrous:nitrous /home/nitrous

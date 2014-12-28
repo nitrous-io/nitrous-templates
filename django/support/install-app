@@ -2,15 +2,17 @@
 
 set -e
 
-cd $HOME/workspace
-virtualenv -p /usr/bin/python3.4 app
+appdir="starter"
 
-cd $HOME/workspace/app
+cd $HOME/workspace
+virtualenv -p /usr/bin/python3.4 $appdir
+
+cd $HOME/workspace/$appdir
 source bin/activate
 
 pip install -r requirements.txt
 
-django-admin startproject app .
+django-admin startproject $appdir .
 
 
 # Replace DATABASES config, looks like:
@@ -20,8 +22,8 @@ django-admin startproject app .
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 # }
-sed -i -e '/^DATABASES =/,/^}/d' app/settings.py
-cat >> app/settings.py <<EOF
+sed -i -e '/^DATABASES =/,/^}/d' $appdir/settings.py
+cat >> $appdir/settings.py <<EOF
 # Database
 
 DATABASES = {

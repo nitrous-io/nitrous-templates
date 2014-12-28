@@ -22,13 +22,13 @@ RUN php5enmod mcrypt
 RUN su nitrous -l -c /bin/bash -c 'composer global require "laravel/installer=~1.1"'
 
 # create laravel app
-RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && composer create-project laravel/laravel /home/nitrous/workspace/app 4.2 --prefer-dist'
+RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && composer create-project laravel/laravel /home/nitrous/workspace/starter 4.2 --prefer-dist'
 
 # web starter script
 COPY support/start-app /usr/local/bin/start-app
 
 # database configuration
-COPY support/database.php /home/nitrous/workspace/app/config/database.php
+COPY support/database.php /home/nitrous/workspace/starter/config/database.php
 
 # set proper ownership
 RUN chown -R nitrous:nitrous /home/nitrous

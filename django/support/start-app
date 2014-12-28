@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-cd /home/nitrous/workspace/app
+appdir="starter"
+
+cd /home/nitrous/workspace/$appdir
 source bin/activate
-gunicorn app.wsgi --bind 0.0.0.0:$NITROUS_PREVIEW_PORT
+gunicorn ${appdir}.wsgi --bind 0.0.0.0:$NITROUS_PREVIEW_PORT

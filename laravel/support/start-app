@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cd /home/nitrous/workspace/app
+appdir="starter"
+
+cd /home/nitrous/workspace/$appdir
 
 # create database if necessary
 if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w development >/dev/null; then

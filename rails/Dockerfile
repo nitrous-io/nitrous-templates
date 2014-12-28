@@ -18,17 +18,17 @@ RUN su nitrous -l -c /bin/bash -c 'gem install rails -v 4.1.8'
 RUN chown -R nitrous:nitrous /home/nitrous
 
 # create rails app
-RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && cd /home/nitrous/workspace && rails new app --database=postgresql --skip-bundle'
+RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && cd /home/nitrous/workspace && rails new starter --database=postgresql --skip-bundle'
 
 # install bundle to system gems
 # we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.
 RUN su nitrous -l -c /bin/bash -c 'rm -rf /home/nitrous/.bundle'
-RUN su nitrous -l -c /bin/bash -c 'cd /home/nitrous/workspace/app && bundle install --system'
+RUN su nitrous -l -c /bin/bash -c 'cd /home/nitrous/workspace/starter && bundle install --system'
 
 COPY support/start-app /usr/local/bin/start-app
 
-ADD support/database.yml /home/nitrous/workspace/app/config/database.yml
-RUN chown nitrous:nitrous /home/nitrous/workspace/app/config/database.yml
+ADD support/database.yml /home/nitrous/workspace/starter/config/database.yml
+RUN chown nitrous:nitrous /home/nitrous/workspace/starter/config/database.yml
 
 EXPOSE 3000
 
