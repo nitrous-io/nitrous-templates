@@ -17,19 +17,19 @@ RUN apt-get install -yy mongodb-org=2.6.6
 RUN mv /sbin/initctlbak /sbin/initctl
 
 RUN \
-  su action -l -c /bin/bash -c 'npm install -g npm@2.1.12' && \
-  su action -l -c /bin/bash -c 'npm install -g bower@1.3.12 grunt-cli@0.1.13 mean-cli@0.9.10'
+  su nitrous -l -c /bin/bash -c 'npm install -g npm@2.1.12' && \
+  su nitrous -l -c /bin/bash -c 'npm install -g bower@1.3.12 grunt-cli@0.1.13 mean-cli@0.9.10'
 
 ADD support/meaninit /tmp/meaninit
 RUN \
   chmod +x /tmp/meaninit && \
-  su action -l -c /bin/bash -c /tmp/meaninit
+  su nitrous -l -c /bin/bash -c /tmp/meaninit
 
-ADD support/start-app /home/action/workspace/start-app
-RUN chmod +x /home/action/workspace/start-app
+ADD support/start-app /home/nitrous/workspace/start-app
+RUN chmod +x /home/nitrous/workspace/start-app
 
 EXPOSE 3000
 
-ENV NITROUS_USERNAME action
-ENV NITROUS_CMD /home/action/workspace/start-app
+ENV NITROUS_USERNAME nitrous
+ENV NITROUS_CMD /home/nitrous/workspace/start-app
 ENV NITROUS_PREVIEW_PORT 3000

@@ -12,29 +12,29 @@ ENV PGUSER postgres
 ENV PGDATABASE development
 
 # install rails
-RUN su action -l -c /bin/bash -c 'gem install rails -v 4.1.8'
+RUN su nitrous -l -c /bin/bash -c 'gem install rails -v 4.1.8'
 
 # fix ownership
-RUN chown -R action:action /home/action
+RUN chown -R nitrous:nitrous /home/nitrous
 
 # create rails app
-RUN su action -l -c /bin/bash -c 'mkdir -p /home/action/workspace && cd /home/action/workspace && rails new app --database=postgresql --skip-bundle'
+RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && cd /home/nitrous/workspace && rails new app --database=postgresql --skip-bundle'
 
 # install bundle to system gems
 # we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.
-RUN su action -l -c /bin/bash -c 'rm -rf /home/action/.bundle'
-RUN su action -l -c /bin/bash -c 'cd /home/action/workspace/app && bundle install --system'
+RUN su nitrous -l -c /bin/bash -c 'rm -rf /home/nitrous/.bundle'
+RUN su nitrous -l -c /bin/bash -c 'cd /home/nitrous/workspace/app && bundle install --system'
 
-ADD support/web /home/action/workspace/app/bin/web
-RUN chmod +x /home/action/workspace/app/bin/web
+ADD support/web /home/nitrous/workspace/app/bin/web
+RUN chmod +x /home/nitrous/workspace/app/bin/web
 
-ADD support/database.yml /home/action/workspace/app/config/database.yml
-RUN chown action:action /home/action/workspace/app/config/database.yml
+ADD support/database.yml /home/nitrous/workspace/app/config/database.yml
+RUN chown nitrous:nitrous /home/nitrous/workspace/app/config/database.yml
 
 EXPOSE 3000
 
 # nitrous config
-ENV NITROUS_USERNAME action
-ENV NITROUS_CMD /home/action/workspace/app/bin/web
+ENV NITROUS_USERNAME nitrous
+ENV NITROUS_CMD /home/nitrous/workspace/app/bin/web
 ENV NITROUS_PREVIEW_PORT 3000
 

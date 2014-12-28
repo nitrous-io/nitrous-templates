@@ -28,7 +28,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'development',
-        'USER': 'action',
+        'USER': 'nitrous',
         'HOST': 'localhost',
         'PORT': '', # Set to empty string for default.
     }

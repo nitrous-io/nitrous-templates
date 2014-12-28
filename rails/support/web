@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export PATH="/home/action/.rbenv/bin:/home/action/.rbenv/shims:$PATH"
+export PATH="/home/nitrous/.rbenv/bin:/home/nitrous/.rbenv/shims:$PATH"
 
-cd /home/action/workspace/app
+cd /home/nitrous/workspace/app
 
 # create and migrate database if necessary
 if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w development >/dev/null; then

@@ -19,23 +19,23 @@ RUN apt-get install -y php5-mcrypt
 RUN php5enmod mcrypt
 
 # install laravel
-RUN su action -l -c /bin/bash -c 'composer global require "laravel/installer=~1.1"'
+RUN su nitrous -l -c /bin/bash -c 'composer global require "laravel/installer=~1.1"'
 
 # create laravel app
-RUN su action -l -c /bin/bash -c 'mkdir -p /home/action/workspace && composer create-project laravel/laravel /home/action/workspace/app 4.2 --prefer-dist'
+RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && composer create-project laravel/laravel /home/nitrous/workspace/app 4.2 --prefer-dist'
 
 # web starter script
-COPY support/start-app /home/action/workspace/start-app
+COPY support/start-app /home/nitrous/workspace/start-app
 
 # database configuration
-COPY support/database.php /home/action/workspace/app/config/database.php
+COPY support/database.php /home/nitrous/workspace/app/config/database.php
 
 # set proper ownership
-RUN chown -R action:action /home/action
+RUN chown -R nitrous:nitrous /home/nitrous
 
 EXPOSE 3000
 
 # nitrous config
-ENV NITROUS_USERNAME action
-ENV NITROUS_CMD /home/action/workspace/start-app
+ENV NITROUS_USERNAME nitrous
+ENV NITROUS_CMD /home/nitrous/workspace/start-app
 ENV NITROUS_PREVIEW_PORT 3000
