@@ -1,41 +1,42 @@
 FROM nitrousio/php:latest
 
-RUN apt-get update
+ENV NITROUS_USERNAME nitrous
+ENV NITROUS_APP_NAME starter
+ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/workspace/$NITROUS_APP_NAME
+ENV NITROUS_CMD /usr/local/bin/start-app
+ENV NITROUS_PREVIEW_PORT 3000
 
-# install dependencies
-RUN apt-get install -y postgresql=9.3+154 libpq-dev
+RUN \
+  apt-get update && \
+  apt-get install -y postgresql=9.3+154 libpq-dev php5-mcrypt && \
+  apt-get clean
 
 # setup postgres
-ADD support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
+COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 ENV DATABASE_URL postgres://postgres@localhost/development
 ENV PGUSER postgres
 ENV PGDATABASE development
 
-# install latest composer
-RUN composer self-update
-
 # enable mcrypt in php
-RUN apt-get install -y php5-mcrypt
 RUN php5enmod mcrypt
 
+USER $NITROUS_USERNAME
+
 # install laravel
-RUN su nitrous -l -c /bin/bash -c 'composer global require "laravel/installer=~1.1"'
+RUN /bin/bash -c 'composer global require "laravel/installer=~1.1"'
 
 # create laravel app
-RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && composer create-project laravel/laravel /home/nitrous/workspace/starter 4.2 --prefer-dist'
+RUN /bin/bash -c 'mkdir -p $NITROUS_APP_PATH && composer create-project laravel/laravel $NITROUS_APP_PATH 4.2 --prefer-dist'
 
 # web starter script
-COPY support/start-app /usr/local/bin/start-app
+COPY support/start-app $NITROUS_CMD
 
 # database configuration
-COPY support/database.php /home/nitrous/workspace/starter/config/database.php
+COPY support/database.php ${NITROUS_APP_PATH}/config/database.php
+
+USER root
 
 # set proper ownership
-RUN chown -R nitrous:nitrous /home/nitrous
+RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME'
 
-EXPOSE 3000
-
-# nitrous config
-ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /usr/local/bin/start-app
-ENV NITROUS_PREVIEW_PORT 3000
+EXPOSE $NITROUS_PREVIEW_PORT
