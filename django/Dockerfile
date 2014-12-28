@@ -24,10 +24,10 @@ RUN service postgresql start && \
   su postgres -c 'createdb development && createuser nitrous && psql -c "GRANT ALL PRIVILEGES ON DATABASE DEVELOPMENT TO nitrous;"' && \
   su nitrous -l -c /bin/bash -c '/tmp/install-app'
 
-COPY support/start-app /home/nitrous/workspace/start-app
+COPY support/start-app /usr/local/bin/start-app
 
 EXPOSE 3000
 
 ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /home/nitrous/workspace/start-app
+ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000

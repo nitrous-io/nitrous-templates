@@ -25,8 +25,7 @@ RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && cd /home/
 RUN su nitrous -l -c /bin/bash -c 'rm -rf /home/nitrous/.bundle'
 RUN su nitrous -l -c /bin/bash -c 'cd /home/nitrous/workspace/app && bundle install --system'
 
-ADD support/web /home/nitrous/workspace/app/bin/web
-RUN chmod +x /home/nitrous/workspace/app/bin/web
+COPY support/start-app /usr/local/bin/start-app
 
 ADD support/database.yml /home/nitrous/workspace/app/config/database.yml
 RUN chown nitrous:nitrous /home/nitrous/workspace/app/config/database.yml
@@ -35,6 +34,6 @@ EXPOSE 3000
 
 # nitrous config
 ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /home/nitrous/workspace/app/bin/web
+ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 

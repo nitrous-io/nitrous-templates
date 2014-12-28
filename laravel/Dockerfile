@@ -25,7 +25,7 @@ RUN su nitrous -l -c /bin/bash -c 'composer global require "laravel/installer=~1
 RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && composer create-project laravel/laravel /home/nitrous/workspace/app 4.2 --prefer-dist'
 
 # web starter script
-COPY support/start-app /home/nitrous/workspace/start-app
+COPY support/start-app /usr/local/bin/start-app
 
 # database configuration
 COPY support/database.php /home/nitrous/workspace/app/config/database.php
@@ -37,5 +37,5 @@ EXPOSE 3000
 
 # nitrous config
 ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /home/nitrous/workspace/start-app
+ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000

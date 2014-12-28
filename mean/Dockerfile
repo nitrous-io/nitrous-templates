@@ -20,16 +20,13 @@ RUN \
   su nitrous -l -c /bin/bash -c 'npm install -g npm@2.1.12' && \
   su nitrous -l -c /bin/bash -c 'npm install -g bower@1.3.12 grunt-cli@0.1.13 mean-cli@0.9.10'
 
-ADD support/meaninit /tmp/meaninit
-RUN \
-  chmod +x /tmp/meaninit && \
-  su nitrous -l -c /bin/bash -c /tmp/meaninit
+COPY support/install-app /tmp/install-app
+RUN su nitrous -l -c /bin/bash -c /tmp/install-app
 
-ADD support/start-app /home/nitrous/workspace/start-app
-RUN chmod +x /home/nitrous/workspace/start-app
+COPY support/start-app /usr/local/bin/start-app
 
 EXPOSE 3000
 
 ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /home/nitrous/workspace/start-app
+ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
