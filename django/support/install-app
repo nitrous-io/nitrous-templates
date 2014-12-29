@@ -2,18 +2,18 @@
 
 set -e
 
-appdir="starter"
+# this is invoked with `su --preserve-environment` so need to set HOME
+HOME=/home/$NITROUS_USERNAME
 
-cd $HOME/workspace
-virtualenv -p /usr/bin/python3.4 $appdir
+cd /home/$NITROUS_USERNAME/workspace
+virtualenv -p /usr/bin/python3.4 $NITROUS_APP_NAME
 
-cd $HOME/workspace/$appdir
+cd $NITROUS_APP_PATH
 source bin/activate
 
 pip install -r requirements.txt
 
-django-admin startproject $appdir .
-
+django-admin startproject $NITROUS_APP_NAME .
 
 # Replace DATABASES config, looks like:
 # DATABASES = {
@@ -22,8 +22,8 @@ django-admin startproject $appdir .
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 # }
-sed -i -e '/^DATABASES =/,/^}/d' $appdir/settings.py
-cat >> $appdir/settings.py <<EOF
+sed -i -e '/^DATABASES =/,/^}/d' $NITROUS_APP_NAME/settings.py
+cat >> $NITROUS_APP_NAME/settings.py <<EOF
 # Database
 
 DATABASES = {

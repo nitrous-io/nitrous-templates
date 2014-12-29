@@ -1,33 +1,31 @@
-FROM nitrousio/nodejs:latest
-# consider changing nitrousio/python accordingly
+FROM nitrousio/python:latest
 
-RUN apt-get update
-
-# 14.04 comes with and python2.7.6 and python3.4 by default
-RUN apt-get install -yy python3.4-dev python-virtualenv
+ENV NITROUS_APP_NAME starter
+ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/workspace/$NITROUS_APP_NAME
+ENV NITROUS_CMD /usr/local/bin/start-app
+ENV NITROUS_PREVIEW_PORT 3000
 
 # install postgres
-RUN apt-get install -y postgresql=9.3+154 libpq-dev
-ADD support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
+RUN \
+  apt-get update && \
+  apt-get install -y postgresql=9.3+154 libpq-dev && \
+  apt-get clean
 
-RUN mkdir -p /home/nitrous/workspace/starter
-ADD support/requirements.txt /home/nitrous/workspace/starter/requirements.txt
+COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 
-# fix ownership
-RUN chown -R nitrous:nitrous /home/nitrous
+RUN mkdir -p $NITROUS_APP_PATH
+COPY support/requirements.txt $NITROUS_APP_PATH/requirements.txt
+
+RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME'
 
 COPY support/install-app /tmp/install-app
 
 # need to run together so that postgres is available
 # see https://github.com/docker/docker/issues/871#issuecomment-19237998
 RUN service postgresql start && \
-  su postgres -c 'createdb development && createuser nitrous && psql -c "GRANT ALL PRIVILEGES ON DATABASE DEVELOPMENT TO nitrous;"' && \
-  su nitrous -l -c /bin/bash -c '/tmp/install-app'
+  su postgres -c 'createdb development && createuser $NITROUS_USERNAME && psql -c "GRANT ALL PRIVILEGES ON DATABASE DEVELOPMENT TO $NITROUS_USERNAME;"' && \
+  /bin/bash -l -c 'su $NITROUS_USERNAME --preserve-environment -c /tmp/install-app'
 
-COPY support/start-app /usr/local/bin/start-app
+COPY support/start-app $NITROUS_CMD
 
-EXPOSE 3000
-
-ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /usr/local/bin/start-app
-ENV NITROUS_PREVIEW_PORT 3000
+EXPOSE $NITROUS_PREVIEW_PORT
