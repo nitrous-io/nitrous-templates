@@ -1,9 +1,14 @@
 FROM nitrousio/ruby:latest
 
-RUN apt-get update
+ENV NITROUS_APP_NAME starter
+ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/workspace/$NITROUS_APP_NAME
+ENV NITROUS_CMD /usr/local/bin/start-app
+ENV NITROUS_PREVIEW_PORT 3000
 
-# install dependencies
-RUN apt-get install -y postgresql=9.3+154 libpq-dev
+RUN \
+  apt-get update && \
+  apt-get install -y postgresql=9.3+154 libpq-dev && \
+  apt-get clean
 
 # setup postgres
 ADD support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
@@ -11,29 +16,23 @@ ENV DATABASE_URL postgres://postgres@localhost/development
 ENV PGUSER postgres
 ENV PGDATABASE development
 
-# install rails
-RUN su nitrous -l -c /bin/bash -c 'gem install rails -v 4.1.8'
+USER $NITROUS_USERNAME
 
-# fix ownership
-RUN chown -R nitrous:nitrous /home/nitrous
+RUN /bin/bash -l -c 'gem install rails -v 4.1.8'
 
 # create rails app
-RUN su nitrous -l -c /bin/bash -c 'mkdir -p /home/nitrous/workspace && cd /home/nitrous/workspace && rails new starter --database=postgresql --skip-bundle'
+RUN /bin/bash -l -c 'mkdir -p /home/$NITROUS_USERNAME/workspace && cd /home/$NITROUS_USERNAME/workspace && rails new $NITROUS_APP_NAME --database=postgresql --skip-bundle'
 
 # install bundle to system gems
 # we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.
-RUN su nitrous -l -c /bin/bash -c 'rm -rf /home/nitrous/.bundle'
-RUN su nitrous -l -c /bin/bash -c 'cd /home/nitrous/workspace/starter && bundle install --system'
+RUN /bin/bash -c 'rm -rf /home/$NITROUS_USERNAME/.bundle'
+RUN /bin/bash -l -c 'cd $NITROUS_APP_PATH && bundle install --system'
 
-COPY support/start-app /usr/local/bin/start-app
+COPY support/start-app $NITROUS_CMD
 
-ADD support/database.yml /home/nitrous/workspace/starter/config/database.yml
-RUN chown nitrous:nitrous /home/nitrous/workspace/starter/config/database.yml
+USER root
 
-EXPOSE 3000
+COPY support/database.yml $NITROUS_APP_PATH/config/database.yml
+RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME $NITROUS_APP_PATH/config/database.yml'
 
-# nitrous config
-ENV NITROUS_USERNAME nitrous
-ENV NITROUS_CMD /usr/local/bin/start-app
-ENV NITROUS_PREVIEW_PORT 3000
-
+EXPOSE $NITROUS_PREVIEW_PORT

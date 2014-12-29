@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export PATH="/home/nitrous/.rbenv/bin:/home/nitrous/.rbenv/shims:$PATH"
+export PATH="/home/$NITROUS_USERNAME/.rbenv/bin:/home/$NITROUS_USERNAME/.rbenv/shims:$PATH"
 
-cd /home/nitrous/workspace/starter
+cd $NITROUS_APP_PATH
 
 # create and migrate database if necessary
 if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w development >/dev/null; then
