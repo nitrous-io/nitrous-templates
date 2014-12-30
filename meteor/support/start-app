@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-cd /home/nitrous/workspace/starter
-HOME=/home/nitrous meteor --port $NITROUS_PREVIEW_PORT
+
+cd $NITROUS_APP_PATH
+HOME=/home/$NITROUS_USERNAME meteor --port $NITROUS_PREVIEW_PORT
