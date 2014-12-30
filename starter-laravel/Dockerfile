@@ -1,6 +1,5 @@
 FROM nitrousio/php:latest
 
-ENV NITROUS_USERNAME nitrous
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/workspace/$NITROUS_APP_NAME
 ENV NITROUS_CMD /usr/local/bin/start-app

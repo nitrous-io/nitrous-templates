@@ -17,12 +17,13 @@ RUN \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer version=1.0.0-alpha9
 
 RUN \
-  ln -s /var/www/html /home/nitrous/www && \
-  rm /home/nitrous/www/index.html && \
-  echo '<?php phpinfo(); ?>' > /home/nitrous/www/index.php && \
-  chown -R nitrous:www-data /var/www && \
-  chmod 775 /var/www && \
-  chown -h nitrous:www-data /home/nitrous/www
+  /bin/bash -c \
+    'ln -s /var/www/html /home/$NITROUS_USERNAME/www && \
+    rm /home/$NITROUS_USERNAME/www/index.html && \
+    echo "<?php phpinfo(); ?>" > /home/$NITROUS_USERNAME/www/index.php && \
+    chown -R $NITROUS_USERNAME:www-data /var/www && \
+    chmod 775 /var/www && \
+    chown -h $NITROUS_USERNAME:www-data /home/$NITROUS_USERNAME/www'
 
 RUN \
   sed -i 's|variables_order.*|variables_order = "EGPCS"|g' /etc/php5/apache2/php.ini && \
