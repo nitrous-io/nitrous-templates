@@ -2,4 +2,4 @@
 
 cd $NITROUS_APP_PATH
 export PORT=$NITROUS_PREVIEW_PORT
-grunt --force
+grunt nodemon
