@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-cd /home/action/workspace/app
-source bin/activate
-gunicorn app.wsgi --bind 0.0.0.0:$NITROUS_PREVIEW_PORT

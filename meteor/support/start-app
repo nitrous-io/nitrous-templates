@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-cd /home/action/workspace/app
-HOME=/home/action meteor --port $NITROUS_PREVIEW_PORT

@@ -7,7 +7,7 @@ docker build -t nitrousio/ubuntu-bare:trusty .
 docker run -i -t -d nitrousio/ubuntu-bare:trusty
 docker logs <CID>
 docker ps <CID>
-ssh -p <port> action@<ip>
+ssh -p <port> nitrous@<ip>
 ```
 
 Enter the password `docker logs` command displays.

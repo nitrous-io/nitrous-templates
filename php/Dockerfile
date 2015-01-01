@@ -11,17 +11,19 @@ RUN \
     php5-gd \
     php5-mysql \
     php-apc \
-    php-pear
+    php-pear && \
+  apt-get clean
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer version=1.0.0-alpha9
 
 RUN \
-  ln -s /var/www/html /home/action/www && \
-  rm /home/action/www/index.html && \
-  echo '<?php phpinfo(); ?>' > /home/action/www/index.php && \
-  chown -R action:www-data /var/www && \
-  chmod 775 /var/www && \
-  chown -h action:www-data /home/action/www
+  /bin/bash -c \
+    'ln -s /var/www/html /home/$NITROUS_USERNAME/www && \
+    rm /home/$NITROUS_USERNAME/www/index.html && \
+    echo "<?php phpinfo(); ?>" > /home/$NITROUS_USERNAME/www/index.php && \
+    chown -R $NITROUS_USERNAME:www-data /var/www && \
+    chmod 775 /var/www && \
+    chown -h $NITROUS_USERNAME:www-data /home/$NITROUS_USERNAME/www'
 
 RUN \
   sed -i 's|variables_order.*|variables_order = "EGPCS"|g' /etc/php5/apache2/php.ini && \

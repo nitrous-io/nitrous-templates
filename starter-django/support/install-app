@@ -2,16 +2,18 @@
 
 set -e
 
-cd $HOME/workspace
-virtualenv -p /usr/bin/python3.4 app
+# this is invoked with `su --preserve-environment` so need to set HOME
+HOME=/home/$NITROUS_USERNAME
 
-cd $HOME/workspace/app
+cd /home/$NITROUS_USERNAME/workspace
+virtualenv -p /usr/bin/python3.4 $NITROUS_APP_NAME
+
+cd $NITROUS_APP_PATH
 source bin/activate
 
 pip install -r requirements.txt
 
-django-admin startproject app .
-
+django-admin startproject $NITROUS_APP_NAME .
 
 # Replace DATABASES config, looks like:
 # DATABASES = {
@@ -20,15 +22,15 @@ django-admin startproject app .
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 # }
-sed -i -e '/^DATABASES =/,/^}/d' app/settings.py
-cat >> app/settings.py <<EOF
+sed -i -e '/^DATABASES =/,/^}/d' $NITROUS_APP_NAME/settings.py
+cat >> $NITROUS_APP_NAME/settings.py <<EOF
 # Database
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'development',
-        'USER': 'action',
+        'USER': 'nitrous',
         'HOST': 'localhost',
         'PORT': '', # Set to empty string for default.
     }

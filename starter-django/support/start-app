@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+appdir="starter"
+
+cd /home/nitrous/workspace/$appdir
+source bin/activate
+gunicorn ${appdir}.wsgi --bind 0.0.0.0:$NITROUS_PREVIEW_PORT

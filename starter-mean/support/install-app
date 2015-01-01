@@ -4,9 +4,9 @@ mkdir -p ~/workspace
 cd ~/workspace
 # first newline: default app name
 # second newline: default taskrunner to grunt
-mean init app <<EOF
+mean init $NITROUS_APP_NAME <<EOF
 
 
 EOF
-cd ~/workspace/app
+cd $NITROUS_APP_PATH
 npm install
