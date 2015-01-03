@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd $NITROUS_APP_PATH
+HOME=/home/$NITROUS_USERNAME ./script/server
