@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-mkdir -p ~/workspace
-cd ~/workspace
+mkdir -p ~/code
+cd ~/code
 # first newline: default app name
 # second newline: default taskrunner to grunt
 mean init $NITROUS_APP_NAME <<EOF

@@ -1,7 +1,7 @@
 FROM nitrousio/ruby:latest
 
 ENV NITROUS_APP_NAME starter
-ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/workspace/$NITROUS_APP_NAME
+ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
 ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -21,7 +21,7 @@ USER $NITROUS_USERNAME
 RUN /bin/bash -l -c 'gem install rails -v 4.1.8'
 
 # create rails app
-RUN /bin/bash -l -c 'mkdir -p /home/$NITROUS_USERNAME/workspace && cd /home/$NITROUS_USERNAME/workspace && rails new $NITROUS_APP_NAME --database=postgresql --skip-bundle'
+RUN /bin/bash -l -c 'mkdir -p /home/$NITROUS_USERNAME/code && cd /home/$NITROUS_USERNAME/code && rails new $NITROUS_APP_NAME --database=postgresql --skip-bundle'
 
 # install bundle to system gems
 # we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.

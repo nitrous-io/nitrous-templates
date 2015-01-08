@@ -5,7 +5,7 @@ set -e
 # this is invoked with `su --preserve-environment` so need to set HOME
 HOME=/home/$NITROUS_USERNAME
 
-cd /home/$NITROUS_USERNAME/workspace
+cd /home/$NITROUS_USERNAME/code
 virtualenv -p /usr/bin/python3.4 $NITROUS_APP_NAME
 
 cd $NITROUS_APP_PATH
