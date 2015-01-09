@@ -1,4 +1,4 @@
-FROM nitrousio/ubuntu:trusty
+FROM nitrousio/ubuntu:latest
 MAINTAINER Nitrous.IO <hello@nitrous.io>
 
 RUN \
