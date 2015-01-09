@@ -9,14 +9,14 @@ build-base: ubuntu-bare ubuntu
 build-langs: nodejs golang php python ruby
 .PHONY: build-langs
 
-build-starters: django laravel mean meteor rails
+build-starters: aspnet django laravel mean meteor rails
 .PHONY: build-starters
 
 build-misc: docker
 .PHONY: build-misc
 
 # mean takes the longest -- test it last
-test: test-django test-laravel test-meteor test-rails test-mean
+test: test-aspnet test-django test-laravel test-meteor test-rails test-mean
 .PHONY: test
 
 ### Build base images
@@ -57,6 +57,9 @@ docker:
 
 ### Build starter template images
 
+aspnet:
+	@./script/dbuild starter-aspnet
+
 django:
 	@./script/dbuild starter-django
 .PHONY: django
@@ -78,6 +81,10 @@ rails:
 .PHONY: rails
 
 ### Test starter templates
+
+test-aspnet:
+	@./script/test-starter aspnet
+.PHONY: test-aspnet
 
 test-django:
 	@./script/test-starter django
