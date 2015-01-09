@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run -i -t -e "HOME=/home/nitrous" -u nitrous nitrousio/ubuntu:trusty /bin/bash -l
