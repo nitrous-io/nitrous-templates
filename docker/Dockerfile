@@ -26,7 +26,7 @@ RUN \
 ADD files/dind /nitrous/dind
 ADD files/emit-net-device-event.conf /etc/init/emit-net-device-event.conf
 RUN chmod +x /nitrous/dind && chmod 644 /etc/init/emit-net-device-event.conf
-RUN adduser nitrous docker
+RUN /bin/bash -c 'adduser $NITROUS_USERNAME docker'
 
 ENV NITROUS_REQUIRES_PRIVILEGED true
 
