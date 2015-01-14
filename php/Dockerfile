@@ -1,6 +1,8 @@
 FROM nitrousio/nodejs:latest
 MAINTAINER Nitrous.IO <hello@nitrous.io>
 
+ENV NITROUS_PREVIEW_PORT 80
+
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
@@ -31,4 +33,4 @@ RUN \
   sed -i 's|post_max_size.*|post_max_size = 100M|g' /etc/php5/apache2/php.ini && \
   sed -i 's|bind-address.*|bind-address = 0.0.0.0|g' /etc/mysql/my.cnf
 
-EXPOSE 80
+EXPOSE $NITROUS_PREVIEW_PORT
