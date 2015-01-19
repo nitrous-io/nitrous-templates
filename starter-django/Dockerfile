@@ -1,4 +1,4 @@
-FROM nitrousio/python:latest
+FROM quay.io/nitrous/python:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME

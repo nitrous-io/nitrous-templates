@@ -1,4 +1,4 @@
-FROM nitrousio/nodejs:latest
+FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous.IO <hello@nitrous.io>
 
 RUN \

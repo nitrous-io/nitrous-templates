@@ -1,4 +1,4 @@
-FROM nitrousio/golang:latest
+FROM quay.io/nitrous/golang:latest
 MAINTAINER Nitrous.IO <hello@nitrous.io>
 
 RUN \

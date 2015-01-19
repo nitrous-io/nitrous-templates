@@ -1,4 +1,4 @@
-FROM nitrousio/ubuntu:latest
+FROM quay.io/nitrous/ubuntu:latest
 MAINTAINER Nitrous.IO <hello@nitrous.io>
 
 RUN \

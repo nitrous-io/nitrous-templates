@@ -1,4 +1,4 @@
-FROM nitrousio/nodejs:latest
+FROM quay.io/nitrous/nodejs:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
