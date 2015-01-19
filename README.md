@@ -2,17 +2,6 @@
 
 ## Conventions
 
-### Terminology
-
-There are broadly three levels in the Nitrous Dockerfiles hierarchy:
-
-- distro: `ubuntu`, `ubuntu-bare`
-- language: `golang`, `ruby`, etc
-- starter: `starter-rails`, `starter-laravel`, etc
-
-Starter Dockerfiles contain the full setup for a given web framework -- apps
-are generated with database access and web preview is immediately available.
-
 ### Origin
 
 Nitrous images ultimately inherit from `nitrousio/ubuntu-bare`, which inherits
