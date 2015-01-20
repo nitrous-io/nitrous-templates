@@ -26,7 +26,9 @@ RUN \
   /bin/bash -c 'git clone https://github.com/robbyrussell/oh-my-zsh.git /home/$NITROUS_USERNAME/.oh-my-zsh && \
     cp /home/$NITROUS_USERNAME/.oh-my-zsh/templates/zshrc.zsh-template /home/$NITROUS_USERNAME/.zshrc && \
     sed -i "s|# DISABLE_AUTO_UPDATE|DISABLE_AUTO_UPDATE|g" /home/$NITROUS_USERNAME/.zshrc && \
-    sudo chsh -s /bin/zsh $NITROUS_USERNAME'
+    sudo chsh -s /bin/zsh $NITROUS_USERNAME && \
+    sudo touch /etc/profile.d/dummy.sh && \
+    sudo /bin/bash -c "echo source /etc/profile >> /etc/zsh/zprofile"'
 
 # setup vim
 RUN \
