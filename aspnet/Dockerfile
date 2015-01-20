@@ -5,7 +5,7 @@ ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
 ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
-ENV KRE_VERSION 1.0.0-beta1
+ENV KRE_VERSION 1.0.0-beta2
 ENV KRE_USER_HOME /home/$NITROUS_USERNAME/.kre
 
 # Install Mono + requirements for libuv + k
@@ -38,8 +38,8 @@ RUN \
 
 USER root
 RUN \
-  echo 'source $KRE_USER_HOME/kvm/kvm.sh' >> /etc/profile && \
-  echo 'export PATH=$KRE_USER_HOME/packages/default/bin:$PATH' >> /etc/profile
+  echo "source $KRE_USER_HOME/kvm/kvm.sh" >> /etc/profile && \
+  echo "PATH=$KRE_USER_HOME/packages/default/bin:\$PATH" >> /etc/profile
 
 USER $NITROUS_USERNAME
 RUN \
@@ -48,7 +48,7 @@ RUN \
     kvm alias default | xargs -i ln -s $KRE_USER_HOME/packages/{} $KRE_USER_HOME/packages/default"
 
 # Pull down example template
-RUN /bin/bash -l -c "git clone -b v0.1 https://github.com/nitrous-io/aspnet5-mvc-sample.git $NITROUS_APP_PATH && rm -rf $NITROUS_APP_PATH/.git"
+RUN /bin/bash -l -c "git clone -b v0.2 https://github.com/nitrous-io/aspnet5-mvc-sample.git $NITROUS_APP_PATH && rm -rf $NITROUS_APP_PATH/.git"
 # Install npm dependencies
 RUN /bin/bash -l -c "cd $NITROUS_APP_PATH && ./script/setup && npm install -g gulp@3.8.10"
 # Install k dependencies
