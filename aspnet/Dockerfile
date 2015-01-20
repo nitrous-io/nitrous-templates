@@ -8,21 +8,21 @@ ENV NITROUS_PREVIEW_PORT 3000
 ENV KRE_VERSION 1.0.0-beta1
 ENV KRE_USER_HOME /home/$NITROUS_USERNAME/.kre
 
-# Add package awareness of Mono
+# Install Mono + requirements for libuv + k
 RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
   echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list && \
   apt-get update && \
-  # Install Mono + requirements for libuv + k
-  apt-get install -yy mono-devel=3.10.0-0xamarin2 fsharp nuget autoconf automake libtool && \
+  apt-get install -yy mono-devel fsharp nuget autoconf automake libtool && \
   apt-get clean
 
 # Install libuv (used by the Kestrel web server)
 RUN \
-  LIBUV_VERSION=1.0.0-rc2 \
-    && curl -sSL https://github.com/joyent/libuv/archive/v${LIBUV_VERSION}.tar.gz | tar zxfv - -C /usr/local/src \
+  LIBUV_VERSION=1.2.1 \
+    && curl -sSL https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz | tar zxfv - -C /usr/local/src \
     && cd /usr/local/src/libuv-$LIBUV_VERSION \
     && sh autogen.sh && ./configure && make && make install \
+    && cd / \
     && rm -rf /usr/local/src/libuv-$LIBUV_VERSION \
     && ldconfig
 
@@ -46,7 +46,6 @@ RUN \
   /bin/bash -l -c \
     "kvm install $KRE_VERSION -a default && \
     kvm alias default | xargs -i ln -s $KRE_USER_HOME/packages/{} $KRE_USER_HOME/packages/default"
-
 
 # Pull down example template
 RUN /bin/bash -l -c "git clone -b v0.1 https://github.com/nitrous-io/aspnet5-mvc-sample.git $NITROUS_APP_PATH && rm -rf $NITROUS_APP_PATH/.git"
