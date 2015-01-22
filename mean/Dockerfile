@@ -2,7 +2,6 @@ FROM quay.io/nitrous/nodejs:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
-ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
 # https://github.com/docker/docker/issues/1024
@@ -29,8 +28,6 @@ RUN \
 
 COPY support/install-app /tmp/install-app
 RUN /bin/bash -l -c /tmp/install-app
-
-COPY support/start-app $NITROUS_CMD
 
 EXPOSE $NITROUS_PREVIEW_PORT
 

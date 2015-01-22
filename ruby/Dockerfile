@@ -15,7 +15,7 @@ COPY files/.gemrc /home/$NITROUS_USERNAME/.gemrc
 COPY files/bundle-config /home/$NITROUS_USERNAME/.bundle/config
 
 RUN \
-  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/nitrous/.gemrc /home/nitrous/.bundle'
+  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gemrc /home/$NITROUS_USERNAME/.bundle'
 
 USER $NITROUS_USERNAME
 

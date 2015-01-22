@@ -2,7 +2,6 @@ FROM quay.io/nitrous/nodejs:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
-ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
 ENV KRE_VERSION 1.0.0-beta2
@@ -53,8 +52,6 @@ RUN /bin/bash -l -c "git clone -b v0.2 https://github.com/nitrous-io/aspnet5-mvc
 RUN /bin/bash -l -c "cd $NITROUS_APP_PATH && ./script/setup && npm install -g gulp@3.8.10"
 # Install k dependencies
 RUN /bin/bash -l -c "cd $NITROUS_APP_PATH && kpm restore"
-
-COPY support/start-app /usr/local/bin/start-app
 
 USER root
 

@@ -2,7 +2,6 @@ FROM quay.io/nitrous/python:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
-ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
 # install postgres
@@ -25,7 +24,5 @@ COPY support/install-app /tmp/install-app
 RUN service postgresql start && \
   su postgres -c 'createdb development && createuser $NITROUS_USERNAME && psql -c "GRANT ALL PRIVILEGES ON DATABASE DEVELOPMENT TO $NITROUS_USERNAME;"' && \
   /bin/bash -l -c 'su $NITROUS_USERNAME --preserve-environment -c /tmp/install-app'
-
-COPY support/start-app $NITROUS_CMD
 
 EXPOSE $NITROUS_PREVIEW_PORT

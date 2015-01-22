@@ -2,7 +2,6 @@ FROM quay.io/nitrous/php:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
-ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
 RUN \
@@ -26,9 +25,6 @@ RUN /bin/bash -c 'composer global require "laravel/installer=~1.1"'
 
 # create laravel app
 RUN /bin/bash -c 'mkdir -p $NITROUS_APP_PATH && composer create-project laravel/laravel $NITROUS_APP_PATH 4.2 --prefer-dist'
-
-# web starter script
-COPY support/start-app $NITROUS_CMD
 
 # database configuration
 COPY support/database.php ${NITROUS_APP_PATH}/config/database.php

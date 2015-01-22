@@ -2,7 +2,6 @@ FROM quay.io/nitrous/ruby:latest
 
 ENV NITROUS_APP_NAME starter
 ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
-ENV NITROUS_CMD /usr/local/bin/start-app
 ENV NITROUS_PREVIEW_PORT 3000
 
 RUN \
@@ -27,8 +26,6 @@ RUN /bin/bash -l -c 'mkdir -p /home/$NITROUS_USERNAME/code && cd /home/$NITROUS_
 # we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.
 RUN /bin/bash -c 'rm -rf /home/$NITROUS_USERNAME/.bundle'
 RUN /bin/bash -l -c 'cd $NITROUS_APP_PATH && bundle install --system'
-
-COPY support/start-app $NITROUS_CMD
 
 USER root
 
