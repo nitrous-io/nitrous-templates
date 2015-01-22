@@ -4,7 +4,7 @@
 
 source $(dirname "$BASH_SOURCE[0]")/helper
 
-reguser="nitrousio"
+reguser="quay.io/nitrous"
 
 builddir=${1:?"Missing directory to build"}
 tag="$reguser/$builddir"
