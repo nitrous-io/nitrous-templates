@@ -1,59 +1,51 @@
-# Welcome to Nitrous.IO
-
-Nitrous.IO enables you to develop web applications completely in the
-cloud. This development "box" helps you write software, collaborate
-real-time with friends, show off apps to teammates or clients, and
-deploy apps to production hosting sites like Heroku or Google App
-Engine.
+Welcome to Nitrous Pro: create powerful web applications in record time.
 
 ## Getting Started
 
-This box is a fully functional Linux environment in which you can
-develop any Linux-based application. This box comes bundled with gcc,
-make, perl and other system-level libraries, enough to get you started
-on your application development journey.
+This Ubuntu 14.04 container is a fully functional Linux environment in which
+you can develop any Linux-based application.
 
+The `nitrous` user has been set up with password-less root access on the `sudo` command.
 
-## Setting up your SSH Keys
+## Default install
 
-We recommend that you use Github (www.github.com) to manage your
-application's code. To interact with your code on Github, you'll need to
-add your Nitrous.IO box's SSH keys to Github.  Follow these steps to get
-started:
+The base Nitrous Ubuntu image has a wealth of software and tools already installed:
 
-http://help.nitrous.io/github-add-key/
+- editors: emacs, nano, vim
+- version control: git, mercurial, subversion
+- languages: c, c++, perl, python
+- shells: bash, dash, zsh (default)
 
-## Installing Databases
+## Upgrading your container
 
-Your box comes installed with Autoparts, with which you can install
-databases such as MySQL, Redis, Postgres, Memcache and many others.
-Look for the "Autoparts" menu in the IDE, or read more here:
+To update software already installed on your container, run the following
+commands:
 
-http://help.nitrous.io/autoparts/
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
 
-## Previewing your application
+## Installing more software
 
-Once you're running a webserver, keep an eye on the port where your
-server is running.  Then click the "Preview" menu title in the IDE above
-and select the port where your application is running. For more
-information, check out this help article:
+Since the container is Ubuntu-based, you have full access to the thousands of
+Ubuntu and Debian packages.  You can browse them at
 
-http://help.nitrous.io/preview/
+http://packages.ubuntu.com/trusty/
 
-## Real-Time Collaboration
+Alternately, you can search for a package by running the following in the
+command-line:
 
-You can invite friends and teammates into this web IDE session so you
-can code collaboratively on the same codebase.  This can be really
-helpful when giving tutorials, troubleshooting some code, or just doing
-some pair programming.  Click the "Collaborate" menu and then manage
-collaborators.
+`apt-cache search <search term>`
 
-http://help.nitrous.io/collab/
+Once you have identified the package(s) you'd like, install as follows:
 
-## Deployment
+`sudo apt-get install <one or more package names>`
 
-Once you've built your application, you can deploy to various
-cloud services such as Heroku, Google App Engine, Nodejitsu, Azure and
-others.  You can read more about it here:
+## Previewing web applications
 
-http://help.nitrous.io/categories/deployment/
+The "Preview" menu in the IDE lists the open ports on this container.  Exposed ports can be added/removed from the "Ports" tab on the container dashboard view.
+
+For more information on previews, have a look at
+
+http://docs.nitrous.io/v1.0/docs/preview
