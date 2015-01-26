@@ -58,26 +58,26 @@ docker:
 ### Build starter template images
 
 aspnet:
-	@./script/dbuild starter-aspnet
+	@./script/dbuild aspnet
 
 django:
-	@./script/dbuild starter-django
+	@./script/dbuild django
 .PHONY: django
 
 laravel:
-	@./script/dbuild starter-laravel
+	@./script/dbuild laravel
 .PHONY: laravel
 
 mean:
-	@./script/dbuild starter-mean
+	@./script/dbuild mean
 .PHONY: mean
 
 meteor:
-	@./script/dbuild starter-meteor
+	@./script/dbuild meteor
 .PHONY: meteor
 
 rails:
-	@./script/dbuild starter-rails
+	@./script/dbuild rails
 .PHONY: rails
 
 ### Test starter templates
