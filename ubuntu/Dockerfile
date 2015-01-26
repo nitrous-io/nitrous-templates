@@ -11,9 +11,10 @@ RUN \
 COPY files/gitconfig /home/$NITROUS_USERNAME/.gitconfig
 COPY files/tmux.conf /home/$NITROUS_USERNAME/.tmux.conf
 COPY files/vimrc /home/$NITROUS_USERNAME/.vimrc
+COPY files/README.md /home/$NITROUS_USERNAME/README.md
 
 RUN \
-  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gitconfig /home/$NITROUS_USERNAME/.tmux.conf /home/$NITROUS_USERNAME/.vimrc'
+  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gitconfig /home/$NITROUS_USERNAME/.tmux.conf /home/$NITROUS_USERNAME/.vimrc /home/$NITROUS_USERNAME/README.md'
 
 USER $NITROUS_USERNAME
 
