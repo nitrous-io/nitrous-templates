@@ -1,5 +1,5 @@
 FROM ubuntu-upstart:trusty
-MAINTAINER Nitrous.IO <hello@nitrous.io>
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 ENV NITROUS_IMAGE_VERSION 2
 ENV NITROUS_USERNAME nitrous
@@ -25,17 +25,17 @@ RUN \
   rm /etc/legal && \
   rm /etc/update-motd.d/10-help-text
 
-ADD files/motd /etc/update-motd.d/00-header
-ADD files/nitrous_bootstrap.conf /etc/init/nitrous_bootstrap.conf
-ADD files/bootstrap.sh /nitrous/bootstrap.sh
-ADD files/dockerenv-inject /nitrous/dockerenv-inject
-ADD files/sshd_config /etc/ssh/sshd_config
+COPY files/motd /etc/update-motd.d/00-header
+COPY files/nitrous_bootstrap.conf /etc/init/nitrous_bootstrap.conf
+COPY files/bootstrap.sh /nitrous/bootstrap.sh
+COPY files/dockerenv-inject /nitrous/dockerenv-inject
+COPY files/sshd_config /etc/ssh/sshd_config
 
-ADD files/nitrous-unison /nitrous/nitrous-unison
-ADD files/nitrous-watcher /nitrous/nitrous-watcher
+COPY files/nitrous-unison /nitrous/nitrous-unison
+COPY files/nitrous-watcher /nitrous/nitrous-watcher
 
-ADD files/init/0010-inject-env.sh  /nitrous/init/0010-inject-env.sh
+COPY files/init/0010-inject-env.sh  /nitrous/init/0010-inject-env.sh
 
-ADD files/initonce/0010-generate-pw.sh /nitrous/initonce/0010-generate-pw.sh
+COPY files/initonce/0010-generate-pw.sh /nitrous/initonce/0010-generate-pw.sh
 
 CMD ["/sbin/init", "--default-console", "none"]
