@@ -1,5 +1,8 @@
 FROM quay.io/nitrous/nodejs:latest
-MAINTAINER Nitrous.IO <hello@nitrous.io>
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
+
+# 2015-01-28
+# go 1.4.1
 
 RUN \
   mkdir -p /usr/local/opt/go && \
@@ -8,7 +11,7 @@ RUN \
 USER $NITROUS_USERNAME
 
 RUN \
-  /bin/bash -c 'curl -s https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz | tar -v -C /usr/local/opt -xz'
+  /bin/bash -c 'curl -s https://storage.googleapis.com/golang/go1.4.1.linux-amd64.tar.gz | tar -v -C /usr/local/opt -xz'
 
 USER root
 
