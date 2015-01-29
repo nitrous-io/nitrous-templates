@@ -1,5 +1,10 @@
 FROM quay.io/nitrous/ubuntu:latest
-MAINTAINER Nitrous.IO <hello@nitrous.io>
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
+
+# 2015-01-28
+# nvm     0.23.2
+# node    0.10.36
+# npm     2.3.0
 
 RUN \
   mkdir -p /usr/local/opt/nvm && \
@@ -9,15 +14,14 @@ RUN echo 'source /usr/local/opt/nvm/nvm.sh' >> /etc/profile
 
 USER $NITROUS_USERNAME
 
-# nvm 0.22.0 - 20141226
-# node 0.10.35 - 20141222
-
 RUN \
   /bin/bash -c \
     'git clone https://github.com/creationix/nvm.git /usr/local/opt/nvm && \
-    cd /usr/local/opt/nvm && git checkout v0.22.0 2>/dev/null && \
+    cd /usr/local/opt/nvm && git checkout v0.23.2 2>/dev/null && \
     source /usr/local/opt/nvm/nvm.sh && \
-    nvm install 0.10.35 && \
-    nvm alias default 0.10.35'
+    nvm install 0.10.36 && \
+    nvm alias default 0.10 && \
+    nvm use 0.10 && \
+    npm install -g npm@2.3.0'
 
 USER root
