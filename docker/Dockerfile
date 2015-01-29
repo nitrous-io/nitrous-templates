@@ -1,5 +1,8 @@
 FROM quay.io/nitrous/golang:latest
-MAINTAINER Nitrous.IO <hello@nitrous.io>
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
+
+# 2015-01-28
+# lxc-docker 1.4.1
 
 RUN \
   apt-get update && \
