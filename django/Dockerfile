@@ -1,10 +1,17 @@
 FROM quay.io/nitrous/python:latest
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-ENV NITROUS_APP_NAME starter
-ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
+# 2015-01-28
+# postgresql  9.3+154
+# requirements.txt:
+# django      1.7.4
+# gunicorn    19.1.1
+# ipython     2.3.1
+# psycopg2    2.5.4
+
 ENV NITROUS_PREVIEW_PORT 3000
 
-# install postgres
+# set up postgres
 RUN \
   apt-get update && \
   apt-get install -y postgresql=9.3+154 libpq-dev && \
@@ -12,17 +19,29 @@ RUN \
 
 COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 
-RUN mkdir -p $NITROUS_APP_PATH
-COPY support/requirements.txt $NITROUS_APP_PATH/requirements.txt
+RUN service postgresql start && \
+  su postgres -c 'createdb example_development && \
+  createuser --superuser $NITROUS_USERNAME' && \
+  service postgresql stop
 
-RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME'
+RUN mkdir -p /home/$NITROUS_USERNAME/code/example
+
+COPY support/requirements.txt /home/$NITROUS_USERNAME/code/example/requirements.txt
+
+RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example'
 
 COPY support/install-app /tmp/install-app
 
-# need to run together so that postgres is available
-# see https://github.com/docker/docker/issues/871#issuecomment-19237998
-RUN service postgresql start && \
-  su postgres -c 'createdb development && createuser $NITROUS_USERNAME && psql -c "GRANT ALL PRIVILEGES ON DATABASE DEVELOPMENT TO $NITROUS_USERNAME;"' && \
-  /bin/bash -l -c 'su $NITROUS_USERNAME --preserve-environment -c /tmp/install-app'
+USER $NITROUS_USERNAME
+
+RUN /bin/bash -l -c 'sudo service postgresql start && \
+  /tmp/install-app && \
+  sudo service postgresql stop'
+
+USER root
+
+COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
+
+RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
 
 EXPOSE $NITROUS_PREVIEW_PORT

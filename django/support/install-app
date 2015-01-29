@@ -4,6 +4,8 @@ set -e
 
 # this is invoked with `su --preserve-environment` so need to set HOME
 HOME=/home/$NITROUS_USERNAME
+NITROUS_APP_NAME=example
+NITROUS_APP_PATH=$HOME/code/$NITROUS_APP_NAME
 
 cd /home/$NITROUS_USERNAME/code
 virtualenv -p /usr/bin/python3.4 $NITROUS_APP_NAME
@@ -29,7 +31,7 @@ cat >> $NITROUS_APP_NAME/settings.py <<EOF
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'development',
+        'NAME': 'example_development',
         'USER': 'nitrous',
         'HOST': 'localhost',
         'PORT': '', # Set to empty string for default.
