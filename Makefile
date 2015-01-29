@@ -59,6 +59,7 @@ docker:
 
 aspnet:
 	@./script/dbuild aspnet
+.PHONY: aspnet
 
 django:
 	@./script/dbuild django
