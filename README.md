@@ -21,37 +21,6 @@ Under the default environment variable settings,
 - the parent directory for starter templates is `/home/nitrous/code`
 - when `NITROUS_CMD` (see below) is a script, it is typically stored at `/usr/local/bin/start-app`
 
-#### NITROUS\_APP\_NAME
-
-Defaults to: `starter`
-
-The name of the application that is passed to scaffolds/generators, e.g. `rails new $NITROUS_APP_NAME`.
-
-#### NITROUS\_APP\_PATH
-
-Defaults to: `/home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME`
-
-The project root for a generated application.
-
-#### NITROUS\_CMD
-
-Defaults to: `/usr/local/bin/start-app`
-
-The command that Nitrous runs on app start/restart.  It runs as the user given
-by `NITROUS_USERNAME`, and is executed with the equivalent of `docker exec -dt
-<container id> su --preserve-environment -l $NITROUS_USERNAME -c $NITROUS_CMD`.
-
-The typical use of this is to start a web server; which will be expected to
-listen on `NITROUS_PREVIEW_PORT`.
-
-#### NITROUS\_PREVIEW\_PORT
-
-Defaults to: `3000`.
-
-The port that the application run by `NITROUS_CMD` listens on _in the
-container_.  The preview button in the Nitrous Pro web and desktop apps will
-link appropriately if this is set.
-
 #### NITROUS\_USERNAME
 
 Defaults to: `nitrous`.
