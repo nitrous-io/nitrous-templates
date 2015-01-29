@@ -1,10 +1,4 @@
 #!/bin/bash
 
-cd $NITROUS_APP_PATH
-
-# create database if necessary
-if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w development >/dev/null; then
-  createdb $(echo $DATABASE_URL | awk '{split($0,url,"/"); print url[length(url)]}')
-fi
-
+cd /home/$NITROUS_USERNAME/code/example
 ./artisan serve --host=0.0.0.0 --port=$NITROUS_PREVIEW_PORT

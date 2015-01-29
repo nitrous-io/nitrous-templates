@@ -1,6 +1,6 @@
 <?php
 
-$database_url = parse_url(getenv("DATABASE_URL"));
+$database_url = parse_url("postgres://nitrous@localhost/example_development");
 
 return array(
 

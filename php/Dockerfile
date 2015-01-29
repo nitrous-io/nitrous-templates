@@ -18,6 +18,7 @@ RUN \
     php5-curl \
     php5-gd \
     php5-mysql \
+    php5-mcrypt \
     php-apc \
     php-pear && \
   apt-get clean
