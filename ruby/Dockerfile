@@ -1,5 +1,9 @@
 FROM quay.io/nitrous/nodejs:latest
-MAINTAINER Nitrous.IO <hello@nitrous.io>
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
+
+# 2015-01-28
+# ruby 2.2.0
+# bundler 1.7.12
 
 RUN \
   mkdir -p /usr/local/opt/rbenv && \
@@ -11,7 +15,7 @@ RUN \
   echo 'eval "$($RBENV_ROOT/bin/rbenv init -)"' >> /etc/profile && \
   echo 'export PATH=.bundle/binstubs:$PATH' >> /etc/profile
 
-COPY files/.gemrc /home/$NITROUS_USERNAME/.gemrc
+COPY files/gemrc /home/$NITROUS_USERNAME/.gemrc
 COPY files/bundle-config /home/$NITROUS_USERNAME/.bundle/config
 
 RUN \
@@ -26,8 +30,8 @@ RUN \
 
 RUN \
   /bin/bash -l -c \
-    'rbenv install 2.1.5 && \
-    rbenv global 2.1.5 && \
-    gem install bundler --version=1.7.9'
+    'rbenv install 2.2.0 && \
+    rbenv global 2.2.0 && \
+    gem install bundler --version=1.7.12'
 
 USER root
