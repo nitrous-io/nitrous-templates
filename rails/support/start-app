@@ -1,12 +1,4 @@
 #!/bin/bash
 
-export PATH="/home/$NITROUS_USERNAME/.rbenv/bin:/home/$NITROUS_USERNAME/.rbenv/shims:$PATH"
-
-cd $NITROUS_APP_PATH
-
-# create and migrate database if necessary
-if ! psql -U postgres -lqt | cut -d \| -f 1 | grep -w development >/dev/null; then
-  rake db:create db:migrate
-fi
-
-rails server -p $NITROUS_PREVIEW_PORT
+cd /home/$NITROUS_USERNAME/code/example
+rails server --binding=0.0.0.0 --port=$NITROUS_PREVIEW_PORT

@@ -1,7 +1,10 @@
 FROM quay.io/nitrous/ruby:latest
+MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-ENV NITROUS_APP_NAME starter
-ENV NITROUS_APP_PATH /home/$NITROUS_USERNAME/code/$NITROUS_APP_NAME
+# 2015-01-28
+# rails 4.2.0
+# postgresql 9.3+154
+
 ENV NITROUS_PREVIEW_PORT 3000
 
 RUN \
@@ -9,27 +12,30 @@ RUN \
   apt-get install -y postgresql=9.3+154 libpq-dev && \
   apt-get clean
 
-# setup postgres
-ADD support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
-ENV DATABASE_URL postgres://postgres@localhost/development
-ENV PGUSER postgres
-ENV PGDATABASE development
+# set up postgres
+COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
+
+RUN service postgresql start && \
+  su postgres -c 'createdb example_development && \
+  createuser --superuser $NITROUS_USERNAME' && \
+  service postgresql stop
 
 USER $NITROUS_USERNAME
 
-RUN /bin/bash -l -c 'gem install rails -v 4.1.8'
+# set up example app
 
-# create rails app
-RUN /bin/bash -l -c 'mkdir -p /home/$NITROUS_USERNAME/code && cd /home/$NITROUS_USERNAME/code && rails new $NITROUS_APP_NAME --database=postgresql --skip-bundle'
-
-# install bundle to system gems
-# we remove $HOME/.bundle so that we can properly install to system gems instead of ./bundle.
-RUN /bin/bash -c 'rm -rf /home/$NITROUS_USERNAME/.bundle'
-RUN /bin/bash -l -c 'cd $NITROUS_APP_PATH && bundle install --system'
+RUN /bin/bash -l -c 'sudo service postgresql start && \
+  gem install rails -v 4.2.0 && \
+  cd /home/$NITROUS_USERNAME/code && \
+  rails new example -d postgresql && \
+  cd example && \
+  bundle install && \
+  rake db:create db:migrate && \
+  sudo service postgresql stop'
 
 USER root
 
-COPY support/database.yml $NITROUS_APP_PATH/config/database.yml
-RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME $NITROUS_APP_PATH/config/database.yml'
+COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
+RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
 
 EXPOSE $NITROUS_PREVIEW_PORT
