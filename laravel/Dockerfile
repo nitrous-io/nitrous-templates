@@ -47,4 +47,10 @@ USER root
 # set proper ownership
 RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example'
 
+# remove www symlink
+RUN \
+  rm -rf /home/$NITROUS_USERNAME/code/public_html && \
+  rm /home/$NITROUS_USERNAME/public_html && \
+  rm /home/$NITROUS_USERNAME/www
+
 EXPOSE $NITROUS_PREVIEW_PORT
