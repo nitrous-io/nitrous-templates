@@ -27,12 +27,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN \
   /bin/bash -c \
-    'ln -s /var/www/html /home/$NITROUS_USERNAME/www && \
-    rm /home/$NITROUS_USERNAME/www/index.html && \
-    echo "<?php phpinfo(); ?>" > /home/$NITROUS_USERNAME/www/index.php && \
-    chown -R $NITROUS_USERNAME:www-data /var/www && \
-    chmod 775 /var/www && \
-    chown -h $NITROUS_USERNAME:www-data /home/$NITROUS_USERNAME/www'
+    'rm /var/www/html/index.html && \
+    echo "<?php phpinfo(); ?>" > /var/www/html/index.php && \
+    mv /var/www/html /home/$NITROUS_USERNAME/code/public_html && \
+    ln -s /home/$NITROUS_USERNAME/code/public_html /var/www/html && \
+    ln -s /home/$NITROUS_USERNAME/code/public_html /home/$NITROUS_USERNAME/public_html && \
+    ln -s /home/$NITROUS_USERNAME/code/public_html /home/$NITROUS_USERNAME/www && \
+    chown -R $NITROUS_USERNAME:www-data /home/$NITROUS_USERNAME/code/public_html && \
+    chmod 775 /home/$NITROUS_USERNAME/code/public_html && \
+    chown -h $NITROUS_USERNAME:www-data /var/www/html && \
+    chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/public_html && \
+    chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/www'
 
 RUN \
   sed -i 's|variables_order.*|variables_order = "EGPCS"|g' /etc/php5/apache2/php.ini && \
