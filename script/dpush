@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Usage: dpush <directory> [args for docker push...]
+
+source $(dirname "$BASH_SOURCE[0]")/helper
+
+reguser="quay.io/nitrous"
+
+pushdir=${1:?"Missing directory to push"}
+tag="$reguser/$pushdir"
+shift
+
+ok "Pushing $tag"
+if docker push $tag $@; then
+  ok "Pushed $tag"
+else
+  error "Error pushing $tag with args $@"
+fi

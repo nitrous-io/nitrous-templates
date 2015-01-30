@@ -15,6 +15,34 @@ build-starters: aspnet django laravel mean meteor rails
 build-misc: docker
 .PHONY: build-misc
 
+push-all: push-base push-langs push-starters push-misc
+.PHONY: push-all
+
+push-base:
+	@./script/dpush ubuntu-bare
+	@./script/dpush ubuntu
+.PHONY: push-base
+
+push-langs:
+	@./script/dpush nodejs
+	@./script/dpush golang
+	@./script/dpush php
+	@./script/dpush python
+	@./script/dpush ruby
+.PHONY: push-langs
+
+push-starters:
+	@./script/dpush aspnet
+	@./script/dpush django
+	@./script/dpush laravel
+	@./script/dpush mean
+	@./script/dpush meteor
+	@./script/dpush rails
+.PHONY: push-starters
+
+push-misc: docker
+.PHONY: push-misc
+
 # mean takes the longest -- test it last
 test: test-aspnet test-django test-laravel test-meteor test-rails test-mean
 .PHONY: test
