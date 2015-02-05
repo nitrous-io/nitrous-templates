@@ -5,7 +5,12 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
-  apt-get install -yy --no-install-recommends build-essential software-properties-common checkinstall cmake gdb curl wget screen tmux lsof zsh silversearcher-ag ack-grep gnupg bzip2 zip unzip unison man-db sqlite3 bison gawk telnet psmisc vim-nox emacs24-nox nano git git-svn mercurial bzr subversion libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libxml2-dev libxslt1-dev libbz2-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libffi-dev && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yy --no-install-recommends build-essential clang software-properties-common \
+    checkinstall cmake gdb dnsutils curl wget screen tmux lsof zsh silversearcher-ag ack-grep \
+    gnupg bzip2 zip unzip unison man-db sqlite3 bison gawk telnet psmisc vim-nox emacs24-nox \
+    nano git git-svn mercurial bzr subversion libssl-dev libyaml-dev libreadline6-dev zlib1g-dev \
+    libxml2-dev libxslt1-dev libbz2-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libffi-dev \
+    libcurl4-openssl-dev libmagickwand-dev imagemagick autoconf && \
   apt-get clean
 
 COPY files/gitconfig /home/$NITROUS_USERNAME/.gitconfig
