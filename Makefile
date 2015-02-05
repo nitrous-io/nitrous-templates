@@ -6,7 +6,7 @@ build-all: build-base build-langs build-starters build-misc
 build-base: ubuntu-bare ubuntu
 .PHONY: build-base
 
-build-langs: nodejs golang php python ruby
+build-langs: nodejs iojs golang php python ruby
 .PHONY: build-langs
 
 build-starters: aspnet django laravel mean meteor rails
@@ -25,6 +25,7 @@ push-base:
 
 push-langs:
 	@./script/dpush nodejs
+	@./script/dpush iojs
 	@./script/dpush golang
 	@./script/dpush php
 	@./script/dpush python
@@ -62,6 +63,10 @@ ubuntu:
 nodejs:
 	@./script/dbuild nodejs
 .PHONY: nodejs
+
+iojs:
+	@./script/dbuild iojs
+.PHONY: iojs
 
 golang:
 	@./script/dbuild golang
