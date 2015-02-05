@@ -26,6 +26,7 @@ USER $NITROUS_USERNAME
 
 RUN /bin/bash -l -c 'sudo service postgresql start && \
   gem install rails -v 4.2.0 && \
+  rbenv rehash && \
   cd /home/$NITROUS_USERNAME/code && \
   rails new example -d postgresql && \
   cd example && \
