@@ -5,6 +5,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # apache2               2.4.7-1ubuntu4.1
 # libapache2-mod-php5   5.5.9+dfsg-1ubuntu4.5
 # mysql-server          5.5.41-0ubuntu0.14.04.1
+# libmysqlclient-dev    5.5.41-0ubuntu0.14.04.1
 # composer              1.0.0-alpha9
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -15,6 +16,7 @@ RUN \
     apache2=2.4.7-1ubuntu4.1 \
     libapache2-mod-php5=5.5.9+dfsg-1ubuntu4.5 \
     mysql-server=5.5.41-0ubuntu0.14.04.1 \
+    libmysqlclient-dev=5.5.41-0ubuntu0.14.04.1 \
     php5-curl \
     php5-gd \
     php5-mysql \
