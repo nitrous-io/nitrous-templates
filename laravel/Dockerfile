@@ -24,11 +24,6 @@ RUN service postgresql start && \
 # enable mcrypt in php
 RUN php5enmod mcrypt
 
-# remove apache2
-RUN \
-  DEBIAN_FRONTEND=noninteractive apt-get purge -y apache2 && \
-  DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
-
 USER $NITROUS_USERNAME
 
 # install laravel
@@ -46,11 +41,5 @@ USER root
 
 # set proper ownership
 RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example'
-
-# remove www symlink
-RUN \
-  rm -rf /home/$NITROUS_USERNAME/code/public_html && \
-  rm /home/$NITROUS_USERNAME/public_html && \
-  rm /home/$NITROUS_USERNAME/www
 
 EXPOSE $NITROUS_PREVIEW_PORT
