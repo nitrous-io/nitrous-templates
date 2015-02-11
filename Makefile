@@ -6,7 +6,7 @@ build-all: build-base build-basic build-stacks build-advanced
 build-base: ubuntu-bare ubuntu
 .PHONY: build-base
 
-build-basic: nodejs iojs golang php python ruby
+build-basic: nodejs iojs golang php python ruby nginx
 .PHONY: build-basic
 
 build-stacks: aspnet django php-apache php-nginx laravel mean meteor rails
@@ -30,6 +30,7 @@ push-basic:
 	@./script/dpush php
 	@./script/dpush python
 	@./script/dpush ruby
+	@./script/dpush nginx
 .PHONY: push-basic
 
 push-stacks:
@@ -93,6 +94,10 @@ python:
 ruby:
 	@./script/dbuild ruby
 .PHONY: ruby
+
+nginx:
+	@./script/dbuild nginx
+.PHONY: nginx
 
 docker:
 	@./script/dbuild docker
