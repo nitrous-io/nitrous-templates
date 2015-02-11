@@ -1,21 +1,21 @@
 all: build-all
 
-build-all: build-base build-langs build-starters build-misc
+build-all: build-base build-basic build-stacks build-advanced
 .PHONY: build-all
 
 build-base: ubuntu-bare ubuntu
 .PHONY: build-base
 
-build-langs: nodejs iojs golang php python ruby
-.PHONY: build-langs
+build-basic: nodejs iojs golang php python ruby
+.PHONY: build-basic
 
-build-starters: aspnet django laravel mean meteor rails
-.PHONY: build-starters
+build-stacks: aspnet django php-apache php-nginx laravel mean meteor rails
+.PHONY: build-stacks
 
-build-misc: docker
-.PHONY: build-misc
+build-advanced: docker
+.PHONY: build-advanced
 
-push-all: push-base push-langs push-starters push-misc
+push-all: push-base push-basic push-stacks push-advanced
 .PHONY: push-all
 
 push-base:
@@ -23,26 +23,28 @@ push-base:
 	@./script/dpush ubuntu
 .PHONY: push-base
 
-push-langs:
+push-basic:
 	@./script/dpush nodejs
 	@./script/dpush iojs
 	@./script/dpush golang
 	@./script/dpush php
 	@./script/dpush python
 	@./script/dpush ruby
-.PHONY: push-langs
+.PHONY: push-basic
 
-push-starters:
+push-stacks:
 	@./script/dpush aspnet
 	@./script/dpush django
+	@./script/dpush php-apache
+	@./script/dpush php-nginx
 	@./script/dpush laravel
 	@./script/dpush mean
 	@./script/dpush meteor
 	@./script/dpush rails
-.PHONY: push-starters
+.PHONY: push-stacks
 
-push-misc: docker
-.PHONY: push-misc
+push-advanced: docker
+.PHONY: push-advanced
 
 # mean takes the longest -- test it last
 test: test-aspnet test-django test-laravel test-meteor test-rails test-mean
@@ -75,6 +77,14 @@ golang:
 php:
 	@./script/dbuild php
 .PHONY: php
+
+php-apache:
+	@./script/dbuild php-apache
+.PHONY: php-apache
+
+php-nginx:
+	@./script/dbuild php-nginx
+.PHONY: php-nginx
 
 python:
 	@./script/dbuild python
