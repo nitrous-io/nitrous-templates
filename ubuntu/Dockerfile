@@ -10,7 +10,7 @@ RUN \
     gnupg bzip2 zip unzip unison man-db sqlite3 bison gawk telnet psmisc vim-nox emacs24-nox \
     nano git git-svn mercurial bzr subversion libssl-dev libyaml-dev libreadline6-dev zlib1g-dev \
     libxml2-dev libxslt1-dev libbz2-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libffi-dev \
-    libcurl4-openssl-dev libmagickwand-dev imagemagick autoconf && \
+    libcurl4-openssl-dev libmagickwand-dev imagemagick autoconf rsync && \
   apt-get clean
 
 COPY files/gitconfig /home/$NITROUS_USERNAME/.gitconfig
