@@ -9,7 +9,7 @@ build-base: ubuntu-bare ubuntu
 build-basic: nodejs iojs golang php python ruby nginx
 .PHONY: build-basic
 
-build-stacks: aspnet django php-apache php-nginx laravel mean meteor rails gcloud
+build-stacks: aspnet django php-apache php-nginx laravel mean meteor rails gcloud wordpress
 .PHONY: build-stacks
 
 build-advanced: docker
@@ -43,6 +43,7 @@ push-stacks:
 	@./script/dpush meteor
 	@./script/dpush rails
 	@./script/dpush gcloud
+	@./script/dpush wordpress
 .PHONY: push-stacks
 
 push-advanced: docker
@@ -133,6 +134,10 @@ rails:
 gcloud:
 	@./script/dbuild gcloud
 .PHONY: gcloud
+
+wordpress:
+	@./script/dbuild wordpress
+.PHONY: wordpress
 
 ### Test starter templates
 
