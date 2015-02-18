@@ -3,7 +3,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
 # nvm     0.23.3
-# iojs    1.1.0
+# iojs    1.2.0
 # npm     2.4.1
 
 RUN \
@@ -19,9 +19,9 @@ RUN \
     'git clone https://github.com/creationix/nvm.git /usr/local/opt/nvm && \
     cd /usr/local/opt/nvm && git checkout v0.23.3 2>/dev/null && \
     source /usr/local/opt/nvm/nvm.sh && \
-    nvm install iojs-v1.1.0 && \
-    nvm alias default iojs-v1.1 && \
-    nvm use iojs-v1.1 && \
+    nvm install iojs-v1.2.0 && \
+    nvm alias default iojs-v1.2 && \
+    nvm use iojs-v1.2 && \
     npm install -g npm@2.4.1'
 
 USER root
