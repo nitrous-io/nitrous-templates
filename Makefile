@@ -46,8 +46,46 @@ push-stacks:
 	@./script/dpush wordpress
 .PHONY: push-stacks
 
-push-advanced: docker
+push-advanced:
+	@./script/dpush docker
 .PHONY: push-advanced
+
+### Generate README pages
+
+page-all: page-base page-basic page-stacks page-advanced
+.PHONY: page-all
+
+page-base:
+	@./script/dpage ubuntu-bare
+	@./script/dpage ubuntu
+.PHONY: page-base
+
+page-basic:
+	@./script/dpage nodejs
+	@./script/dpage iojs
+	@./script/dpage golang
+	@./script/dpage php
+	@./script/dpage python
+	@./script/dpage ruby
+	@./script/dpage nginx
+.PHONY: page-basic
+
+page-stacks:
+	@./script/dpage aspnet
+	@./script/dpage django
+	@./script/dpage php-apache
+	@./script/dpage php-nginx
+	@./script/dpage laravel
+	@./script/dpage mean
+	@./script/dpage meteor
+	@./script/dpage rails
+	@./script/dpage gcloud
+	@./script/dpage wordpress
+.PHONY: page-stacks
+
+page-advanced:
+	@./script/dpage docker
+.PHONY: page-advanced
 
 # mean takes the longest -- test it last
 test: test-aspnet test-django test-laravel test-meteor test-rails test-mean

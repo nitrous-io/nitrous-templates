@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Usage: dpage <build-directory> [ <template-directory> <output-directory> ]
+
+source $(dirname "$BASH_SOURCE[0]")/helper
+
+contentdir=${1:?"Missing content directory"}
+templatedir=${2:-"page-templates"}
+outputdir=${3:-"pages"}
+shift
+
+ok "Generating pages for $contentdir"
+if pagemill -t "${templatedir}/template.html.tmpl" -c "${contentdir}/README.md" -o "${outputdir}/${contentdir}.html"; then
+  ok "Generated page for $contentdir"
+else
+  error "Error generating page for $contentdir"
+fi
