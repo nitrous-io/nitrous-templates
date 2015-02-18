@@ -1,7 +1,5 @@
 <?php
 
-$database_url = parse_url("postgres://nitrous@localhost/example_development");
-
 return array(
 
 	/*
@@ -28,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'pgsql',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -48,14 +46,14 @@ return array(
 
 	'connections' => array(
 		'pgsql' => array(
-			'driver' => 'pgsql',
-			'host' => $database_url["host"],
-			'database' => substr($database_url["path"], 1),
-			'username' => isset($database_url["user"]) ? $database_url["user"] : "",
-			'password' => isset($database_url["pass"]) ? $database_url["pass"] : "",
-			'charset' => "utf8",
+			'driver' => 'mysql',
+			'host' => 'localhost',
+			'database' => 'laravel',
+			'username' => 'nitrous',
+			'password' => '',
+			'charset' => 'utf8',
+			'collation' => 'utf8_unicode_ci',
 			'prefix' => '',
-			'schema' => 'public',
 		),
 	),
 

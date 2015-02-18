@@ -2,27 +2,23 @@ FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# postgresql          9.3+154
+# redis               2.8.4-2
 # laravel-installer   1.1.3
 # laravel             4.2
 
 ENV NITROUS_PREVIEW_PORT 3000
 
-# set up postgres
-RUN \
-  apt-get update && \
-  apt-get install -y postgresql=9.3+154 libpq-dev && \
-  apt-get clean
-
-COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
-
-RUN service postgresql start && \
-  su postgres -c 'createdb example_development && \
-  createuser --superuser $NITROUS_USERNAME' && \
-  service postgresql stop
-
 # enable mcrypt in php
 RUN php5enmod mcrypt
+
+# create database
+
+RUN /bin/bash -l -c 'service mysql start && \
+  mysql -u nitrous -e "CREATE DATABASE laravel DEFAULT CHARACTER SET = utf8;" && \
+  service mysql stop'
+
+# install redis
+RUN apt-get install -y --no-install-recommends redis-server
 
 USER $NITROUS_USERNAME
 
