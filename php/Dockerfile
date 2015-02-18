@@ -2,7 +2,7 @@ FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# php5                  5.5.9+dfsg-1ubuntu4.5
+# php5                  5.5.9+dfsg-1ubuntu4.6
 # mysql-server          5.5.41-0ubuntu0.14.04.1
 # libmysqlclient-dev    5.5.41-0ubuntu0.14.04.1
 # composer              1.0.0-alpha9
@@ -30,7 +30,7 @@ RUN /bin/bash -l -c 'service mysql start && \
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    php5=5.5.9+dfsg-1ubuntu4.5 \
+    php5=5.5.9+dfsg-1ubuntu4.6 \
     php5-curl php5-gd php5-mysql php5-mcrypt \
     php5-geoip php5-cgi php5-dev php5-intl \
     php-apc php-pear \

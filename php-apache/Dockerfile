@@ -3,7 +3,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
 # apache2               2.4.7-1ubuntu4.1
-# libapache2-mod-php5   5.5.9+dfsg-1ubuntu4.5
+# libapache2-mod-php5   5.5.9+dfsg-1ubuntu4.6
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -13,7 +13,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apache2=2.4.7-1ubuntu4.1 \
-    libapache2-mod-php5=5.5.9+dfsg-1ubuntu4.5 && \
+    libapache2-mod-php5=5.5.9+dfsg-1ubuntu4.6 && \
   apt-get clean
 
 # setup public_html dir

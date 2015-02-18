@@ -3,7 +3,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-02-10
 # nginx     1.6.2-5+trusty0
-# php5-fpm  5.5.9+dfsg-1ubuntu4.5
+# php5-fpm  5.5.9+dfsg-1ubuntu4.6
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -15,7 +15,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
     nginx=1.6.2-5+trusty0 \
-    php5-fpm=5.5.9+dfsg-1ubuntu4.5 && \
+    php5-fpm=5.5.9+dfsg-1ubuntu4.6 && \
   apt-get clean
 
 # setup public_html dir
