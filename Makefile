@@ -179,3 +179,7 @@ publish-ruby:
 publish-rails:
 	@./script/publish-s3 rails Rails rails/README.md ruby/README.md ubuntu/README.md
 .PHONY: publish-rails
+
+publish-ubuntu:
+	@./script/publish-s3 ubuntu Ubuntu ubuntu/README.md
+.PHONY: publish-ubuntu

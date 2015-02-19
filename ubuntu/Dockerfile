@@ -16,7 +16,6 @@ RUN \
 COPY files/gitconfig /home/$NITROUS_USERNAME/.gitconfig
 COPY files/tmux.conf /home/$NITROUS_USERNAME/.tmux.conf
 COPY files/vimrc /home/$NITROUS_USERNAME/.vimrc
-COPY files/README.md /home/$NITROUS_USERNAME/README.md
 
 RUN \
   /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gitconfig /home/$NITROUS_USERNAME/.tmux.conf /home/$NITROUS_USERNAME/.vimrc /home/$NITROUS_USERNAME/README.md'
@@ -45,5 +44,7 @@ RUN \
 RUN \
   mkdir /home/$NITROUS_USERNAME/code && \
   chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ubuntu.html
 
 USER root
