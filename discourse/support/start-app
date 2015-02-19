@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/$NITROUS_USERNAME/code/discourse
+bundle exec foreman start
