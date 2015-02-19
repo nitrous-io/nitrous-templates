@@ -169,3 +169,13 @@ test-meteor:
 test-rails:
 	@./script/test-starter rails
 .PHONY: test-rails
+
+### Publish READMEs to S3
+
+publish-ruby:
+	@./script/publish-s3 ruby Ruby ruby/README.md ubuntu/README.md
+.PHONY: publish-ruby
+
+publish-rails:
+	@./script/publish-s3 rails Rails rails/README.md ruby/README.md ubuntu/README.md
+.PHONY: publish-rails

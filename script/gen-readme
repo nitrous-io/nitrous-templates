@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+# run with a name and list of markdown files, in order
+# outputs generated html to stdout
+#
+# Example:
+# ./gen-readme Rails INTRO.md rails/README.md ruby/README.md ubuntu/README.md
+#
+# Requirements:
+# - `go get github.com/russross/blackfriday-tool`
+# - `go install github.com/russross/blackfriday-tool`
+
+require 'erb'
+
+template = <<-HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title><%= name %> container guide</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to your Nitrous Pro <%= name %> container!</h1>
+    <%= body %>
+  </div>
+</body>
+</html>
+HTML
+
+# convert runs blackfriday-tool on each file given and cats the results
+# together it is the equivalent of running `blackfriday-tool <(file1 file2 # file3)`;
+# looping through makes error messages more obvious
+def convert(files)
+  markup = ''
+  files.each do |f|
+    out = `blackfriday-tool #{f}`
+    if $? != 0
+      # blackfriday-tool will output errors to stderr
+      err "Error running blackfriday-tool"
+    end
+    markup << out
+  end
+  markup
+end
+
+def err(s)
+  STDERR.puts s
+  exit 1
+end
+
+if __FILE__ == $0
+  if ARGV.size < 2
+    err 'Usage: gen-readme <title> <file> [FILE]...'
+  end
+
+  # name and body used as bindings for template
+  name, files = ARGV[0], ARGV.drop(1)
+  body = convert(files)
+  if body.strip == ''
+    err 'No output from blackfriday!'
+  end
+
+  puts ERB.new(template).result()
+end

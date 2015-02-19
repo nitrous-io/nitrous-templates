@@ -5,6 +5,8 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # ruby      2.2.0 (not yet available as bin pkg), 2.1.5 (Default), 2.0.0-p598, 1.9.3-p551
 # bundler   1.7.12
 
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ruby.html
+
 RUN \
   mkdir -p /usr/local/opt/rbenv && \
   /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/rbenv'
