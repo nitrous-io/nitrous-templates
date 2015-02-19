@@ -2,7 +2,7 @@ FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# mono-devel          3.12.0-0xamarin3
+# mono-devel          3.12.0-0xamarin4
 # fsharp              3.1.1.26+dfsg2-3~xamarin1
 # nuget               2.8.1+md54+dhx3-1~xamarin1
 # kre                 1.0.0-beta2
@@ -20,7 +20,11 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
   echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list && \
   apt-get update && \
-  apt-get install -yy mono-devel=3.12.0-0xamarin3 fsharp=3.1.1.26+dfsg2-3~xamarin1 nuget=2.8.1+md54+dhx3-1~xamarin1 autoconf automake libtool && \
+  apt-get install -yy \
+    mono-devel=3.12.0-0xamarin4 \
+    fsharp=3.1.1.26+dfsg2-3~xamarin1 \
+    nuget=2.8.1+md54+dhx3-1~xamarin1 \
+    autoconf automake libtool && \
   apt-get clean
 
 # Install libuv (used by the Kestrel web server)
