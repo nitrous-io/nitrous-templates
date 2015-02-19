@@ -18,7 +18,7 @@ COPY files/tmux.conf /home/$NITROUS_USERNAME/.tmux.conf
 COPY files/vimrc /home/$NITROUS_USERNAME/.vimrc
 
 RUN \
-  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gitconfig /home/$NITROUS_USERNAME/.tmux.conf /home/$NITROUS_USERNAME/.vimrc /home/$NITROUS_USERNAME/README.md'
+  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gitconfig /home/$NITROUS_USERNAME/.tmux.conf /home/$NITROUS_USERNAME/.vimrc'
 
 USER $NITROUS_USERNAME
 
