@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Prerequisites:
+# - ACCESS_KEY, SECRET_KEY to be set in environment
+# - s3cmd installed
+# - blackfriday-tool installed (see script/gen-readme)
+#
+# Usage: publish-s3 <filename> <templatename> <file> [FILES]...
+
+# The only real need for filename and templatename differences is to allow
+# fancier template names (it affects the <title> attribute in gen-readme)
+
+set -e
+
+source $(dirname "$BASH_SOURCE[0]")/helper
+
+ACCESS_KEY=${ACCESS_KEY:?"ACCESS_KEY is required (s3)"}
+SECRET_KEY=${SECRET_KEY:?"SECRET_KEY is required (s3)"}
+
+BUCKET="s3://nitrous-readmes"
+FILENAME=${1:?"s3 filename is required"}
+TEMPLATENAME=${2:?"template name is required"}
+
+S3_LOCATION="$BUCKET/${FILENAME}.html"
+S3_BACKUP="${S3_LOCATION}.orig"
+
+shift # apart from filename, pass all args to gen-readme
+
+HTMLFILE="/tmp/nitrous-templates-${FILENAME}.html"
+
+ok "Generating template for $TEMPLATENAME"
+
+if $(dirname "$BASH_SOURCE[0]")/gen-readme $@ > $HTMLFILE ; then
+  if s3cmd info $S3_LOCATION >/dev/null 2>&1; then
+    ok "Backing up previous file to $S3_BACKUP"
+    s3cmd cp $S3_LOCATION $S3_BACKUP
+  fi
+
+  ok "Uploading to $S3_LOCATION"
+  s3cmd \
+    --access_key=$ACCESS_KEY --secret_key=$SECRET_KEY \
+    --acl-public --mime-type=text/html \
+    put $HTMLFILE $S3_LOCATION
+else
+  error "Error generating readme"
+fi
+
