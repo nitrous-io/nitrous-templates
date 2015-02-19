@@ -2,19 +2,25 @@ FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# postgresql  9.3+154
+# postgresql          9.3+154
+# postgresql-contrib  9.3+154
+# libpq-dev           9.3.6-0ubuntu0.14.04
+#
 # requirements.txt:
-# django      1.7.4
-# gunicorn    19.1.1
-# ipython     2.3.1
-# psycopg2    2.5.4
+# django    1.7.4
+# gunicorn  19.1.1
+# ipython   2.3.1
+# psycopg2  2.5.4
 
 ENV NITROUS_PREVIEW_PORT 3000
 
 # set up postgres
 RUN \
   apt-get update && \
-  apt-get install -y postgresql=9.3+154 libpq-dev && \
+  apt-get install -y \
+    postgresql=9.3+154 \
+    postgresql-contrib=9.3+154 \
+    libpq-dev=9.3.6-0ubuntu0.14.04 && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf

@@ -2,9 +2,9 @@ FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# redis               2.8.4-2
 # laravel-installer   1.1.3
 # laravel             4.2
+# redis-server        2:2.8.4-2
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -18,7 +18,11 @@ RUN /bin/bash -l -c 'service mysql start && \
   service mysql stop'
 
 # install redis
-RUN apt-get install -y --no-install-recommends redis-server
+RUN \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+    redis-server=2:2.8.4-2 && \
+  apt-get clean
 
 USER $NITROUS_USERNAME
 

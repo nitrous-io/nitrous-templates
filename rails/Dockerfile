@@ -2,17 +2,22 @@ FROM quay.io/nitrous/ruby:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# rails 4.2.0
-# postgresql 9.3+154
+# rails               4.2.0
+# postgresql          9.3+154
+# postgresql-contrib  9.3+154
+# libpq-dev           9.3.6-0ubuntu0.14.04
 
 ENV NITROUS_PREVIEW_PORT 3000
 
+# set up postgres
 RUN \
   apt-get update && \
-  apt-get install -y postgresql=9.3+154 libpq-dev && \
+  apt-get install -y \
+    postgresql=9.3+154 \
+    postgresql-contrib=9.3+154 \
+    libpq-dev=9.3.6-0ubuntu0.14.04 && \
   apt-get clean
 
-# set up postgres
 COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 
 RUN service postgresql start && \
