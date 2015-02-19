@@ -172,14 +172,22 @@ test-rails:
 
 ### Publish READMEs to S3
 
+publish-ubuntu:
+	@./script/publish-s3 ubuntu Ubuntu ubuntu/README.md
+.PHONY: publish-ubuntu
+
+publish-nodejs:
+	@./script/publish-s3 nodejs Node.js nodejs/README.md ubuntu/README.md
+.PHONY: publish-ubuntu
+
 publish-ruby:
 	@./script/publish-s3 ruby Ruby ruby/README.md ubuntu/README.md
 .PHONY: publish-ruby
 
+publish-meteor:
+	@./script/publish-s3 meteor Meteor meteor/README.md nodejs/README.md ubuntu/README.md
+.PHONY: publish-rails
+
 publish-rails:
 	@./script/publish-s3 rails Rails rails/README.md ruby/README.md ubuntu/README.md
 .PHONY: publish-rails
-
-publish-ubuntu:
-	@./script/publish-s3 ubuntu Ubuntu ubuntu/README.md
-.PHONY: publish-ubuntu
