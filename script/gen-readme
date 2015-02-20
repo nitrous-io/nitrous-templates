@@ -44,7 +44,10 @@ def convert(files)
     end
     markup << out
   end
-  markup
+
+  # FIXME currently opening non-https pages in README iframe will just blank scree,
+  # so workaround to make sure all links open in new tab
+  markup.gsub('<a href', '<a target="_blank" href')
 end
 
 def err(s)
