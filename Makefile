@@ -195,3 +195,7 @@ publish-rails:
 publish-aspnet:
 	@./script/publish-s3 aspnet ASP.NET aspnet/README.md ubuntu/README.md
 .PHONY: publish-aspnet
+
+publish-discourse:
+	@./script/publish-s3 discourse Discourse discourse/README.md ubuntu/README.md
+.PHONY: publish-discourse
