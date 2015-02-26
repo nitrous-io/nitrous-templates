@@ -191,3 +191,7 @@ publish-meteor:
 publish-rails:
 	@./script/publish-s3 rails Rails rails/README.md ruby/README.md ubuntu/README.md
 .PHONY: publish-rails
+
+publish-aspnet:
+	@./script/publish-s3 aspnet ASP.NET aspnet/README.md ubuntu/README.md
+.PHONY: publish-aspnet
