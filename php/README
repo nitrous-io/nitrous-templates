@@ -1,0 +1,7 @@
+## PHP
+
+This container comes with PHP5 `5.5.9`, [Composer](https://getcomposer.org/) and MySQL `5.5.41`.
+
+## MySQL
+
+A root user has been created with username `nitrous`.

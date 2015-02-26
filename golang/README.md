@@ -6,4 +6,4 @@ It also includes commonly used Go tools such as [goimports](https://godoc.org/go
 
 ### GOPATH
 
-`GOPATH` is set to `~/code/go`. Hence, use `~/code/go/src/` as the base directory when creating your source repositories.
+`GOPATH` is set to `~/code/go`. Use `~/code/go/src/` as the base directory when creating your source repositories.

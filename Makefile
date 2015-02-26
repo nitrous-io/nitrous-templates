@@ -184,6 +184,10 @@ publish-nodejs:
 	@./script/publish-s3 nodejs Node.js nodejs/README.md ubuntu/README.md
 .PHONY: publish-nodejs
 
+publish-php:
+	@./script/publish-s3 php PHP php/README.md ubuntu/README.md
+.PHONY: publish-php
+
 publish-ruby:
 	@./script/publish-s3 ruby Ruby ruby/README.md ubuntu/README.md
 .PHONY: publish-ruby
