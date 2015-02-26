@@ -2,17 +2,17 @@ FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-01-28
-# go 1.4.1
+# go 1.4.2
 
 RUN \
   mkdir -p /usr/local/opt && \
-  mkdir -p /tmp/go-1.4.1 && \
-  curl -s https://storage.googleapis.com/golang/go1.4.1.linux-amd64.tar.gz | tar -xvz -C /tmp/go-1.4.1 && \
-  mv /tmp/go-1.4.1/go /usr/local/opt/go-1.4.1 && \
-  rm -rf /tmp/go-1.4.1 && \
-  chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go-1.4.1 && \
+  mkdir -p /tmp/go-1.4.2 && \
+  curl -s https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz | tar -xvz -C /tmp/go-1.4.2 && \
+  mv /tmp/go-1.4.2/go /usr/local/opt/go-1.4.2 && \
+  rm -rf /tmp/go-1.4.2 && \
+  chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go-1.4.2 && \
   cd /usr/local/opt && \
-  ln -s go-1.4.1 go && \
+  ln -s go-1.4.2 go && \
   chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go
 
 RUN \
