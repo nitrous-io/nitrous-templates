@@ -216,3 +216,7 @@ publish-django:
 	# TODO add python/README.md when available
 	@./script/publish-s3 django Django django/README.md ubuntu/README.md
 .PHONY: publish-django
+
+publish-nginx:
+	@./script/publish-s3 nginx Nginx nginx/README.md ubuntu/README.md
+.PHONY: publish-nginx
