@@ -224,3 +224,7 @@ publish-docker:
 publish-nginx:
 	@./script/publish-s3 nginx Nginx nginx/README.md ubuntu/README.md
 .PHONY: publish-nginx
+
+publish-iojs:
+	@./script/publish-s3 iojs io.js iojs/README.md ubuntu/README.md
+.PHONY: publish-iojs
