@@ -4,8 +4,8 @@
 
 source $(dirname "$BASH_SOURCE[0]")/helper
 
-tname=${1:?"Please enter the name of the template to test (sans 'starter-' prefix)"}
-iname="nitrousio/starter-$tname"
+tname=${1:?"Please enter the name of the template to test"}
+iname="quay.io/nitrous/$tname"
 pvport="3000"
 
 if ! docker history $iname >/dev/null 2>&1; then
@@ -26,7 +26,7 @@ function cleanup_container {
 trap cleanup_container ERR EXIT SIGHUP SIGINT SIGTERM
 
 ok 'running start-app'
-docker exec -dt $cid su --preserve-environment -l nitrous -c /usr/local/bin/start-app
+docker exec -dt $cid su --preserve-environment -l nitrous -c /home/nitrous/code/example/start-app
 
 if [[ $2 != "" ]]; then
   read -p "Manual test mode. Hit <Enter> once finished"
