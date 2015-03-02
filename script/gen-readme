@@ -36,13 +36,15 @@ HTML
 # looping through makes error messages more obvious
 def convert(files)
   markup = ''
-  files.each do |f|
+  files.each_with_index do |f, i|
     out = `blackfriday-tool #{f}`
     if $? != 0
       # blackfriday-tool will output errors to stderr
       err "Error running blackfriday-tool"
     end
     markup << out
+
+    markup << "<hr>" if markup != '' && i < files.size - 1 # divider between each section
   end
 
   # FIXME currently opening non-https pages in README iframe will just blank scree,
