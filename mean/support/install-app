@@ -8,11 +8,7 @@ cd $NITROUS_CODE_PATH
 # first newline: default app name
 # second newline: default taskrunner to grunt
 # third newline: default mean packages
-mean init <<EOF
-
-
-
-EOF
+echo -e '\n\n\n' | mean init -b v0.4.2
 mv mean $NITROUS_APP_NAME
 cd $NITROUS_APP_PATH
 git reset --hard

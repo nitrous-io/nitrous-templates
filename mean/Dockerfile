@@ -6,7 +6,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # bower         1.3.12
 # npm           2.1.18 (required by grunt-cli)
 # grunt-cli     0.1.13
-# mean-cli      0.9.19
+# mean-cli      0.9.20
 # mean          0.4.2 (install-app)
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -31,7 +31,7 @@ USER $NITROUS_USERNAME
 RUN \
   /bin/bash -l -c \
     'npm install -g npm@2.1.18 && \
-    npm install -g bower@1.3.12 grunt-cli@0.1.13 mean-cli@0.9.19'
+    npm install -g bower@1.3.12 grunt-cli@0.1.13 mean-cli@0.9.20'
 
 COPY support/install-app /tmp/install-app
 RUN /bin/bash -l -c /tmp/install-app
