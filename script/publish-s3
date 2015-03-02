@@ -21,7 +21,7 @@ BUCKET="s3://nitrous-readmes"
 FILENAME=${1:?"s3 filename is required"}
 TEMPLATENAME=${2:?"template name is required"}
 
-S3_LOCATION="$BUCKET/${FILENAME}.html"
+S3_LOCATION="$BUCKET/${FILENAME}.$(date +%F).html"
 S3_BACKUP="${S3_LOCATION}.orig"
 
 shift # apart from filename, pass all args to gen-readme
