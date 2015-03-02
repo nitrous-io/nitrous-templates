@@ -1,11 +1,13 @@
 ## Discourse
 
-[Discourse](http://www.discourse.org) is an open source, modern online discussion platform.
-With this container, you can create your own Discourse based site easily.
+[Discourse](http://www.discourse.org) is an open-source online discussion platform.
 
-This comes with Discourse 1.1.3 pre-installed.
+This container comes with Discourse 1.1.3 already installed.  You can use it as
+a starting point for customizing your own Discourse-based site.
 
-### Start Application
+### Sample Application
 
-You can find application code in `~/code/discourse`. In the console, head to this directory and run the command `./start-app`.
-This will start the app listening on port 3000. To view the running site select `Preview > Port 3000` from the menu.
+There is a functional Discourse install present in
+`/home/nitrous/code/discourse`.  You can start the server by running
+`~/code/discourse/start-app` from the command line.  Once it is running, you
+can use the `Preview` menu to view the application.
