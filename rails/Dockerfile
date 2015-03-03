@@ -8,7 +8,6 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # libpq-dev           9.3.6-0ubuntu0.14.04
 
 ENV NITROUS_PREVIEW_PORT 3000
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rails.html
 
 # set up postgres
 RUN \
@@ -46,3 +45,5 @@ COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
 RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
 
 EXPOSE $NITROUS_PREVIEW_PORT
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rails.2015-03-02.html

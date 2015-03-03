@@ -45,6 +45,6 @@ RUN \
   mkdir /home/$NITROUS_USERNAME/code && \
   chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ubuntu.html
-
 USER root
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ubuntu.2015-03-02.html
