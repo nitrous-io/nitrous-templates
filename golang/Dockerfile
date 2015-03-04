@@ -16,8 +16,8 @@ RUN \
   chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go
 
 RUN \
+  echo "export GOPATH=/home/$NITROUS_USERNAME/code/go" >> /etc/profile && \
   echo 'export GOROOT=/usr/local/opt/go' >> /etc/profile && \
-  echo 'export GOPATH=/home/$NITROUS_USERNAME/code/go' >> /etc/profile && \
   echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> /etc/profile && \
   mkdir /home/$NITROUS_USERNAME/code/go && \
   ln -s /home/$NITROUS_USERNAME/code/go /home/$NITROUS_USERNAME/go && \
