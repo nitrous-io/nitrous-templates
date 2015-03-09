@@ -52,3 +52,5 @@ USER root
 
 COPY support/start-app /home/$NITROUS_USERNAME/code/discourse/start-app
 RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/discourse/start-app'
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/discourse.2015-03-09.html
