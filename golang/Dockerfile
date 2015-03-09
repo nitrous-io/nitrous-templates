@@ -38,3 +38,7 @@ RUN \
     go get github.com/tools/godep'
 
 USER root
+
+EXPOSE 6060
+
+ENV https://s3.amazonaws.com/nitrous-readmes/golang.2015-03-09.html
