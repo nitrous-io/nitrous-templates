@@ -26,7 +26,7 @@ function cleanup_container {
 trap cleanup_container ERR EXIT SIGHUP SIGINT SIGTERM
 
 ok 'running start-app'
-docker exec -dt $cid su --preserve-environment -l nitrous -c /home/nitrous/code/example/start-app
+docker exec -dt $cid su --preserve-environment -l nitrous -c 'HOME=/home/nitrous bash -l -c /home/nitrous/code/example/start-app'
 
 if [[ $2 != "" ]]; then
   read -p "Manual test mode. Hit <Enter> once finished"
