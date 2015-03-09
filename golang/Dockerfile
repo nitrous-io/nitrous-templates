@@ -41,4 +41,4 @@ USER root
 
 EXPOSE 6060
 
-ENV https://s3.amazonaws.com/nitrous-readmes/golang.2015-03-09.html
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/golang.2015-03-09.html
