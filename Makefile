@@ -211,3 +211,8 @@ publish-aspnet:
 publish-discourse:
 	@./script/publish-s3 discourse Discourse discourse/README.md ubuntu/README.md
 .PHONY: publish-discourse
+
+publish-django:
+	# TODO add python/README.md when available
+	@./script/publish-s3 django Django django/README.md ubuntu/README.md
+.PHONY: publish-django
