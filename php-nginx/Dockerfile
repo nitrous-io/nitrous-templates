@@ -50,3 +50,5 @@ RUN \
   sed -i 's|listen =.*|listen = /var/run/php5-fpm.sock|g' /etc/php5/fpm/pool.d/www.conf
 
 EXPOSE $NITROUS_PREVIEW_PORT
+
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-nginx.2015-03-23.html

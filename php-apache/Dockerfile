@@ -47,3 +47,5 @@ RUN \
   sed -i 's|VirtualHost \*:80|VirtualHost *:3000|g' /etc/apache2/sites-available/000-default.conf
 
 EXPOSE $NITROUS_PREVIEW_PORT
+
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-apache.2015-03-23.html
