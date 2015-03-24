@@ -217,6 +217,10 @@ publish-django:
 	@./script/publish-s3 django Django django/README.md ubuntu/README.md
 .PHONY: publish-django
 
+publish-docker:
+	@./script/publish-s3 docker Docker docker/README.md ubuntu/README.md
+.PHONY: publish-docker
+
 publish-nginx:
 	@./script/publish-s3 nginx Nginx nginx/README.md ubuntu/README.md
 .PHONY: publish-nginx
