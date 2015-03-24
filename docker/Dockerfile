@@ -36,3 +36,5 @@ ENV NITROUS_REQUIRES_PRIVILEGED true
 VOLUME /var/lib/docker
 
 CMD ["/nitrous/dind", "/sbin/init", "--default-console", "none"]
+
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/docker.2015-03-24.html
