@@ -216,3 +216,15 @@ publish-django:
 	# TODO add python/README.md when available
 	@./script/publish-s3 django Django django/README.md ubuntu/README.md
 .PHONY: publish-django
+
+publish-docker:
+	@./script/publish-s3 docker Docker docker/README.md ubuntu/README.md
+.PHONY: publish-docker
+
+publish-nginx:
+	@./script/publish-s3 nginx Nginx nginx/README.md ubuntu/README.md
+.PHONY: publish-nginx
+
+publish-iojs:
+	@./script/publish-s3 iojs io.js iojs/README.md ubuntu/README.md
+.PHONY: publish-iojs
