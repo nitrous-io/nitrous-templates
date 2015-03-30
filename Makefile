@@ -9,7 +9,7 @@ build-base: ubuntu-bare ubuntu
 build-basic: nodejs iojs golang php python ruby nginx
 .PHONY: build-basic
 
-build-stacks: aspnet django php-apache php-nginx laravel mean meteor rails gcloud wordpress discourse
+build-stacks: django php-apache php-nginx laravel mean meteor rails gcloud wordpress discourse
 .PHONY: build-stacks
 
 build-advanced: docker
@@ -34,7 +34,6 @@ push-basic:
 .PHONY: push-basic
 
 push-stacks:
-	@./script/dpush aspnet
 	@./script/dpush django
 	@./script/dpush php-apache
 	@./script/dpush php-nginx
@@ -51,7 +50,7 @@ push-advanced: docker
 .PHONY: push-advanced
 
 # mean takes the longest -- test it last
-test: test-aspnet test-django test-laravel test-meteor test-rails test-mean
+test: test-django test-laravel test-meteor test-rails test-mean
 .PHONY: test
 
 ### Build base images
@@ -108,10 +107,6 @@ docker:
 
 ### Build starter template images
 
-aspnet:
-	@./script/dbuild aspnet
-.PHONY: aspnet
-
 django:
 	@./script/dbuild django
 .PHONY: django
@@ -145,10 +140,6 @@ discourse:
 .PHONY: discourse
 
 ### Test starter templates
-
-test-aspnet:
-	@./script/test-starter aspnet
-.PHONY: test-aspnet
 
 test-django:
 	@./script/test-starter django
@@ -203,10 +194,6 @@ publish-meteor:
 publish-rails:
 	@./script/publish-s3 rails Rails rails/README.md ruby/README.md ubuntu/README.md
 .PHONY: publish-rails
-
-publish-aspnet:
-	@./script/publish-s3 aspnet ASP.NET aspnet/README.md ubuntu/README.md
-.PHONY: publish-aspnet
 
 publish-discourse:
 	@./script/publish-s3 discourse Discourse discourse/README.md ubuntu/README.md
