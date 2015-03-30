@@ -33,7 +33,7 @@ if [[ $2 != "" ]]; then
   exit 0
 fi
 
-for i in `seq 1 30`; do # the only stack that requires >20 attempts is 'mean'
+for i in `seq 1 10`; do
   sleep 3
   if curl -s http://localhost:${pvport} >/dev/null; then
     ok "curl to port $pvport successful"

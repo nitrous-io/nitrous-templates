@@ -9,7 +9,7 @@ build-base: ubuntu-bare ubuntu
 build-basic: nodejs iojs golang php python ruby nginx
 .PHONY: build-basic
 
-build-stacks: django php-apache php-nginx laravel mean meteor rails gcloud wordpress discourse
+build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse
 .PHONY: build-stacks
 
 build-advanced: docker
@@ -38,7 +38,6 @@ push-stacks:
 	@./script/dpush php-apache
 	@./script/dpush php-nginx
 	@./script/dpush laravel
-	@./script/dpush mean
 	@./script/dpush meteor
 	@./script/dpush rails
 	@./script/dpush gcloud
@@ -49,8 +48,7 @@ push-stacks:
 push-advanced: docker
 .PHONY: push-advanced
 
-# mean takes the longest -- test it last
-test: test-django test-laravel test-meteor test-rails test-mean
+test: test-django test-laravel test-meteor test-rails
 .PHONY: test
 
 ### Build base images
@@ -115,10 +113,6 @@ laravel:
 	@./script/dbuild laravel
 .PHONY: laravel
 
-mean:
-	@./script/dbuild mean
-.PHONY: mean
-
 meteor:
 	@./script/dbuild meteor
 .PHONY: meteor
@@ -148,10 +142,6 @@ test-django:
 test-laravel:
 	@./script/test-starter laravel
 .PHONY: test-laravel
-
-test-mean:
-	@./script/test-starter mean
-.PHONY: test-mean
 
 test-meteor:
 	@./script/test-starter meteor
