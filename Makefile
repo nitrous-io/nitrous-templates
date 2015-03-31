@@ -220,3 +220,7 @@ publish-django:
 publish-docker:
 	@./script/publish-s3 docker Docker docker/README.md ubuntu/README.md
 .PHONY: publish-docker
+
+publish-laravel:
+	@./script/publish-s3 laravel Laravel laravel/README.md ubuntu/README.md
+.PHONY: publish-laravel
