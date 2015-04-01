@@ -38,3 +38,5 @@ RUN \
   apt-get clean
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer version=1.0.0-alpha9
+
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php.2015-04-01.html
