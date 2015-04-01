@@ -6,9 +6,7 @@ applications as quickly as possible.
 Software already installed:
 
 - PHP 5.5.9
-- composer 1.0.0-alpha9
 - apache 2.4.7 with mod-php set up
-- mysql 5.5
 
 ### Previewing your app
 

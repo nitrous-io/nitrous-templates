@@ -189,11 +189,11 @@ publish-php:
 .PHONY: publish-php
 
 publish-php-apache:
-	@./script/publish-s3 php-apache PHP php-apache/README.md ubuntu/README.md
+	@./script/publish-s3 php-apache PHP php-apache/README.md php/README.md ubuntu/README.md
 .PHONY: publish-php-apache
 
 publish-php-nginx:
-	@./script/publish-s3 php-nginx PHP php-nginx/README.md ubuntu/README.md
+	@./script/publish-s3 php-nginx PHP php-nginx/README.md php/README.md ubuntu/README.md
 .PHONY: publish-php-nginx
 
 publish-ruby:
