@@ -1,5 +1,18 @@
 # Nitrous Templates
 
+## Updating an image
+
+At time of writing quay.io does not support dependent builds, so images are to
+be built locally.  The steps to build template `tname` are as follows:
+
+1. For each ancestor `FROM` image, `docker pull quay.io/nitrous/<ancestorname>`
+1. Get the latest `tname` as well: `docker pull quay.io/nitrous/<tname>`
+1. Run `make build-<tname>`
+1. If applicable (`/home/nitrous/code/example/start-app` is runnable), test the
+   build with `script/test-starter <tname>`
+1. Run `./script/dpush <tname>`
+1. Create a container with the given template on production and test
+
 ## Conventions
 
 ### Origin
