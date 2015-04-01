@@ -5,15 +5,13 @@ applications as quickly as possible.
 
 Software already installed:
 
-- PHP 5.5.9
-- composer 1.0.0-alpha9
-- apache 2.4.7 with mod-php set up
-- mysql 5.5
+- PHP 5.5.9 (Composer 1.0, MySQL 5.5)
+- Apache 2.4.7 with mod-php set up
 
 ### Previewing your app
 
 Apache is already set up to listen to port 3000 and serve the contents of
-`/home/nitrous/code/public_html`.  The directory contains an `index.php` file
+`/home/nitrous/code/public_html`. The directory contains an `index.php` file
 which shows `phpinfo()`.
 
 You can preview your application by going to `Preview > Port 3000` from the IDE
@@ -27,8 +25,3 @@ Server settings can be changed by editing
 
 Remember to restart Apache with `sudo service apache2 restart` after editing
 those files so that your changes are applied.
-
-## MySQL
-
-A MySQL user `nitrous` has been created with all privileges.  For security
-reasons, remote access to MySQL is turned off by default.
