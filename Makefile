@@ -165,6 +165,10 @@ publish-nodejs:
 	@./script/publish-s3 nodejs Node.js nodejs/README.md ubuntu/README.md
 .PHONY: publish-nodejs
 
+publish-php:
+	@./script/publish-s3 php PHP php/README.md ubuntu/README.md
+.PHONY: publish-php
+
 publish-php-apache:
 	@./script/publish-s3 php-apache PHP php-apache/README.md ubuntu/README.md
 .PHONY: publish-php-apache
@@ -197,3 +201,7 @@ publish-django:
 publish-docker:
 	@./script/publish-s3 docker Docker docker/README.md ubuntu/README.md
 .PHONY: publish-docker
+
+publish-laravel:
+	@./script/publish-s3 laravel Laravel laravel/README.md php/README.md ubuntu/README.md
+.PHONY: publish-laravel
