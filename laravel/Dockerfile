@@ -44,4 +44,4 @@ RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_US
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/laravel.2015-03-31.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/laravel.2015-04-01.html
