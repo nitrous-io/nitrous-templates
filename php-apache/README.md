@@ -6,7 +6,7 @@ applications as quickly as possible.
 Software already installed:
 
 - PHP 5.5.9
-- apache 2.4.7 with mod-php set up
+- Apache 2.4.7 with mod-php set up
 
 ### Previewing your app
 

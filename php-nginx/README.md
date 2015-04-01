@@ -6,7 +6,7 @@ applications as quickly as possible.
 Software already installed:
 
 - PHP 5.5.9
-- nginx 1.6.2 with php-fpm
+- Nginx 1.6.2 with php-fpm
 
 ### Previewing your app
 

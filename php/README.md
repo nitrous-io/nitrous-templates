@@ -1,10 +1,10 @@
 ## PHP
 
-This container comes with PHP 5.5 pre-installed.
+This container comes with PHP 5.5.9 pre-installed.
 
 It also includes the following software:
 
-- Composer 1.0
+- Composer 1.0.0-alpha9
 - MySQL 5.5
 
 ### Composer
