@@ -1,12 +1,10 @@
 ## Laravel
 
-This container comes with Laravel 4.2 installed.
+This container comes with Laravel 4.2 pre-installed.
 
 It also includes the following software:
 
 - PHP 5.5
-- Composer 1.0
-- MySQL 5.5 
 - Redis 2.8
 
 ### Sample application
