@@ -25,8 +25,3 @@ Server settings can be changed by editing
 
 Remember to restart Apache with `sudo service apache2 restart` after editing
 those files so that your changes are applied.
-
-## MySQL
-
-A MySQL user `nitrous` has been created with all privileges.  For security
-reasons, remote access to MySQL is turned off by default.

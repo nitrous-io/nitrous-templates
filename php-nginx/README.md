@@ -23,8 +23,3 @@ You can customize your server settings by editing `/etc/php5/fpm/php.ini` and `/
 
 Remember to restart Nginx with `sudo service nginx restart` after editing
 those files so that your changes are applied.
-
-## MySQL
-
-A MySQL user `nitrous` has been created with all privileges.  For security
-reasons, remote access to MySQL is turned off by default.
