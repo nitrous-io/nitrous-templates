@@ -222,6 +222,5 @@ publish-docker:
 .PHONY: publish-docker
 
 publish-laravel:
-	# TODO(Audrey): add php/README.unnecessary when available (https://github.com/nitrous-io/nitrous-templates/pull/21)
-	@./script/publish-s3 laravel Laravel laravel/README.md ubuntu/README.md
+	@./script/publish-s3 laravel Laravel laravel/README.md php/README.md ubuntu/README.md
 .PHONY: publish-laravel
