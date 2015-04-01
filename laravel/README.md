@@ -4,7 +4,7 @@ This container comes with Laravel 4.2 pre-installed.
 
 It also includes the following software:
 
-- PHP 5.5.9
+- PHP 5.5.9 (Composer 1.0, MySQL 5.5.9) 
 - Redis 2.8
 
 ### Sample application
