@@ -38,7 +38,3 @@ Opening the `~/code/example/start-app` file is a good way of finding out how to 
 You can customize your server settings by editing the file `/etc/php5/cli/php.ini`.
 
 Remember to restart the server after editing the file so that your changes are applied.
-
-### MySQL
-
-A MySQL user `nitrous` has been created with all privileges. For security reasons, remote access to MySQL is turned off by default.
