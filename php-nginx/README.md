@@ -11,7 +11,7 @@ Software already installed:
 ### Previewing your app
 
 Nginx is already set up to listen to port 3000 and serve the contents of
-`/home/nitrous/code/public_html`.  The directory contains an `index.php` file
+`/home/nitrous/code/public_html`. The directory contains an `index.php` file
 which shows `phpinfo()`.
 
 You can preview your application by going to `Preview > Port 3000` from the IDE

@@ -48,4 +48,4 @@ RUN \
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
-ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-apache.2015-03-23.html
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-apache.2015-04-01.html
