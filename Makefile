@@ -9,7 +9,7 @@ build-base: ubuntu-bare ubuntu
 build-basic: nodejs iojs golang php python ruby nginx
 .PHONY: build-basic
 
-build-stacks: aspnet django php-apache php-nginx laravel mean meteor rails gcloud wordpress discourse
+build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse
 .PHONY: build-stacks
 
 build-advanced: docker
@@ -34,12 +34,10 @@ push-basic:
 .PHONY: push-basic
 
 push-stacks:
-	@./script/dpush aspnet
 	@./script/dpush django
 	@./script/dpush php-apache
 	@./script/dpush php-nginx
 	@./script/dpush laravel
-	@./script/dpush mean
 	@./script/dpush meteor
 	@./script/dpush rails
 	@./script/dpush gcloud
@@ -50,8 +48,7 @@ push-stacks:
 push-advanced: docker
 .PHONY: push-advanced
 
-# mean takes the longest -- test it last
-test: test-aspnet test-django test-laravel test-meteor test-rails test-mean
+test: test-django test-laravel test-meteor test-rails
 .PHONY: test
 
 ### Build base images
@@ -108,10 +105,6 @@ docker:
 
 ### Build starter template images
 
-aspnet:
-	@./script/dbuild aspnet
-.PHONY: aspnet
-
 django:
 	@./script/dbuild django
 .PHONY: django
@@ -119,10 +112,6 @@ django:
 laravel:
 	@./script/dbuild laravel
 .PHONY: laravel
-
-mean:
-	@./script/dbuild mean
-.PHONY: mean
 
 meteor:
 	@./script/dbuild meteor
@@ -146,10 +135,6 @@ discourse:
 
 ### Test starter templates
 
-test-aspnet:
-	@./script/test-starter aspnet
-.PHONY: test-aspnet
-
 test-django:
 	@./script/test-starter django
 .PHONY: test-django
@@ -157,10 +142,6 @@ test-django:
 test-laravel:
 	@./script/test-starter laravel
 .PHONY: test-laravel
-
-test-mean:
-	@./script/test-starter mean
-.PHONY: test-mean
 
 test-meteor:
 	@./script/test-starter meteor
@@ -204,10 +185,6 @@ publish-rails:
 	@./script/publish-s3 rails Rails rails/README.md ruby/README.md ubuntu/README.md
 .PHONY: publish-rails
 
-publish-aspnet:
-	@./script/publish-s3 aspnet ASP.NET aspnet/README.md ubuntu/README.md
-.PHONY: publish-aspnet
-
 publish-discourse:
 	@./script/publish-s3 discourse Discourse discourse/README.md ubuntu/README.md
 .PHONY: publish-discourse
@@ -220,3 +197,7 @@ publish-django:
 publish-docker:
 	@./script/publish-s3 docker Docker docker/README.md ubuntu/README.md
 .PHONY: publish-docker
+
+publish-laravel:
+	@./script/publish-s3 laravel Laravel laravel/README.md php/README.md ubuntu/README.md
+.PHONY: publish-laravel
