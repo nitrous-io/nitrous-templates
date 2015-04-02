@@ -27,3 +27,5 @@ RUN \
   sed -i "s|_x( 'password'|_x( ''|g" /home/$NITROUS_USERNAME/code/public_html/wp-admin/setup-config.php
 
 USER root
+
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/wordpress.2015-04-02.html
