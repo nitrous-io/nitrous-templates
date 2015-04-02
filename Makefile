@@ -205,3 +205,7 @@ publish-docker:
 publish-laravel:
 	@./script/publish-s3 laravel Laravel laravel/README.md php/README.md ubuntu/README.md
 .PHONY: publish-laravel
+
+publish-gcloud:
+	@./script/publish-s3 gcloud Google-Cloud-SDK gcloud/README.md ubuntu/README.md
+.PHONY: publish-gcloud

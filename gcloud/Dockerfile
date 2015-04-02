@@ -34,3 +34,5 @@ RUN \
 RUN yes | /home/$NITROUS_USERNAME/google-cloud-sdk/bin/gcloud components update pkg-go pkg-python pkg-java preview app
 
 USER root
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/gcloud.2015-04-07.html
