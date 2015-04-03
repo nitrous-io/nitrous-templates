@@ -7,7 +7,7 @@ be built locally.  The steps to build template `tname` are as follows:
 
 1. For each ancestor `FROM` image, `docker pull quay.io/nitrous/<ancestorname>`
 1. Get the latest `tname` as well: `docker pull quay.io/nitrous/<tname>`
-1. Run `make build-<tname>`
+1. Run `make <tname>`
 1. If applicable (`/home/nitrous/code/example/start-app` is runnable), test the
    build with `script/test-starter <tname>`
 1. Run `./script/dpush <tname>`
