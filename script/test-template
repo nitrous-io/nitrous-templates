@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+# Usage: test-template <template name> [manualmode]
+
+# This script is for testing templates.  Given a template name, e.g.
+# 'laravel', it makes the following assumptions:
+#
+# * image name is quay.io/nitrous/laravel
+# * template directory is reporoot/laravel
+# * test script is reporoot/laravel/test.sh
+
+# The test script will be called with several arguments.  Support for each
+# argument is optional.  When an unsupported argument is given, the test script
+# MUST no-op (no output, exit 0)
+
+# * test.sh docker_run_opts
+#   - this returns any additional arguments for docker run
+# * test.sh container_setup
+#   - this runs any setup needed on the container before testing
+# * test.sh container_test
+#   - this runs tests inside the container
+# * test.sh host_test
+#   - this runs tests on the host
+
+# The test does the following:
+# * create a temp dir and copies test script and helpers to it
+# * run `test.sh docker_run_opts` argument to get options
+# * docker run the image with the given options, mount temp dir
+# * docker exec `test.sh container_setup`
+# * docker exec `test.sh container_test`
+# * run `test.sh host_test`
+
+scriptdir=$(dirname "$BASH_SOURCE[0]")
+reporoot=$(readlink -f $scriptdir/..)
+source $scriptdir/helper
+
+tname=${1:?"Please enter the name of the template to test"}
+tdir="$reporoot/$tname"
+iname="quay.io/nitrous/$tname"
+
+if [[ ! -x $tdir/test.sh ]]; then
+  error "Could not find executable in $tdir/test.sh"
+  exit 1
+fi
+
+if ! docker history $iname >/dev/null 2>&1; then
+  error "Could not find image $iname"
+  exit 1
+fi
+
+# setup temp dir with scripts for bind mounting into container
+mountdirrel=$(mktemp -d /tmp/test-template-XXXXXX)
+mountdir=$(readlink -f $mountdirrel)
+cp $tdir/test.sh $mountdir
+cp $scriptdir/helper $mountdir
+cp $scriptdir/test-helper $mountdir
+
+runopts=$($mountdir/test.sh docker_run_opts)
+ok "running container from image $iname, runopts $runopts"
+cid=$(docker run -d $runopts -v $mountdir:/scriptdir $iname)
+echo "container id: $cid"
+
+function cleanup_container {
+  lasterr=$?
+  if docker ps -a -q --no-trunc | grep $cid >/dev/null; then
+    ok "removing container $cid"
+    docker rm -f $cid >/dev/null
+  fi
+  exit $lasterr
+}
+
+trap cleanup_container ERR EXIT SIGHUP SIGINT SIGTERM
+
+ok 'docker exec test setup in container'
+docker exec -dt $cid su --preserve-environment -l nitrous -c 'HOME=/home/nitrous bash -l -c "/scriptdir/test.sh container_setup"'
+
+ok 'docker exec container test'
+docker exec -t $cid su --preserve-environment -l nitrous -c 'HOME=/home/nitrous bash -l -c "/scriptdir/test.sh container_test"'
+
+if [[ $2 != "" ]]; then
+  read -p "Manual test mode. Hit <Enter> once finished"
+  exit 0
+fi
+
+ok 'running test on host'
+$mountdir/test.sh host_test
+
+# vim:ft=sh
