@@ -49,11 +49,19 @@ if ! docker history $iname >/dev/null 2>&1; then
 fi
 
 # setup temp dir with scripts for bind mounting into container
-mountdirrel=$(mktemp -d /tmp/test-template-XXXXXX)
-mountdir=$(readlink -f $mountdirrel)
-cp $tdir/test.sh $mountdir
-cp $scriptdir/helper $mountdir
-cp $scriptdir/test-helper $mountdir
+mountdir=$(mktemp -d /tmp/test-template-XXXXXX)
+mountfiles="$tdir/test.sh $scriptdir/helper $scriptdir/test-helper"
+
+cp $mountfiles $mountdir
+
+function cleanup_mountdir {
+  echo "removing $mountdir"
+  # contents of mountdir is known; use safer method than rm -r
+  for f in $mountfiles; do
+    rm $mountdir/$(basename $f)
+  done
+  rmdir $mountdir
+}
 
 runopts=$($mountdir/test.sh docker_run_opts)
 ok "running container from image $iname, runopts $runopts"
@@ -69,7 +77,7 @@ function cleanup_container {
   exit $lasterr
 }
 
-trap cleanup_container ERR EXIT SIGHUP SIGINT SIGTERM
+trap "{ cleanup_mountdir; cleanup_container; }" ERR EXIT SIGHUP SIGINT SIGTERM
 
 ok 'docker exec test setup in container'
 docker exec -dt $cid su --preserve-environment -l nitrous -c 'HOME=/home/nitrous bash -l -c "/scriptdir/test.sh container_setup"'
