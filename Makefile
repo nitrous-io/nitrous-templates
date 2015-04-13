@@ -136,19 +136,19 @@ discourse:
 ### Test starter templates
 
 test-django:
-	@./script/test-starter django
+	@./script/test-template django
 .PHONY: test-django
 
 test-laravel:
-	@./script/test-starter laravel
+	@./script/test-template laravel
 .PHONY: test-laravel
 
 test-meteor:
-	@./script/test-starter meteor
+	@./script/test-template meteor
 .PHONY: test-meteor
 
 test-rails:
-	@./script/test-starter rails
+	@./script/test-template rails
 .PHONY: test-rails
 
 ### Publish READMEs to S3

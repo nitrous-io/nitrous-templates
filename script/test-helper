@@ -1,0 +1,18 @@
+source $(dirname "$BASH_SOURCE[0]")/helper
+
+curl_with_retry() {
+  local location="$1"
+  for i in `seq 1 5`; do
+    sleep 3
+    if curl -s $location >/dev/null; then
+    ok "curl to port $location successful"
+    exit 0
+    else
+    echo "curl attempt $i to port $location failed"
+    fi
+  done
+  error "All curl attempts to $location failed"
+  exit 1
+}
+
+# vim:ft=sh
