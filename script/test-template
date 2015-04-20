@@ -54,22 +54,21 @@ mountfiles="$tdir/test.sh $scriptdir/helper $scriptdir/test-helper"
 
 cp $mountfiles $mountdir
 
-function cleanup_mountdir {
-  echo "removing $mountdir"
-  # contents of mountdir is known; use safer method than rm -r
-  for f in $mountfiles; do
-    rm $mountdir/$(basename $f)
-  done
-  rmdir $mountdir
-}
-
 runopts=$($mountdir/test.sh docker_run_opts)
 ok "running container from image $iname, runopts $runopts"
 cid=$(docker run -d $runopts -v $mountdir:/scriptdir $iname)
 echo "container id: $cid"
 
-function cleanup_container {
+function cleanup {
   lasterr=$?
+  if [[ -d $mountdir ]]; then
+    echo "removing $mountdir"
+    # contents of mountdir is known; use safer method than rm -r
+    for f in $mountfiles; do
+      rm $mountdir/$(basename $f)
+    done
+    rmdir $mountdir
+  fi
   if docker ps -a -q --no-trunc | grep $cid >/dev/null; then
     ok "removing container $cid"
     docker rm -f $cid >/dev/null
@@ -77,7 +76,7 @@ function cleanup_container {
   exit $lasterr
 }
 
-trap "{ cleanup_mountdir; cleanup_container; }" ERR EXIT SIGHUP SIGINT SIGTERM
+trap cleanup ERR EXIT SIGHUP SIGINT SIGTERM
 
 ok 'docker exec test setup in container'
 docker exec -dt $cid su --preserve-environment -l nitrous -c 'HOME=/home/nitrous bash -l -c "/scriptdir/test.sh container_setup"'
