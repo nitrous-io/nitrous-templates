@@ -5,6 +5,7 @@
 # colors
 NO_COLOR="\x1b[0m"
 OK_COLOR="\x1b[32;01m"
+INFO_COLOR="\x1b[0;32m"
 ERROR_COLOR="\x1b[31;01m"
 WARN_COLOR="\x1b[33;01m"
 
@@ -13,7 +14,17 @@ ok() {
   echo -e "$OK_COLOR --> $message !....$NO_COLOR"
 }
 
+info() {
+  local message=$1
+  echo -e "$INFO_COLOR --> $message !....$NO_COLOR"
+}
+
 error() {
   local message=$1
   echo -e "$ERROR_COLOR --> $message !....$NO_COLOR"
+}
+
+warn() {
+  local message=$1
+  echo -e "$WARN_COLOR --> $message !....$NO_COLOR"
 }

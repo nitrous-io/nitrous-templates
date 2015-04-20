@@ -48,7 +48,7 @@ push-stacks:
 push-advanced: docker
 .PHONY: push-advanced
 
-test: test-django test-laravel test-meteor test-rails
+test: test-ubuntu test-django test-laravel test-meteor test-rails
 .PHONY: test
 
 ### Build base images
@@ -150,6 +150,10 @@ test-meteor:
 test-rails:
 	@./script/test-template rails
 .PHONY: test-rails
+
+test-ubuntu:
+	@./script/test-template ubuntu
+.PHONY: test-ubuntu
 
 ### Publish READMEs to S3
 
