@@ -11,7 +11,7 @@ tag="$reguser/$builddir"
 shift
 
 ok "Building $builddir for $tag"
-if docker build -t $tag $builddir $@; then
+if docker build -t $tag $@ $builddir; then
   ok "Tagged with $tag"
 else
   error "Error building $builddir with args $@"
