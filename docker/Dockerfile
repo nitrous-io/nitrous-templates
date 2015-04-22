@@ -1,8 +1,8 @@
 FROM quay.io/nitrous/golang:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-01-28
-# lxc-docker 1.4.1
+# 2015-04-22
+# lxc-docker 1.6.0
 
 RUN \
   apt-get update && \
@@ -17,7 +17,7 @@ RUN \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9 && \
   echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list && \
   apt-get update && \
-  apt-get install -y lxc-docker-1.4.1 && \
+  apt-get install -y lxc-docker-1.6.0 && \
   apt-get install -y --no-install-recommends lxc=1.0.* cgmanager libcgmanager0 && \
   rm /etc/init.d/cgroup-lite && \
   rm /etc/init.d/cgmanager && \
