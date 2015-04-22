@@ -75,6 +75,10 @@ golang:
 	@./script/dbuild golang
 .PHONY: golang
 
+java:
+	@./script/dbuild java
+.PHONY: java
+
 php:
 	@./script/dbuild php
 .PHONY: php
