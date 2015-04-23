@@ -6,7 +6,7 @@ build-all: build-base build-basic build-stacks build-advanced
 build-base: ubuntu-bare ubuntu
 .PHONY: build-base
 
-build-basic: nodejs iojs golang php python ruby nginx
+build-basic: nodejs iojs golang php python ruby rust nginx
 .PHONY: build-basic
 
 build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse
@@ -30,6 +30,7 @@ push-basic:
 	@./script/dpush php
 	@./script/dpush python
 	@./script/dpush ruby
+	@./script/dpush rust
 	@./script/dpush nginx
 .PHONY: push-basic
 
@@ -98,6 +99,10 @@ python:
 ruby:
 	@./script/dbuild ruby
 .PHONY: ruby
+
+rust:
+	@./script/dbuild rust
+.PHONY: rust
 
 nginx:
 	@./script/dbuild nginx
@@ -184,6 +189,10 @@ publish-wordpress:
 publish-ruby:
 	@./script/publish-s3 ruby Ruby ruby/README.md ubuntu/README.md
 .PHONY: publish-ruby
+
+publish-rust:
+	@./script/publish-s3 rust Rust rust/README.md ubuntu/README.md
+.PHONY: publish-rust
 
 publish-meteor:
 	@./script/publish-s3 meteor Meteor meteor/README.md nodejs/README.md ubuntu/README.md
