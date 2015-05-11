@@ -19,7 +19,9 @@ template = <<-HTML
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title><%= name %> container guide</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <style media="screen" type="text/css">
+    <%= css %>
+  </style>
 </head>
 
 <body>
@@ -62,7 +64,8 @@ if __FILE__ == $0
     err 'Usage: gen-readme <title> <file> [FILE]...'
   end
 
-  # name and body used as bindings for template
+  # name, css and body used as bindings for template
+  css = File.read(File.expand_path(File.join(File.dirname(__FILE__), "..", "css", "style.min.css")))
   name, files = ARGV[0], ARGV.drop(1)
   body = convert(files)
   if body.strip == ''
