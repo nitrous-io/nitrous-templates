@@ -24,12 +24,12 @@ TEMPLATENAME=${2:?"template name is required"}
 S3_LOCATION="$BUCKET/${FILENAME}.$(date +%F).html"
 S3_BACKUP="${S3_LOCATION}.orig"
 
-shift # apart from filename, pass all args to gen-readme
 
 HTMLFILE="/tmp/nitrous-templates-${FILENAME}.html"
 
 ok "Generating template for $TEMPLATENAME"
 
+# pass all args to gen-readme
 if $(dirname "$BASH_SOURCE[0]")/gen-readme $@ > $HTMLFILE ; then
   if s3cmd info $S3_LOCATION >/dev/null 2>&1; then
     ok "Backing up previous file to $S3_BACKUP"

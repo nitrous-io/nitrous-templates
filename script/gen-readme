@@ -3,14 +3,19 @@
 # run with a name and list of markdown files, in order
 # outputs generated html to stdout
 #
+# Usage:
+# ./gen-readme <body class name> <title name> <markdown file> [more markdown files]...
+#
 # Example:
-# ./gen-readme Rails INTRO.md rails/README.md ruby/README.md ubuntu/README.md
+# ./gen-readme rails Rails INTRO.md rails/README.md ruby/README.md ubuntu/README.md
 #
 # Requirements:
 # - `go get github.com/russross/blackfriday-tool`
 # - `go install github.com/russross/blackfriday-tool`
 
 require 'erb'
+
+css_path = 'css/style.css' # relative to repo root
 
 template = <<-HTML
 <!DOCTYPE html>
@@ -19,10 +24,12 @@ template = <<-HTML
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title><%= name %> container guide</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <style media="screen" type="text/css">
+    <%= css %>
+  </style>
 </head>
 
-<body>
+<body class="<%= body_class %>">
   <div class="container">
     <h1>Welcome to your Nitrous Pro <%= name %> container!</h1>
     <%= body %>
@@ -58,12 +65,14 @@ def err(s)
 end
 
 if __FILE__ == $0
-  if ARGV.size < 2
+  if ARGV.size < 3
     err 'Usage: gen-readme <title> <file> [FILE]...'
   end
 
-  # name and body used as bindings for template
-  name, files = ARGV[0], ARGV.drop(1)
+  # body_class, name, css and body used as bindings for template
+  css = File.read(File.expand_path(File.join(File.dirname(__FILE__), "..", css_path)))
+
+  body_class, name, files = ARGV[0], ARGV[1], ARGV.drop(2)
   body = convert(files)
   if body.strip == ''
     err 'No output from blackfriday!'
