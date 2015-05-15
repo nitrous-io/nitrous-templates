@@ -4,14 +4,14 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # 2015-05-14
 # wordpress 4.2.2
 
-# create database
+# Create database.
 RUN /bin/bash -l -c 'service mysql start && \
   mysql -u nitrous -e "CREATE DATABASE wordpress DEFAULT CHARACTER SET = utf8;" && \
   service mysql stop'
 
 USER $NITROUS_USERNAME
 
-# set up wordpress
+# Setup WordPress.
 RUN \
   /bin/bash -c \
     'cd /home/$NITROUS_USERNAME && \
@@ -26,7 +26,14 @@ RUN \
 
 USER root
 
-# give Apache user ownership to perform upgrades, install plugins/themes
-RUN /bin/bash -c 'chown -R www-data:www-data /home/$NITROUS_USERNAME/code/public_html'
+# Give Apache user ownership to perform upgrades, install plugins/themes.
+# Add Nitrous user to www-data group so it has permissions to edit files.
+RUN /bin/bash -c \
+  'cd /home/$NITROUS_USERNAME/code/public_html && \
+  chown -R www-data:www-data ./* && \
+  find . -type d -exec chmod g+rwx {} \; && \
+  find . -type f -exec chmod g+rw {} \; && \
+  usermod -a -G www-data $NITROUS_USERNAME'
 
 ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/wordpress.2015-05-14.html
+
