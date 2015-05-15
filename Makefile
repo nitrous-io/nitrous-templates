@@ -183,7 +183,7 @@ publish-php-nginx:
 .PHONY: publish-php-nginx
 
 publish-wordpress:
-	@./script/publish-s3 wordpress Wordpress wordpress/README.md php/README.md ubuntu/README.md
+	@./script/publish-s3 wordpress WordPress wordpress/README.md php/README.md ubuntu/README.md
 .PHONY: publish-wordpress
 
 publish-ruby:
