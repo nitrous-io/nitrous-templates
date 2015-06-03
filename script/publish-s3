@@ -21,7 +21,8 @@ BUCKET="s3://nitrous-readmes"
 FILENAME=${1:?"s3 filename is required"}
 TEMPLATENAME=${2:?"template name is required"}
 
-S3_LOCATION="$BUCKET/${FILENAME}.$(date +%F).html"
+DATE=${DATE:=$(date +%F)}
+S3_LOCATION="$BUCKET/${FILENAME}.$DATE.html"
 S3_BACKUP="${S3_LOCATION}.orig"
 
 
