@@ -45,4 +45,3 @@ if $(dirname "$BASH_SOURCE[0]")/gen-readme $@ > $HTMLFILE ; then
 else
   error "Error generating readme"
 fi
-
