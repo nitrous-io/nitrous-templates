@@ -23,7 +23,7 @@ template = <<-HTML
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title><%= name %> container guide</title>
+  <title><%= title %></title>
   <style media="screen" type="text/css">
     <%= css %>
   </style>
@@ -31,7 +31,7 @@ template = <<-HTML
 
 <body class="<%= body_class %>">
   <div class="container">
-    <h1>Welcome to your Nitrous Pro <%= name %> container!</h1>
+    <h1><%= welcome %></h1>
     <%= body %>
   </div>
 </body>
@@ -69,15 +69,18 @@ if __FILE__ == $0
     err 'Usage: gen-readme <title> <file> [FILE]...'
   end
 
-  # body_class, name, css and body used as bindings for template
+  # body_class, name, welcome, css and body used as bindings for template
   css = File.read(File.expand_path(File.join(File.dirname(__FILE__), "..", css_path)))
 
-  # Container name not needed for migrated container. 
-  if ARGV[1] == "Migrate"
-    ARGV[1] = ""
+  body_class, name, files = ARGV[0], ARGV[1], ARGV.drop(2)
+  title = "#{ name } container guide"
+  welcome = "Welcome to your Nitrous Pro #{ name } container!"
+
+  if name.downcase == 'migrate'
+    title = "Migrated Lite box"
+    welcome = "Your Lite box is now a Nitrous Pro container"
   end
 
-  body_class, name, files = ARGV[0], ARGV[1], ARGV.drop(2)
   body = convert(files)
   if body.strip == ''
     err 'No output from blackfriday!'
