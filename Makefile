@@ -1,7 +1,9 @@
 all: build-all
 
-build-all: build-base build-basic build-stacks build-advanced
+build-all: build-migrate build-base build-basic build-stacks build-advanced
 .PHONY: build-all
+
+build-migrate: migrate
 
 build-base: ubuntu-bare ubuntu
 .PHONY: build-base
@@ -15,13 +17,17 @@ build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress 
 build-advanced: docker
 .PHONY: build-advanced
 
-push-all: push-base push-basic push-stacks push-advanced
+push-all: push-migrate push-base push-basic push-stacks push-advanced
 .PHONY: push-all
 
 push-base:
 	@./script/dpush ubuntu-bare
 	@./script/dpush ubuntu
 .PHONY: push-base
+
+push-migrate:
+	@./script/dpush migrate 
+.PHONY: push-migrate
 
 push-basic:
 	@./script/dpush nodejs
@@ -51,6 +57,12 @@ push-advanced: docker
 
 test: test-django test-laravel test-meteor test-rails
 .PHONY: test
+
+### Build migration image
+
+migrate:
+	@./script/dbuild migrate 
+.PHONY: migrate
 
 ### Build base images
 
@@ -161,6 +173,10 @@ test-rails:
 .PHONY: test-rails
 
 ### Publish READMEs to S3
+
+publish-migrate:
+	@./script/publish-s3 migrate Migrate migrate/README.md
+.PHONY: publish-migrate
 
 publish-ubuntu:
 	@./script/publish-s3 ubuntu Ubuntu ubuntu/README.md

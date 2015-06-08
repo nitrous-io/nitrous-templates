@@ -8,11 +8,9 @@ COPY files/sshd_config /etc/ssh/sshd_config
 
 ENV NITROUS_IMAGE_VERSION 2
 ENV NITROUS_SSH_ENABLED true
+ENV NITROUS_USERNAME action
 
 CMD ["/sbin/init", "--default-console", "none"]
-
-ENV NITROUS_USERNAME action
-ENV USER action
 
 # Ensure compatibility with Pro
 
@@ -68,3 +66,7 @@ RUN \
   sudo chsh -s /bin/zsh $NITROUS_USERNAME && \
   sudo touch /etc/profile.d/dummy.sh && \
   sudo /bin/bash -c "echo source /etc/profile >> /etc/zsh/zprofile"'
+
+USER root
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/migrate.2015-06-08.html

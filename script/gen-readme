@@ -72,6 +72,11 @@ if __FILE__ == $0
   # body_class, name, css and body used as bindings for template
   css = File.read(File.expand_path(File.join(File.dirname(__FILE__), "..", css_path)))
 
+  # Container name not needed for migrated container. 
+  if ARGV[1] == "Migrate"
+    ARGV[1] = ""
+  end
+
   body_class, name, files = ARGV[0], ARGV[1], ARGV.drop(2)
   body = convert(files)
   if body.strip == ''
