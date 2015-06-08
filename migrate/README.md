@@ -1,19 +1,17 @@
-## Container administration
+### What's new?
 
-This Ubuntu 12.04 container is a fully functional Linux environment in which
-you can develop any Linux-based application.
+- root access is available; the `sudo` command is now enabled
+- significantly improved performance
+- the IDE filetree now updates automatically, even if files changed using the terminal
+- collaboration no longer requires manually activating 'collab mode'; it
+  automatically works with collaborators who have the same file open. [Learn more](http://docs.nitrous.io/v1.0/docs/collaboration)
+- an all-new [Desktop Sync](http://docs.nitrous.io/v1.0/docs/nitrous-sync) for working with a local editor
 
-The `action` user has been set up with password-less root access on the `sudo` command.
+### What will no longer work?
 
-### Default install
-
-The container comes with a wealth of software and developer tools already
-installed:
-
-- editors: emacs, nano, vim
-- version control: git, mercurial, subversion, bzr
-- languages: c, c++, perl, python
-- shells: bash, dash, zsh (default)
+- the previous Nitrous Desktop for Lite
+- the previous Chrome application
+- the SSH url for accessing the box has been updated
 
 ### Upgrading your container
 
