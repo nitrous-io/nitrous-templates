@@ -60,4 +60,7 @@ COPY files/sources.list /etc/apt/sources.list
  RUN \
    /bin/bash -c 'touch /home/$NITROUS_USERNAME/.hushlogin'
 
+# use ~/workspace to sync instead of ~/code
+ENV NITROUS_ROOT_SYNC /home/$NITROUS_USERNAME/workspace
+
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/migrate.2015-06-08.html
