@@ -17,16 +17,29 @@ ENV USER action
 # Ensure compatibility with Pro
 
 # From https://github.com/nitrous-io/nitrous-templates/blob/latest/ubuntu-bare/Dockerfile 5aa415d
+# Disable root password
+RUN passwd -l root
+
+# Grant sudo privileges to 'action'
+RUN \
+ /bin/bash -c \
+   'echo $NITROUS_USERNAME ALL=NOPASSWD:ALL > /etc/sudoers.d/$NITROUS_USERNAME && \
+   chmod 0440 /etc/sudoers.d/$NITROUS_USERNAME'
+
 RUN \
   mkdir -p /nitrous/init /nitrous/initonce && \
-    touch /nitrous/dont_delete_this_dir
+  touch /nitrous/dont_delete_this_dir
 
 RUN \
   rm /etc/legal && \
   # No such file in migrated box:
   # rm /etc/update-motd.d/10-help-text
   # rm /etc/motd instead
-  rm /etc/motd
+  rm /etc/motd && \ 
+
+  # Remove sudo shim so that sudo command can be run.
+  # https://github.com/nitrous-io/bombay/blob/master/ansible/base_container_template/files/alias_sudo.sh
+  rm /etc/profile.d/alias_sudo.sh
 
 COPY files/motd /etc/update-motd.d/00-header
 COPY files/nitrous_bootstrap.conf /etc/init/nitrous_bootstrap.conf
