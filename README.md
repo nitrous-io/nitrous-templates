@@ -15,6 +15,8 @@ be built locally.  The steps to build template `tname` are as follows:
 
 ## Conventions
 
+This section does not apply to the migrate template (see [Migration](#migration) section).
+
 ### Origin
 
 Nitrous images ultimately inherit from `nitrousio/ubuntu-bare`, which inherits
@@ -48,6 +50,18 @@ Note that simply modifying this in an inheriting Dockerfile would be
 insufficient: the `nitrousio/ubuntu-bare` does a lot of things to set up.  To
 change the user would entail forking `nitrousio/ubuntu-bare` and inheriting
 from that fork.
+
+## Migration 
+
+### Origin 
+
+The migrated container on `Pro` that was migrated from user's boxes on `Lite` is built on the `migrate` template. The `migrate` template inherits from `quay.io/nitrous/migrate-bare`. 
+
+More detailed documentation on the `migrate` and `migrate-bare` templates can be found [here](https://github.com/nitrous-io/migration).
+
+### Features
+
+For a summary of the features on the migrated container, please see the [README](https://github.com/nitrous-io/nitrous-templates/blob/latest/migrate/README.md) for the migrated container.
 
 - - -
 Copyright (c) 2014-2015 Nitrous, Inc. All Rights Reserved.
