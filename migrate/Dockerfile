@@ -43,6 +43,7 @@ RUN \
 
 COPY files/motd /etc/update-motd.d/00-header
 COPY files/nitrous_bootstrap.conf /etc/init/nitrous_bootstrap.conf
+COPY files/parts-init.conf /etc/init/parts-init.conf
 COPY files/bootstrap.sh /nitrous/bootstrap.sh
 COPY files/dockerenv-inject /nitrous/dockerenv-inject
 
