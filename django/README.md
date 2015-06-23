@@ -25,6 +25,27 @@ finding out how to get your own Django application running.
 
 Feel free to remove the `~/code/example` directory if you no longer need it.
 
+### Create Django app
+
+To install Django in a virtual environment and create a new Django project, run the following command:
+
+```
+$ cd ~/code
+$ virtualenv --no-site-packages django-env
+$ source django-env/bin/activate
+(django-env)$ pip install django
+(django-env)$ django-admin.py startproject myproject
+(django-env)$ cd myproject
+```
+
+You can configure your database settings in `~/code/django-env/myproject/myproject/settings.py`.
+
+To install dependencies in your Django application, create a `requirements.txt` file with a list of your requirements in `~/code/django-env/myproject/`. Then run:
+
+```
+$ pip install -r requirements.txt
+```
+
 ### Preview
 
 *If you are using the example application, you can use `~/code/example/start-app` to start your app.*
