@@ -1,8 +1,8 @@
 FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-04-21
-# nginx     1.6.3-1+trusty0
+# 2015-06-29
+# nginx     1.8.0-1+trusty1
 # php5-fpm  5.5.9+dfsg-1ubuntu4.9
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -14,9 +14,15 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    nginx=1.6.3-1+trusty0 \
+    nginx=1.8.0-1+trusty1 \
     php5-fpm=5.5.9+dfsg-1ubuntu4.9 && \
   apt-get clean
+
+# nginx upstart conf scripts are still buggy and doesn't work, use sysvinit instead
+
+RUN \
+  rm /etc/init/nginx.conf && \
+  update-rc.d nginx defaults
 
 # setup public_html dir
 
@@ -51,4 +57,4 @@ RUN \
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
-ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-nginx.2015-04-01.html
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-nginx.2015-06-29.html

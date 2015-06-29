@@ -6,7 +6,7 @@ applications as quickly as possible.
 Software already installed:
 
 - PHP 5.5.9 (Composer 1.0, MySQL 5.5)
-- Nginx 1.6.2 with php-fpm
+- Nginx with php-fpm
 
 ### Previewing your app
 
