@@ -1,7 +1,5 @@
 ## Meteor
 
-This container comes with Meteor 1.0.3.
-
 ### Sample application
 
 A sample Meteor scaffold has been created for you in
