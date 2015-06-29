@@ -1,11 +1,11 @@
 FROM quay.io/nitrous/ruby:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-01-28
-# rails               4.2.0
+# 2015-06-25
+# rails               4.2.1
 # postgresql          9.3+154
 # postgresql-contrib  9.3+154
-# libpq-dev           9.3.6-0ubuntu0.14.04
+# libpq-dev           9.3.9-0ubuntu0.14.04
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -15,7 +15,7 @@ RUN \
   apt-get install -y \
     postgresql=9.3+154 \
     postgresql-contrib=9.3+154 \
-    libpq-dev=9.3.6-0ubuntu0.14.04 && \
+    libpq-dev=9.3.9-0ubuntu0.14.04 && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
@@ -30,7 +30,7 @@ USER $NITROUS_USERNAME
 # set up example app
 
 RUN /bin/bash -l -c 'sudo service postgresql start && \
-  gem install rails -v 4.2.0 && \
+  gem install rails -v 4.2.1 && \
   rbenv rehash && \
   cd /home/$NITROUS_USERNAME/code && \
   rails new example -d postgresql && \
@@ -45,5 +45,6 @@ COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
 RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
 
 EXPOSE $NITROUS_PREVIEW_PORT
+EXPOSE 5000
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rails.2015-03-02.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rails.2015-06-29.html

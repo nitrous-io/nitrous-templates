@@ -1,9 +1,9 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-01-28
+# 2015-06-25
 # ruby      2.2.1, 2.1.5 (Default)
-# bundler   1.9.4
+# bundler   1.10.5
 
 RUN \
   mkdir -p /usr/local/opt/rbenv && \
@@ -35,7 +35,7 @@ RUN \
     rbenv global 2.1.5 && \
     rbenv rehash && \
     ruby -v && \
-    gem install bundler --version=1.9.4 && \
+    gem install bundler --version=1.10.5 && \
     rbenv rehash'
 
 RUN \
@@ -44,9 +44,9 @@ RUN \
     rbenv shell 2.2.1 && \
     rbenv rehash && \
     ruby -v && \
-    gem install bundler --version=1.9.4 && \
+    gem install bundler --version=1.10.5 && \
     rbenv rehash'
 
 USER root
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ruby.2015-04-23.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ruby.2015-06-29.html

@@ -1,6 +1,16 @@
 ## Rails
 
-This container comes with Ruby on Rails `4.2.0` and postgres `9.3`.
+This container comes with Ruby on Rails and PostgreSQL.
+
+To see which version of Rails is installed, run: `rails -v`
+
+### Ruby versions
+
+This container comes with `rbenv` to help you manage Ruby versions.
+
+To see which versions of Ruby are installed, run: `rbenv versions`
+
+To change the default version, run: `rbenv global <version number>`
 
 ### Sample application
 
