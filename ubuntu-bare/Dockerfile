@@ -38,7 +38,9 @@ COPY files/init/0010-inject-env.sh  /nitrous/init/0010-inject-env.sh
 
 COPY files/initonce/0010-generate-pw.sh /nitrous/initonce/0010-generate-pw.sh
 
-# Use Digital Ocean Mirror
 COPY files/sources.list /etc/apt/sources.list
+
+# Add fake Upstart job that emits events so that other services will run.
+COPY files/fake-container-events.conf /etc/init/fake-container-events.conf
 
 CMD ["/sbin/init", "--default-console", "none"]
