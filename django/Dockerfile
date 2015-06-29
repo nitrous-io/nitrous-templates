@@ -1,10 +1,10 @@
 FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-01-28
+# 2015-06-29
 # postgresql          9.3+154
 # postgresql-contrib  9.3+154
-# libpq-dev           9.3.6-0ubuntu0.14.04
+# libpq-dev           9.3.9-0ubuntu0.14.04
 #
 # requirements.txt:
 # django    1.7.4
@@ -20,7 +20,7 @@ RUN \
   apt-get install -y \
     postgresql=9.3+154 \
     postgresql-contrib=9.3+154 \
-    libpq-dev=9.3.6-0ubuntu0.14.04 && \
+    libpq-dev=9.3.9-0ubuntu0.14.04 && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
@@ -52,4 +52,4 @@ RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERN
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/django.2015-03-23.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/django.2015-06-29.html

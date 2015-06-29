@@ -1,7 +1,5 @@
 ## Django
 
-This container comes with Django 1.7.4
-
 ### Sample application
 
 A sample Django scaffold has been created for you in
