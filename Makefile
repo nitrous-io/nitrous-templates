@@ -190,6 +190,10 @@ publish-nodejs:
 	@./script/publish-s3 nodejs Node.js nodejs/README.md ubuntu/README.md
 .PHONY: publish-nodejs
 
+publish-iojs:
+	@./script/publish-s3 iojs io.js iojs/README.md ubuntu/README.md
+.PHONY: publish-iojs
+
 publish-php-apache:
 	@./script/publish-s3 php-apache PHP php-apache/README.md php/README.md ubuntu/README.md
 .PHONY: publish-php-apache
