@@ -1,6 +1,6 @@
 all: build-all
 
-build-all: build-migrate build-base build-basic build-stacks build-advanced
+build-all: build-base build-basic build-stacks build-advanced build-migrate
 .PHONY: build-all
 
 build-migrate: migrate
@@ -26,7 +26,7 @@ push-base:
 .PHONY: push-base
 
 push-migrate:
-	@./script/dpush migrate 
+	@./script/dpush migrate
 .PHONY: push-migrate
 
 push-basic:
@@ -61,7 +61,7 @@ test: test-django test-laravel test-meteor test-rails
 ### Build migration image
 
 migrate:
-	@./script/dbuild migrate 
+	@./script/dbuild migrate
 .PHONY: migrate
 
 ### Build base images
