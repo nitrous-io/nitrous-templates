@@ -1,10 +1,10 @@
 FROM quay.io/nitrous/ubuntu:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-04-23
-# nvm     0.24.1
-# iojs    1.8.1
-# npm     2.8.3
+# 2015-06-25
+# nvm     0.25.4
+# iojs    2.3.1
+# npm     2.11.3
 
 RUN \
   mkdir -p /usr/local/opt/nvm && \
@@ -17,11 +17,13 @@ USER $NITROUS_USERNAME
 RUN \
   /bin/bash -c \
     'git clone https://github.com/creationix/nvm.git /usr/local/opt/nvm && \
-    cd /usr/local/opt/nvm && git checkout v0.24.1 2>/dev/null && \
+    cd /usr/local/opt/nvm && git checkout v0.25.4 2>/dev/null && \
     source /usr/local/opt/nvm/nvm.sh && \
-    nvm install iojs-v1.8.1 && \
-    nvm alias default iojs-v1.8.1 && \
-    nvm use iojs-v1.8.1 && \
-    npm install -g npm@2.8.3'
+    nvm install iojs-v2.3.1 && \
+    nvm alias default iojs-v2.3.1 && \
+    nvm use iojs-v2.3.1 && \
+    npm install -g npm@2.11.3'
 
 USER root
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/iojs.2015-06-29.html

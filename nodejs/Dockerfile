@@ -1,10 +1,10 @@
 FROM quay.io/nitrous/ubuntu:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-04-22
-# nvm     0.24.1
-# node    0.10.38, 0.12.2 (Default)
-# npm     2.8.3
+# 2015-06-25
+# nvm     0.25.4
+# node    0.10.39, 0.12.5 (Default)
+# npm     2.11.3
 
 RUN \
   mkdir -p /usr/local/opt/nvm && \
@@ -17,14 +17,14 @@ USER $NITROUS_USERNAME
 RUN \
   /bin/bash -c \
     'git clone https://github.com/creationix/nvm.git /usr/local/opt/nvm && \
-    cd /usr/local/opt/nvm && git checkout v0.24.1 2>/dev/null && \
+    cd /usr/local/opt/nvm && git checkout v0.25.4 2>/dev/null && \
     source /usr/local/opt/nvm/nvm.sh && \
-    nvm install 0.10.38 && \
-    nvm install 0.12.2 && \
+    nvm install 0.10.39 && \
+    nvm install 0.12.5 && \
     nvm alias default 0.12 && \
     nvm use 0.12 && \
-    npm install -g npm@2.8.3'
+    npm install -g npm@2.11.3'
 
 USER root
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/nodejs.2015-04-23.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/nodejs.2015-06-29.html
