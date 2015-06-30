@@ -2,9 +2,9 @@ FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-06-29
-# postgresql          9.3+154
-# postgresql-contrib  9.3+154
-# libpq-dev           9.3.9-0ubuntu0.14.04
+# postgresql-9.4          9.4.4-1.pgdg14.04+1
+# postgresql-contrib-9.4  9.4.4-1.pgdg14.04+1
+# libpq-dev               9.4.4-1.pgdg14.04+1
 #
 # requirements.txt:
 # django    1.7.4
@@ -16,14 +16,16 @@ ENV NITROUS_PREVIEW_PORT 3000
 
 # set up postgres
 RUN \
+  echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" | tee /etc/apt/sources.list.d/postgresql.list && \
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
   apt-get update && \
   apt-get install -y \
-    postgresql=9.3+154 \
-    postgresql-contrib=9.3+154 \
-    libpq-dev=9.3.9-0ubuntu0.14.04 && \
+    postgresql-9.4=9.4.4-1.pgdg14.04+1 \
+    postgresql-contrib-9.4=9.4.4-1.pgdg14.04+1 \
+    libpq-dev=9.4.4-1.pgdg14.04+1 && \
   apt-get clean
 
-COPY support/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
+COPY support/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 
 RUN service postgresql start && \
   su postgres -c 'createdb example_development && \
