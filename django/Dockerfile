@@ -1,10 +1,11 @@
 FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-06-29
+# 2015-07-14
 # postgresql-9.4          9.4.4-1.pgdg14.04+1
 # postgresql-contrib-9.4  9.4.4-1.pgdg14.04+1
 # libpq-dev               9.4.4-1.pgdg14.04+1
+# heroku-toolbelt         3.39.5
 #
 # requirements.txt:
 # django    1.7.4
@@ -51,6 +52,9 @@ USER root
 COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
 
 RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
+
+# set up heroku toolbelt
+RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 
 EXPOSE $NITROUS_PREVIEW_PORT
 

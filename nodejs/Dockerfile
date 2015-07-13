@@ -1,10 +1,11 @@
 FROM quay.io/nitrous/ubuntu:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-06-25
-# nvm     0.25.4
-# node    0.10.39, 0.12.5 (Default)
-# npm     2.11.3
+# 2015-07-14
+# nvm             0.25.4
+# node            0.10.39, 0.12.5 (Default)
+# npm             2.11.3
+# heroku-toolbelt 3.39.5
 
 RUN \
   mkdir -p /usr/local/opt/nvm && \
@@ -26,5 +27,8 @@ RUN \
     npm install -g npm@2.11.3'
 
 USER root
+
+# set up heroku toolbelt
+RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/nodejs.2015-06-29.html
