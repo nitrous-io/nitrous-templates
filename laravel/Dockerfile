@@ -1,10 +1,11 @@
 FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-01-28
+# 2015-07-14
 # laravel-installer   1.1.3
 # laravel             4.2
 # redis-server        2:2.8.4-2
+# heroku-toolbelt     3.39.5
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -41,6 +42,9 @@ USER root
 
 # set proper ownership
 RUN /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example'
+
+# set up heroku toolbelt
+RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
