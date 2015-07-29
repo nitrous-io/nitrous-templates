@@ -1,14 +1,19 @@
 require "serverspec"
 require "docker"
 
-describe "Dockerfile" do
+describe "django" do
   before(:all) do
-    image = Docker::Image.build_from_dir('django')
+#     image = Docker::Image.get("quay.io/nitrous/django")
+    @container_django = Docker::Container.create('Image' => "quay.io/nitrous/django", "Cmd" => ["/home/nitrous/code/example/start-app"])
+    @container_django.start
 
     set :os, family: :debian
     set :backend, :docker
-    set :docker_image, image.id
-    set :docker_container_create_options, {"Cmd" => ["/home/nitrous/code/example/start-app"]}
+    set :docker_container, @container_django.id
+#     set :docker_container_create_options, {"Cmd" => ["/home/nitrous/code/example/start-app"]}
+
+    # Sleep 1 second to wait until start-app is running
+    sleep(1)
   end
 
   it "installs the right version of Ubuntu" do
@@ -25,5 +30,10 @@ describe "Dockerfile" do
 
   def os_version
     command("lsb_release -a").stdout
+  end
+
+  after(:all) do
+    @container_django.stop
+    @container_django.delete
   end
 end
