@@ -9,10 +9,16 @@ describe "php" do
     set :os, family: :debian
     set :backend, :docker
     set :docker_container, @container_php.id
+
+    sleep(2)
   end
 
   describe package('mysql-server') do
     it { should be_installed }
+  end
+
+  describe port(3306) do
+    it { should be_listening }
   end
 
   describe command('php -v') do
