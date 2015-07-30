@@ -18,12 +18,13 @@ USER $NITROUS_USERNAME
 
 RUN \
   cd /home/$NITROUS_USERNAME && \
-  wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && \
-  unzip google-cloud-sdk.zip && \
-  rm google-cloud-sdk.zip
+  wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip -O google-cloud-sdk-0.9.69.zip && \
+  unzip google-cloud-sdk-0.9.69.zip -d /home/$NITROUS_USERNAME/ && \
+  rm google-cloud-sdk-0.9.69.zip
 
 RUN \
-  /home/$NITROUS_USERNAME/google-cloud-sdk/install.sh --usage-reporting=true --disable-installation-options
+  cd /home/$NITROUS_USERNAME/google-cloud-sdk && \
+  ./install.sh --usage-reporting=true
 
 # setup rc files
 RUN \
@@ -31,7 +32,9 @@ RUN \
     'echo -e "\n# Google Cloud SDK\nsource \"/home/$NITROUS_USERNAME/google-cloud-sdk/path.zsh.inc\"\nsource \"/home/$NITROUS_USERNAME/google-cloud-sdk/completion.zsh.inc\"" >> /home/$NITROUS_USERNAME/.zshrc && \
     echo -e "\n# Google Cloud SDK\nsource \"/home/$NITROUS_USERNAME/google-cloud-sdk/path.bash.inc\"\nsource \"/home/$NITROUS_USERNAME/google-cloud-sdk/completion.bash.inc\"" >> /home/$NITROUS_USERNAME/.bashrc'
 
-RUN yes | /home/$NITROUS_USERNAME/google-cloud-sdk/bin/gcloud components update pkg-go pkg-python pkg-java preview app
+RUN \
+  cd /home/$NITROUS_USERNAME/google-cloud-sdk && \
+  yes | ./bin/gcloud components update app-engine-java app-engine-python preview app --allow-no-backup
 
 USER root
 
