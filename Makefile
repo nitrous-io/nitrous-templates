@@ -206,6 +206,9 @@ publish-wordpress:
 	@./script/publish-s3 wordpress WordPress wordpress/README.md php/README.md ubuntu/README.md
 .PHONY: publish-wordpress
 
+publish-python:
+	@./script/publish-s3 python Python python/README.md ubuntu/README.md
+
 publish-ruby:
 	@./script/publish-s3 ruby Ruby ruby/README.md ubuntu/README.md
 .PHONY: publish-ruby
@@ -228,7 +231,7 @@ publish-discourse:
 
 publish-django:
 	# TODO add python/README.md when available
-	@./script/publish-s3 django Django django/README.md ubuntu/README.md
+	@./script/publish-s3 django Django django/README.md python/README.md ubuntu/README.md
 .PHONY: publish-django
 
 publish-docker:

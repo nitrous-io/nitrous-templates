@@ -16,3 +16,5 @@ RUN \
     virtualenvwrapper=4.1.1-1 && \
   apt-get clean && \
   echo 'source /etc/bash_completion.d/virtualenvwrapper' >> /etc/zsh/zprofile
+
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/python.2015-08-06.html
