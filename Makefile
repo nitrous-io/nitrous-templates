@@ -11,7 +11,7 @@ build-base: ubuntu-bare ubuntu
 build-basic: nodejs iojs golang php python ruby rust nginx
 .PHONY: build-basic
 
-build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse
+build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse jekyll
 .PHONY: build-stacks
 
 build-advanced: docker
@@ -50,6 +50,7 @@ push-stacks:
 	@./script/dpush gcloud
 	@./script/dpush wordpress
 	@./script/dpush discourse
+	@./script/dpush jekyll
 .PHONY: push-stacks
 
 push-advanced: docker
@@ -154,6 +155,10 @@ discourse:
 	@./script/dbuild discourse
 .PHONY: discourse
 
+jekyll:
+	@./script/dbuild jekyll
+.PHONY: jekyll
+
 ### Test starter templates
 
 test-django:
@@ -242,3 +247,7 @@ publish-laravel:
 publish-gcloud:
 	@./script/publish-s3 gcloud Google-Cloud-SDK gcloud/README.md ubuntu/README.md
 .PHONY: publish-gcloud
+
+publish-jekyll:
+	@./script/publish-s3 jekyll Jekyll jekyll/README.md ruby/README.md ubuntu/README.md
+.PHONY: publish-jekyll
