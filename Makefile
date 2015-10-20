@@ -8,7 +8,7 @@ build-migrate: migrate
 build-base: ubuntu-bare ubuntu
 .PHONY: build-base
 
-build-basic: nodejs iojs golang php python ruby rust nginx
+build-basic: nodejs golang php python ruby rust nginx
 .PHONY: build-basic
 
 build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse jekyll
@@ -31,7 +31,6 @@ push-migrate:
 
 push-basic:
 	@./script/dpush nodejs
-	@./script/dpush iojs
 	@./script/dpush golang
 	@./script/dpush php
 	@./script/dpush python
@@ -80,10 +79,6 @@ ubuntu:
 nodejs:
 	@./script/dbuild nodejs
 .PHONY: nodejs
-
-iojs:
-	@./script/dbuild iojs
-.PHONY: iojs
 
 golang:
 	@./script/dbuild golang
@@ -194,10 +189,6 @@ publish-golang:
 publish-nodejs:
 	@./script/publish-s3 nodejs Node.js nodejs/README.md ubuntu/README.md
 .PHONY: publish-nodejs
-
-publish-iojs:
-	@./script/publish-s3 iojs io.js iojs/README.md ubuntu/README.md
-.PHONY: publish-iojs
 
 publish-php-apache:
 	@./script/publish-s3 php-apache PHP php-apache/README.md php/README.md ubuntu/README.md
