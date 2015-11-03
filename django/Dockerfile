@@ -1,11 +1,11 @@
 FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-07-14
-# postgresql-9.4          9.4.4-1.pgdg14.04+1
-# postgresql-contrib-9.4  9.4.4-1.pgdg14.04+1
-# libpq-dev               9.4.4-1.pgdg14.04+1
-# heroku-toolbelt         3.39.5
+# 2015-11-03
+# postgresql-9.4          9.4.5-1.pgdg14.04+1
+# postgresql-contrib-9.4  9.4.5-1.pgdg14.04+1
+# libpq-dev               9.4.5-1.pgdg14.04+1
+# heroku-toolbelt         3.42.21
 #
 # requirements.txt:
 # django    1.7.4
@@ -21,9 +21,9 @@ RUN \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
   apt-get update && \
   apt-get install -y \
-    postgresql-9.4=9.4.4-1.pgdg14.04+1 \
-    postgresql-contrib-9.4=9.4.4-1.pgdg14.04+1 \
-    libpq-dev=9.4.4-1.pgdg14.04+1 && \
+    postgresql-9.4=9.4.5-1.pgdg14.04+1 \
+    postgresql-contrib-9.4=9.4.5-1.pgdg14.04+1 \
+    libpq-dev=9.4.5-1.pgdg14.04+1 && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
