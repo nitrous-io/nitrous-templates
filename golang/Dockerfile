@@ -1,18 +1,18 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-01-28
-# go 1.4.2
+# 2015-12-22
+# go 1.5.2
 
 RUN \
   mkdir -p /usr/local/opt && \
-  mkdir -p /tmp/go-1.4.2 && \
-  curl -s https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz | tar -xvz -C /tmp/go-1.4.2 && \
-  mv /tmp/go-1.4.2/go /usr/local/opt/go-1.4.2 && \
-  rm -rf /tmp/go-1.4.2 && \
-  chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go-1.4.2 && \
+  mkdir -p /tmp/go-1.5.2 && \
+  curl -s https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz | tar -xvz -C /tmp/go-1.5.2 && \
+  mv /tmp/go-1.5.2/go /usr/local/opt/go-1.5.2 && \
+  rm -rf /tmp/go-1.5.2 && \
+  chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go-1.5.2 && \
   cd /usr/local/opt && \
-  ln -s go-1.4.2 go && \
+  ln -s go-1.5.2 go && \
   chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go
 
 RUN \
@@ -41,4 +41,4 @@ USER root
 
 EXPOSE 6060
 
-ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/golang.2015-03-09.html
+ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/golang.2015-12-23.html
