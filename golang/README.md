@@ -1,6 +1,6 @@
 ## Go
 
-This container comes with Go 1.4.2 installed.
+This container comes with Go 1.5.2 installed.
 
 It also includes commonly used Go tools such as:
 
