@@ -1,12 +1,12 @@
 FROM quay.io/nitrous/ruby:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-11-03
-# rails                   4.2.4
+# 2015-12-29
+# rails                   4.2.5
 # postgresql-9.4          9.4.5-1.pgdg14.04+1
 # postgresql-contrib-9.4  9.4.5-1.pgdg14.04+1
 # libpq-dev               9.4.5-1.pgdg14.04+1
-# heroku-toolbelt         3.42.21
+# heroku-toolbelt         3.42.25
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -32,7 +32,7 @@ USER $NITROUS_USERNAME
 
 # set up example app
 RUN /bin/bash -l -c 'sudo service postgresql start && \
-  gem install rails -v 4.2.4 && \
+  gem install rails -v 4.2.5 && \
   rbenv rehash && \
   cd /home/$NITROUS_USERNAME/code && \
   rails new example -d postgresql -B && \

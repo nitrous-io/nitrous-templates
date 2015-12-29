@@ -1,11 +1,11 @@
 FROM quay.io/nitrous/ubuntu:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-11-02
+# 2015-12-29
 # nvm             0.29.0
-# node            5.0.0
-# npm             3.3.10
-# heroku-toolbelt 3.42.21
+# node            4.2.1
+# npm             3.5.2
+# heroku-toolbelt 3.42.25
 # heroku-cli      4.26.1
 
 RUN \
@@ -21,10 +21,10 @@ RUN \
     'git clone https://github.com/creationix/nvm.git /usr/local/opt/nvm && \
     cd /usr/local/opt/nvm && git checkout v0.29.0 2>/dev/null && \
     source /usr/local/opt/nvm/nvm.sh && \
-    nvm install 5.0.0 && \
-    nvm alias default 5.0.0 && \
-    nvm use 5.0.0 && \
-    npm install -g npm@3.3.10'
+    nvm install 4.2.1 && \
+    nvm alias default 4.2.1 && \
+    nvm use 4.2.1 && \
+    npm install -g npm@3.5.2'
 
 
 # set up heroku toolbelt
