@@ -3,7 +3,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-07-14
 # nginx           1.8.0-1+trusty1
-# php5-fpm        5.5.9+dfsg-1ubuntu4.11
+# php5-fpm        5.5.9+dfsg-1ubuntu4.14
 # heroku-toolbelt 3.39.5
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -16,7 +16,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
     nginx=1.8.0-1+trusty1 \
-    php5-fpm=5.5.9+dfsg-1ubuntu4.11 && \
+    php5-fpm=5.5.9+dfsg-1ubuntu4.14 && \
   apt-get clean
 
 # nginx upstart conf scripts are still buggy and doesn't work, use sysvinit instead

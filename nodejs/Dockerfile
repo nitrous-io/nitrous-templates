@@ -1,11 +1,11 @@
 FROM quay.io/nitrous/ubuntu:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-10-20
+# 2015-12-29
 # nvm             0.29.0
 # node            4.2.1
-# npm             3.3.8
-# heroku-toolbelt 3.42.20
+# npm             3.5.2
+# heroku-toolbelt 3.42.25
 # heroku-cli      4.26.1
 
 RUN \
@@ -24,7 +24,7 @@ RUN \
     nvm install 4.2.1 && \
     nvm alias default 4.2.1 && \
     nvm use 4.2.1 && \
-    npm install -g npm@3.3.8'
+    npm install -g npm@3.5.2'
 
 
 # set up heroku toolbelt

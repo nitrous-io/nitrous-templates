@@ -1,11 +1,11 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-07-14
-# php5                  5.5.9+dfsg-1ubuntu4.11
-# mysql-server          5.5.43-0ubuntu0.14.04.1
-# libmysqlclient-dev    5.5.43-0ubuntu0.14.04.1
-# composer              1.0.0-alpha9
+# 2015-12-29
+# php5                  5.5.9+dfsg-1ubuntu4.14
+# mysql-server          5.5.46-0ubuntu0.14.04.2
+# libmysqlclient-dev    5.5.46-0ubuntu0.14.04.2
+# composer              1.0.0-alpha11
 # heroku-toolbelt       3.39.5
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -15,8 +15,8 @@ ENV NITROUS_PREVIEW_PORT 3000
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    mysql-server=5.5.43-0ubuntu0.14.04.1 \
-    libmysqlclient-dev=5.5.43-0ubuntu0.14.04.1 && \
+    mysql-server=5.5.46-0ubuntu0.14.04.2 \
+    libmysqlclient-dev=5.5.46-0ubuntu0.14.04.2 && \
   apt-get clean
 
 COPY support/setup_mysql tmp/setup_mysql
@@ -31,14 +31,14 @@ RUN /bin/bash -l -c 'service mysql start && \
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    php5=5.5.9+dfsg-1ubuntu4.11 \
+    php5=5.5.9+dfsg-1ubuntu4.14 \
     php5-curl php5-gd php5-mysql php5-mcrypt \
     php5-geoip php5-cgi php5-dev php5-intl \
     php-apc php-pear \
     mcrypt && \
   apt-get clean
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer version=1.0.0-alpha9
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer version=1.0.0-alpha11
 
 # set up heroku toolbelt
 RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'

@@ -1,8 +1,8 @@
 FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-07-14
-# apache2               2.4.7-1ubuntu4.4
+# 2015-12-29
+# apache2               2.4.7-1ubuntu4.8
 # libapache2-mod-php5   5.5.9+dfsg-1ubuntu4.11
 # heroku-toolbelt       3.39.5
 
@@ -13,8 +13,8 @@ ENV NITROUS_PREVIEW_PORT 3000
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    apache2=2.4.7-1ubuntu4.4 \
-    libapache2-mod-php5=5.5.9+dfsg-1ubuntu4.11 && \
+    apache2=2.4.7-1ubuntu4.8 \
+    libapache2-mod-php5=5.5.9+dfsg-1ubuntu4.14 && \
   apt-get clean
 
 # setup public_html dir
