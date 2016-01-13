@@ -1,9 +1,9 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-06-25
-# ruby      2.2.1, 2.1.5 (Default)
-# bundler   1.10.5
+# 2016-04-28
+# ruby      2.3.1 (Default)
+# bundler   1.11.2
 
 RUN \
   mkdir -p /usr/local/opt/rbenv && \
@@ -21,30 +21,26 @@ COPY files/bundle-config /home/$NITROUS_USERNAME/.bundle/config
 RUN \
   /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.gemrc /home/$NITROUS_USERNAME/.bundle'
 
+# Needed to compile ruby.
+RUN \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yy \
+    libreadline-dev
+
 USER $NITROUS_USERNAME
 
 RUN \
   /bin/bash -c \
     'git clone https://github.com/sstephenson/rbenv.git /usr/local/opt/rbenv && \
-    git clone https://github.com/sstephenson/ruby-build.git /usr/local/opt/rbenv/plugins/ruby-build && \
-    git clone https://github.com/nitrous-io/rvm-download.git /usr/local/opt/rbenv/plugins/rvm-download'
+    git clone https://github.com/sstephenson/ruby-build.git /usr/local/opt/rbenv/plugins/ruby-build'
 
 RUN \
   /bin/bash -l -c \
-    'rbenv download 2.1.5 && \
-    rbenv global 2.1.5 && \
+    'rbenv install 2.3.1 && \
+    rbenv global 2.3.1 && \
     rbenv rehash && \
     ruby -v && \
-    gem install bundler --version=1.10.5 && \
-    rbenv rehash'
-
-RUN \
-  /bin/bash -l -c \
-    'rbenv download 2.2.1 && \
-    rbenv shell 2.2.1 && \
-    rbenv rehash && \
-    ruby -v && \
-    gem install bundler --version=1.10.5 && \
+    gem install bundler --version=1.11.2 && \
     rbenv rehash'
 
 USER root
