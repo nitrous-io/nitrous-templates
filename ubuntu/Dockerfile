@@ -5,13 +5,29 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -yy --no-install-recommends build-essential clang software-properties-common \
-    checkinstall cmake gdb dnsutils curl wget screen tmux lsof zsh silversearcher-ag ack-grep \
-    gnupg bzip2 zip unzip unison man-db sqlite3 bison gawk telnet psmisc vim-nox emacs24-nox \
-    nano git git-svn mercurial bzr subversion libssl-dev libyaml-dev libreadline6-dev zlib1g-dev \
-    libxml2-dev libxslt1-dev libbz2-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libffi-dev \
-    libcurl4-openssl-dev libmagickwand-dev imagemagick autoconf rsync && \
-  apt-get clean
+  DEBIAN_FRONTEND=noninteractive apt-get install -yy --no-install-recommends \
+    build-essential \
+    autoconf \
+    checkinstall \
+    curl \
+    wget \
+    tmux \
+    lsof \
+    zsh \
+    silversearcher-ag \
+    zip\
+    unzip \
+    bzip2 \
+    unison \
+    man-db \
+    vim-nox \
+    emacs24-nox \
+    nano \
+    git \
+    libssl-dev \
+    rsync \
+    dnsutils \
+  && apt-get clean && apt-get autoremove
 
 COPY files/gitconfig /home/$NITROUS_USERNAME/.gitconfig
 COPY files/tmux.conf /home/$NITROUS_USERNAME/.tmux.conf
