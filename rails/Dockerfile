@@ -1,12 +1,12 @@
 FROM quay.io/nitrous/ruby:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-12-29
-# rails                   4.2.5
-# postgresql-9.4          9.4.5-1.pgdg14.04+1
-# postgresql-contrib-9.4  9.4.5-1.pgdg14.04+1
-# libpq-dev               9.4.5-1.pgdg14.04+1
-# heroku-toolbelt         3.42.25
+# 2016-01-26
+# rails                   4.2.5.1
+# postgresql-9.5          9.5.0-1.pgdg14.04+2
+# postgresql-contrib-9.5  9.5.0-1.pgdg14.04+2
+# libpq-dev               9.5.0-1.pgdg14.04+2
+# heroku-toolbelt         3.42.31
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -16,9 +16,9 @@ RUN \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
   apt-get update && \
   apt-get install -y \
-    postgresql-9.4=9.4.5-1.pgdg14.04+1 \
-    postgresql-contrib-9.4=9.4.5-1.pgdg14.04+1 \
-    libpq-dev=9.4.5-1.pgdg14.04+1 && \
+    postgresql-9.5=9.5.0-1.pgdg14.04+2 \
+    postgresql-contrib-9.5=9.5.0-1.pgdg14.04+2 \
+    libpq-dev=9.5.0-1.pgdg14.04+2 && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
@@ -32,7 +32,7 @@ USER $NITROUS_USERNAME
 
 # set up example app
 RUN /bin/bash -l -c 'sudo service postgresql start && \
-  gem install rails -v 4.2.5 && \
+  gem install rails -v 4.2.5.1 && \
   rbenv rehash && \
   cd /home/$NITROUS_USERNAME/code && \
   rails new example -d postgresql -B && \
