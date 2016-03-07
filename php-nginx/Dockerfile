@@ -2,7 +2,7 @@ FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-07-14
-# nginx           1.8.0-1+trusty1
+# nginx           1.8.1-1+trusty0
 # php5-fpm        5.5.9+dfsg-1ubuntu4.14
 # heroku-toolbelt 3.39.5
 
@@ -15,7 +15,7 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    nginx=1.8.0-1+trusty1 \
+    nginx=1.8.1-1+trusty0 \
     php5-fpm=5.5.9+dfsg-1ubuntu4.14 && \
   apt-get clean
 
@@ -32,11 +32,7 @@ RUN \
     'mkdir /home/$NITROUS_USERNAME/code/public_html && \
     echo "<?php phpinfo(); ?>" > /home/$NITROUS_USERNAME/code/public_html/index.php && \
     chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/public_html && \
-    chmod 775 /home/$NITROUS_USERNAME/code/public_html && \
-    ln -s /home/$NITROUS_USERNAME/code/public_html /home/$NITROUS_USERNAME/public_html && \
-    ln -s /home/$NITROUS_USERNAME/code/public_html /home/$NITROUS_USERNAME/www && \
-    chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/public_html && \
-    chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/www'
+    chmod 775 /home/$NITROUS_USERNAME/code/public_html'
 
 COPY support/nginx-default /etc/nginx/sites-available/default
 

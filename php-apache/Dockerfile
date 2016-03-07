@@ -24,11 +24,7 @@ RUN \
     'mkdir /home/$NITROUS_USERNAME/code/public_html && \
     echo "<?php phpinfo(); ?>" > /home/$NITROUS_USERNAME/code/public_html/index.php && \
     chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/public_html && \
-    chmod 775 /home/$NITROUS_USERNAME/code/public_html && \
-    ln -s /home/$NITROUS_USERNAME/code/public_html /home/$NITROUS_USERNAME/public_html && \
-    ln -s /home/$NITROUS_USERNAME/code/public_html /home/$NITROUS_USERNAME/www && \
-    chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/public_html && \
-    chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/www'
+    chmod 775 /home/$NITROUS_USERNAME/code/public_html'
 
 # symlink public_html dir to apache's webroot
 
