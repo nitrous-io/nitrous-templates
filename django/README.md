@@ -67,7 +67,7 @@ to preview your app.  You can do this by running:
 `gunicorn appname.wsgi --bind 0.0.0.0:3000`
 
 The above command assumes you are previewing your app on port 3000, which is
-the default preview port set up for this container, and that your app is called `appname`.
+the default preview port set up for this project, and that your app is called `appname`.
 
 
 ## Postgres

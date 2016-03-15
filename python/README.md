@@ -1,6 +1,6 @@
 ### Python
 
-This container comes with both Python `2.7` and `3.4`, which correspond to the
+This project comes with both Python `2.7` and `3.4`, which correspond to the
 `python` and `python3` commands respectively.
 
 Virtualenv is already installed, and is the recommended way of creating

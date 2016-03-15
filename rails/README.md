@@ -1,12 +1,12 @@
 ## Rails
 
-This container comes with Ruby on Rails and PostgreSQL.
+This project comes with Ruby on Rails and PostgreSQL.
 
 To see which version of Rails is installed, run: `rails -v`
 
 ### Ruby versions
 
-This container comes with `rbenv` to help you manage Ruby versions.
+This project comes with `rbenv` to help you manage Ruby versions.
 
 To see which versions of Ruby are installed, run: `rbenv versions`
 

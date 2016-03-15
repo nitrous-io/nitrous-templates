@@ -2,7 +2,7 @@
 
 ### Getting started
 
-This container comes with Ruby and the Jekyll ruby gem pre-installed.
+This project comes with Ruby and the Jekyll ruby gem pre-installed.
 
 An empty Jekyll site named `jekyll` is pre-created for you in the directory `~/code/jekyll`.
 
@@ -12,11 +12,11 @@ Run `jekyll serve` to start the server. If you want Jekyll to automatically rebu
 
 ### Ports
 
-This container comes with port 4000 exposed. This is the default port for the Jekyll server. If you wish to use another port, you'll need to define it explicitly by running: `jekyll serve --port 5000`.
+This project comes with port 4000 exposed. This is the default port for the Jekyll server. If you wish to use another port, you'll need to define it explicitly by running: `jekyll serve --port 5000`.
 
 ### Ruby versions
 
-This container comes with `rbenv` to help you manage Ruby versions.
+This project comes with `rbenv` to help you manage Ruby versions.
 
 To see which versions of Ruby are installed, run: `rbenv versions`
 

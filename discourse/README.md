@@ -2,7 +2,7 @@
 
 [Discourse](http://www.discourse.org) is an open-source online discussion platform.
 
-This container comes with Discourse 1.1.3 already installed.  You can use it as
+This project comes with Discourse 1.1.3 already installed.  You can use it as
 a starting point for customizing your own Discourse-based site.
 
 ### Sample Application

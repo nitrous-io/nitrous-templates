@@ -52,9 +52,9 @@ ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rails.html
 
 - use `h2` "##" for top-level headings, `h1` is reserved for the page title inserted prior to any markdown-converted html
 
-- use phrasing like 'this container comes with' to refer to what's provided on the container
+- use phrasing like 'this project comes with' to refer to what's provided on the container
 
-- do not refer to the template itself if it is concatted (e.g. "this Ruby container" in the Ruby README would be problematic since it's reused in the Rails README)
+- do not refer to the template itself if it is concatted (e.g. "this Ruby project" in the Ruby README would be problematic since it's reused in the Rails README)
 
 - use "you" to refer to readers
 

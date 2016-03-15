@@ -1,6 +1,6 @@
 ## WordPress
 
-This container comes with WordPress 4.2.2 pre-installed.
+This project comes with WordPress 4.2.2 pre-installed.
 
 It also includes the following software:
 

@@ -1,6 +1,6 @@
 ## PHP (LAMP)
 
-This container contains the full LAMP stack needed to get you serving web
+This project contains the full LAMP stack needed to get you serving web
 applications as quickly as possible.
 
 Software already installed:

@@ -1,6 +1,6 @@
 ## PHP (LEMP)
 
-This container contains the full LEMP stack needed to get you serving web
+This project contains the full LEMP stack needed to get you serving web
 applications as quickly as possible.
 
 Software already installed:

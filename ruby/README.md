@@ -1,6 +1,6 @@
 ### Ruby versions
 
-This container comes with `rbenv` to help you manage Ruby versions.
+This project comes with `rbenv` to help you manage Ruby versions.
 
 To see which versions of Ruby are installed, run: `rbenv versions`
 

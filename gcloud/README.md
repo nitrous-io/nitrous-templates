@@ -1,6 +1,6 @@
 ## Google Cloud SDK
 
-This container comes with the following tools and libraries to enable you to easily create and manage resources on Google Cloud Platform:
+This project comes with the following tools and libraries to enable you to easily create and manage resources on Google Cloud Platform:
 
 - App Engine SDKs for:
   - Python
@@ -15,11 +15,11 @@ This container comes with the following tools and libraries to enable you to eas
   - Compute Engine
   - Preview
 
-This container does not provide a managed VM environment.
+This project does not provide a managed VM environment.
 
 ### Components
 
-The installation of Google Cloud SDK for this container is equivalent to running: 
+The installation of Google Cloud SDK for this project is equivalent to running:
 
 ```
 cd ~/home/nitrous/

@@ -24,4 +24,4 @@ Note that you will need to listen to 0.0.0.0 when running the Meteor server in o
 `meteor --port 0.0.0.0:3000`
 
 The above command assumes you are previewing your app on port 3000, which is
-the default preview port set up for this container.
+the default preview port set up for this projectproject.

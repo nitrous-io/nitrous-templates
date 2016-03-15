@@ -1,6 +1,6 @@
 ## PHP
 
-This container comes with PHP 5.5.9 pre-installed.
+This project comes with PHP 5.5.9 pre-installed.
 
 It also includes the following software:
 

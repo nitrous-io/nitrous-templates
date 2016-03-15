@@ -1,6 +1,6 @@
 ### Rust
 
-This container comes with `multirust` to help you manage Rust versions, and has Rust and Cargo pre-installed.
+This project comes with `multirust` to help you manage Rust versions, and has Rust and Cargo pre-installed.
 
 To see which version of Rust is installed, run: `rustc -V`
 

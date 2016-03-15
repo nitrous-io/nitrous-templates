@@ -1,10 +1,10 @@
 ## Laravel
 
-This container comes with Laravel 4.2 pre-installed.
+This project comes with Laravel 4.2 pre-installed.
 
 It also includes the following software:
 
-- PHP 5.5.9 (Composer 1.0, MySQL 5.5.9) 
+- PHP 5.5.9 (Composer 1.0, MySQL 5.5.9)
 - Redis 2.8
 
 ### Sample application
@@ -20,7 +20,7 @@ Feel free to remove the `~/code/example` directory if you no longer need it.
 
 ### Previewing your app
 
-If you are using the example application, PHP's built-in web server is already set up to listen to port 3000 and serve the contents of `/home/nitrous/code/example/app/views/hello.php`, which is the default welcome page of Laravel. 
+If you are using the example application, PHP's built-in web server is already set up to listen to port 3000 and serve the contents of `/home/nitrous/code/example/app/views/hello.php`, which is the default welcome page of Laravel.
 
 You can start the server by running `~/code/example/start-app` from the command line. This is equivalent to running:
 
@@ -29,7 +29,7 @@ cd ~/code/example
 php artisan serve --port=3000
 ```
 
-Once the server is running, you can preview your application by going to `Preview > Port 3000` from the IDE menu. 
+Once the server is running, you can preview your application by going to `Preview > Port 3000` from the IDE menu.
 
 Opening the `~/code/example/start-app` file is a good way of finding out how to get your own Laravel application running.
 

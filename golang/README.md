@@ -1,6 +1,6 @@
 ## Go
 
-This container comes with Go 1.5.2 installed.
+This project comes with Go 1.6.0 installed.
 
 It also includes commonly used Go tools such as:
 
@@ -18,13 +18,13 @@ Code](https://golang.org/doc/code.html#PackagePaths) for more details.
 
 ### Browsing Go documentation
 
-You can browse Go documentation from your container by running:
+You can browse Go documentation from your project by running:
 
 `godoc -http=0.0.0.0:6060`
 
 Once this is running, simply go to `Preview > Port 6060` in the IDE
 menu.  You will then be able to browse the documentation for all the
-installed packages on your container.
+installed packages on your project.
 
 This is possible because the `6060` port is exposed by default.  To
 change these settings, please go to `Preview > Configure Ports` in the

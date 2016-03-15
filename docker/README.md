@@ -1,6 +1,6 @@
 ## Docker
 
-This container comes with Docker 1.4.1
+This project comes with Docker 1.4.1
 
 Docker is automatically started for you.  You can administer your Docker environment using
 the [docker](https://docs.docker.com/reference/commandline/cli/) command line utility.
