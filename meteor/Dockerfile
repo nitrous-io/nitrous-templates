@@ -1,14 +1,14 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-07-14
-# meteor          1.1.0.2
+# 2016-03-21
+# meteor          1.2.1
 # heroku-toolbelt 3.39.5
 
 ENV NITROUS_PREVIEW_PORT 3000
 
 # Install Meteor.
-RUN curl https://install.meteor.com/ | sed 's/RELEASE=.*/RELEASE="1.1.0.2"/' | sh
+RUN curl https://install.meteor.com/ | sed 's/RELEASE=.*/RELEASE="1.2.1"/' | sh
 
 USER $NITROUS_USERNAME
 
@@ -28,4 +28,4 @@ RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
-ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/meteor.2015-06-29.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/meteor.2016-03-21.html
