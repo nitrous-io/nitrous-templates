@@ -126,6 +126,10 @@ django:
 	@./script/dbuild django
 .PHONY: django
 
+mkdocs:
+	@./script/dbuild mkdocs
+.PHONY: mkdocs
+
 laravel:
 	@./script/dbuild laravel
 .PHONY: laravel
@@ -226,9 +230,12 @@ publish-discourse:
 .PHONY: publish-discourse
 
 publish-django:
-	# TODO add python/README.md when available
 	@./script/publish-s3 django Django django/README.md python/README.md ubuntu/README.md
 .PHONY: publish-django
+
+publish-mkdocs:
+	@./script/publish-s3 mkdocs MkDocs mkdocs/README.md python/README.md ubuntu/README.md
+.PHONY: publish-mkdocs
 
 publish-docker:
 	@./script/publish-s3 docker Docker docker/README.md ubuntu/README.md
