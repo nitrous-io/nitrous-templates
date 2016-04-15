@@ -1,8 +1,8 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-06-29
-# nginx     1.8.0-1+trusty1
+# 2016-03-30
+# nginx     1.8.1-1+trusty0
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -13,7 +13,7 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    nginx=1.8.0-1+trusty1 && \
+    nginx=1.8.1-1+trusty0 && \
   apt-get clean
 
 # nginx upstart conf scripts are still buggy and doesn't work, use sysvinit instead
@@ -47,5 +47,11 @@ RUN \
     ln -s /home/$NITROUS_USERNAME/code/public_html /var/www/html && \
     chown -R $NITROUS_USERNAME:www-data /home/$NITROUS_USERNAME/code/public_html && \
     chown -h $NITROUS_USERNAME:www-data /var/www/html'
+
+# Copy nitrous-scripts.json into home folder.
+COPY support/nitrous-scripts.json /home/$NITROUS_USERNAME/.nitrous-scripts.json
+RUN /bin/bash -c \
+  'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.nitrous-scripts.json && \
+  chmod 644 /home/$NITROUS_USERNAME/.nitrous-scripts.json'
 
 EXPOSE $NITROUS_PREVIEW_PORT
