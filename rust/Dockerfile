@@ -1,9 +1,9 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-06-29
-# multirust 0.0.6
-# rust      1.1.0
+# 2016-04-18
+# multirust 0.8.0
+# rust      1.8.0
 
 RUN \
   mkdir -p /usr/local/opt/multirust && \
@@ -15,12 +15,12 @@ RUN \
   /bin/bash -l -c \
     'git clone --recursive https://github.com/brson/multirust /usr/local/opt/multirust && \
     cd /usr/local/opt/multirust && \
-    git checkout 0.0.6 && \
+    git checkout 0.8.0 && \
     git submodule update --init && \
     ./build.sh && \
     sudo ./install.sh && \
     cd && \
-    SHELL=/bin/bash multirust default 1.1.0'
+    SHELL=/bin/bash multirust default 1.8.0'
 
 USER root
 
