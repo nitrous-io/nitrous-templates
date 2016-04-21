@@ -1,14 +1,14 @@
 FROM quay.io/nitrous/ruby:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-08-08
-# jekyll 2.5.3
+# 2016-04-15
+# jekyll 3.1.2
 
 USER $NITROUS_USERNAME
 
 RUN \
   /bin/bash -l -c \
-  'gem install jekyll -v 2.5.3'
+  'gem install jekyll -v 3.1.2'
 
 RUN \
   /bin/bash -l -c \
