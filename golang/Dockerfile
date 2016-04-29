@@ -1,18 +1,22 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2016-03-15
-# go 1.6
+# 2016-04-28
+# go 1.6.2
+
+RUN apt-get update && \
+    apt-get install -y mercurial && \
+    apt-get clean
 
 RUN \
   mkdir -p /usr/local/opt && \
-  mkdir -p /tmp/go-1.6 && \
-  curl -s https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -xvz -C /tmp/go-1.6 && \
-  mv /tmp/go-1.6/go /usr/local/opt/go-1.6 && \
-  rm -rf /tmp/go-1.6 && \
-  chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go-1.6 && \
+  mkdir -p /tmp/go-1.6.2 && \
+  curl -s https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz | tar -xvz -C /tmp/go-1.6.2 && \
+  mv /tmp/go-1.6.2/go /usr/local/opt/go-1.6.2 && \
+  rm -rf /tmp/go-1.6.2 && \
+  chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go-1.6.2 && \
   cd /usr/local/opt && \
-  ln -s go-1.6 go && \
+  ln -s go-1.6.2 go && \
   chown -h $NITROUS_USERNAME:$NITROUS_USERNAME /usr/local/opt/go
 
 RUN \

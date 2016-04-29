@@ -2,12 +2,16 @@ FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-03-28
-# mkdocs  1.5.3
+# mkdocs  0.15.3
 
 ENV NITROUS_PREVIEW_PORT 8000
 EXPOSE $NITROUS_PREVIEW_PORT
 
 RUN pip install mkdocs
+
+RUN apt-get update && \
+    apt-get install -y libyaml-dev && \
+    apt-get clean
 
 USER $NITROUS_USERNAME
 

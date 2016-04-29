@@ -1,17 +1,17 @@
 FROM quay.io/nitrous/python:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-11-03
-# postgresql-9.4          9.4.5-1.pgdg14.04+1
-# postgresql-contrib-9.4  9.4.5-1.pgdg14.04+1
-# libpq-dev               9.4.5-1.pgdg14.04+1
-# heroku-toolbelt         3.42.21
+# 2016-04-28
+# postgresql-9.5          9.5.2-1.pgdg14.04+1
+# postgresql-contrib-9.5  9.5.2-1.pgdg14.04+1
+# libpq-dev               9.5.2-1.pgdg14.04+1
+# heroku-toolbelt         3.42.25
 #
 # requirements.txt:
-# django    1.7.4
-# gunicorn  19.1.1
-# ipython   2.3.1
-# psycopg2  2.5.4
+# django        1.9.5
+# gunicorn      19.4.5
+# ipython       4.2.0
+# psycopg2      2.6.1
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -21,12 +21,12 @@ RUN \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
   apt-get update && \
   apt-get install -y \
-    postgresql-9.4=9.4.5-1.pgdg14.04+1 \
-    postgresql-contrib-9.4=9.4.5-1.pgdg14.04+1 \
-    libpq-dev=9.4.5-1.pgdg14.04+1 && \
+    postgresql-9.5=9.5.2-1.pgdg14.04+1 \
+    postgresql-contrib-9.5=9.5.2-1.pgdg14.04+1 \
+    libpq-dev=9.5.2-1.pgdg14.04+1 && \
   apt-get clean
 
-COPY support/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
+COPY support/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
 
 RUN service postgresql start && \
   su postgres -c 'createdb example_development && \
