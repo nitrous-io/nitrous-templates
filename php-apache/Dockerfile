@@ -2,9 +2,9 @@ FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-12-29
-# apache2               2.4.7-1ubuntu4.8
-# libapache2-mod-php5   5.5.9+dfsg-1ubuntu4.11
-# heroku-toolbelt       3.39.5
+# apache2               2.4.7-1ubuntu4.9
+# libapache2-mod-php5   7.0.6-1+donate.sury.org~trusty+1
+# heroku-toolbelt       3.42.25
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -13,8 +13,8 @@ ENV NITROUS_PREVIEW_PORT 3000
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    apache2=2.4.7-1ubuntu4.8 \
-    libapache2-mod-php5=5.5.9+dfsg-1ubuntu4.14 && \
+    apache2=2.4.7-1ubuntu4.9 \
+    libapache2-mod-php7.0=7.0.6-1+donate.sury.org~trusty+1 && \
   apt-get clean
 
 # setup public_html dir
@@ -36,10 +36,10 @@ RUN \
     chown -h $NITROUS_USERNAME:www-data /var/www/html'
 
 RUN \
-  sed -i 's|variables_order.*|variables_order = "EGPCS"|g' /etc/php5/apache2/php.ini && \
-  sed -i 's|upload_max_filesize.*|upload_max_filesize = 100M|g' /etc/php5/apache2/php.ini && \
-  sed -i 's|post_max_size.*|post_max_size = 100M|g' /etc/php5/apache2/php.ini && \
-  sed -i 's|;cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g' /etc/php5/apache2/php.ini && \
+  sed -i 's|variables_order.*|variables_order = "EGPCS"|g' /etc/php/7.0/apache2/php.ini && \
+  sed -i 's|upload_max_filesize.*|upload_max_filesize = 100M|g' /etc/php/7.0/apache2/php.ini && \
+  sed -i 's|post_max_size.*|post_max_size = 100M|g' /etc/php/7.0/apache2/php.ini && \
+  sed -i 's|;cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g' /etc/php/7.0/apache2/php.ini && \
   sed -i 's|Listen 80|Listen 3000|g' /etc/apache2/ports.conf && \
   sed -i 's|VirtualHost \*:80|VirtualHost *:3000|g' /etc/apache2/sites-available/000-default.conf
 

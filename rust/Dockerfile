@@ -1,7 +1,7 @@
 FROM quay.io/nitrous/nodejs:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2016-04-18
+# 2016-04-28
 # multirust 0.8.0
 # rust      1.8.0
 
