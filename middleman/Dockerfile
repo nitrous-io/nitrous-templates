@@ -8,7 +8,7 @@ RUN /bin/bash -l -c 'gem install --no-ri --no-rdoc middleman -v 4.1.7'
 RUN /bin/bash -l -c 'cd /home/$NITROUS_USERNAME/code && \
   yes | middleman init example'
 
-COPY support/pubstorm.default.json /home/$NITROUS_USERNAME/code/example
+COPY support/pubstorm.default.json /home/$NITROUS_USERNAME/code/example/
 
 USER root
 
