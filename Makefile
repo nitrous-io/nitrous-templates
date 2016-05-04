@@ -49,6 +49,7 @@ push-stacks:
 	@./script/dpush gcloud
 	@./script/dpush wordpress
 	@./script/dpush discourse
+	@./script/dpush hugo
 	@./script/dpush jekyll
 	@./script/dpush middleman
 .PHONY: push-stacks
@@ -155,6 +156,10 @@ discourse:
 	@./script/dbuild discourse
 .PHONY: discourse
 
+hugo:
+	@./script/dbuild hugo
+.PHONY: hugo
+
 jekyll:
 	@./script/dbuild jekyll
 .PHONY: jekyll
@@ -253,6 +258,10 @@ publish-laravel:
 publish-gcloud:
 	@./script/publish-s3 gcloud Google-Cloud-SDK gcloud/README.md ubuntu/README.md
 .PHONY: publish-gcloud
+
+publish-hugo:
+	@./script/publish-s3 hugo Hugo hugo/README.md ubuntu/README.md
+.PHONY: publish-hugo
 
 publish-jekyll:
 	@./script/publish-s3 jekyll Jekyll jekyll/README.md ruby/README.md ubuntu/README.md
