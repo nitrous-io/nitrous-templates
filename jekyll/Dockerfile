@@ -18,6 +18,10 @@ RUN \
 
 USER root
 
+COPY support/pubstorm.default.json /home/$NITROUS_USERNAME/code/jekyll/
+
+RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/jekyll/pubstorm.default.json'
+
 ENV NITROUS_PREVIEW_PORT 4000
 EXPOSE $NITROUS_PREVIEW_PORT
 
