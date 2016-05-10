@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -23,5 +23,6 @@ RUN \
     SHELL=/bin/bash multirust default 1.8.0'
 
 USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rust.2015-06-29.html

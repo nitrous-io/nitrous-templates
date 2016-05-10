@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -28,5 +28,8 @@ RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERN
 RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 
 EXPOSE $NITROUS_PREVIEW_PORT
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/meteor.2016-03-21.html

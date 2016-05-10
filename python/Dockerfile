@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -16,5 +16,8 @@ RUN \
     virtualenvwrapper=4.1.1-1 && \
   apt-get clean && \
   echo 'source /etc/bash_completion.d/virtualenvwrapper' >> /etc/zsh/zprofile
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/python.2015-08-06.html

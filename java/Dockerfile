@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # https://github.com/docker/docker/issues/1024
@@ -18,6 +18,10 @@ RUN \
 
 RUN mv /sbin/initctlbak /sbin/initctl
 
+
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
 RUN echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'

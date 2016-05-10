@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-03-30
@@ -53,5 +53,8 @@ COPY support/nitrous-scripts.json /home/$NITROUS_USERNAME/.nitrous-scripts.json
 RUN /bin/bash -c \
   'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/.nitrous-scripts.json && \
   chmod 644 /home/$NITROUS_USERNAME/.nitrous-scripts.json'
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
 
 EXPOSE $NITROUS_PREVIEW_PORT

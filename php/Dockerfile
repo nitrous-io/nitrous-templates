@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -43,5 +43,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # set up heroku toolbelt
 RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
+
 
 ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php.2015-04-01.html
