@@ -7,7 +7,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # npm             3.8.6
 # heroku-toolbelt 3.42.25
 # heroku-cli      4.26.1
-# pubstorm        0.0.8
+# pubstorm        0.1.1
 
 RUN \
   mkdir -p /usr/local/opt/nvm && \
@@ -35,7 +35,7 @@ USER $NITROUS_USERNAME
 RUN /bin/bash -c 'heroku version'
 
 USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.0.8'
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
 
 USER root
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/nodejs.2015-10-20.html
