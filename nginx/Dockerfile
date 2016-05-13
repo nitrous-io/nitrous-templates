@@ -1,8 +1,8 @@
 FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2016-03-30
-# nginx     1.8.1-1+trusty0
+# 2016-05-13
+# nginx     1.10.0-0+trusty0
 
 ENV NITROUS_PREVIEW_PORT 3000
 
@@ -13,7 +13,7 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    nginx=1.8.1-1+trusty0 && \
+    nginx=1.10.0-0+trusty0 && \
   apt-get clean
 
 # nginx upstart conf scripts are still buggy and doesn't work, use sysvinit instead
@@ -55,6 +55,6 @@ RUN /bin/bash -c \
   chmod 644 /home/$NITROUS_USERNAME/.nitrous-scripts.json'
 
 USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 EXPOSE $NITROUS_PREVIEW_PORT

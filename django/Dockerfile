@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/python:latest
+FROM quay.io/nitrous/python-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -55,6 +55,9 @@ RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERN
 
 # set up heroku toolbelt
 RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 EXPOSE $NITROUS_PREVIEW_PORT
 

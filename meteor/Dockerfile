@@ -9,9 +9,9 @@ ENV NITROUS_PREVIEW_PORT 3000
 ENV NITROUS_USERNAME nitrous
 
 # Install Meteor.
+USER $NITROUS_USERNAME
 RUN curl https://install.meteor.com/ | sed 's/RELEASE=.*/RELEASE="1.3.2.4"/' | sh
 
-USER $NITROUS_USERNAME
 
 # Setup a new Meteor app.
 RUN \
@@ -30,6 +30,6 @@ RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 EXPOSE $NITROUS_PREVIEW_PORT
 
 USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.1'
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/meteor.2016-03-21.html
