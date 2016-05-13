@@ -1,0 +1,47 @@
+digraph {
+
+   "ubuntu:latest" [fontcolor=black, style=filled, fillcolor=gray]
+   "nodejs:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "ruby:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "rails:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "jekyll:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "middleman:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "brunch:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "python:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "mkdocs:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "django:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "rust:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "nginx:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "golang:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "hugo:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "java:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "meteor:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "php:latest" [fontcolor=black]
+   "php-apache:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+   "php-nginx:latest" [fontcolor=black, style=filled, fillcolor=gray, peripheries=2]
+
+   "ubuntu-upstart:trusty" -> "ubuntu-bare:latest"
+   "ubuntu-bare:latest" -> "ubuntu:latest"
+   "ubuntu:latest" -> "nodejs-base:latest"
+   "nodejs-base:latest" -> "nodejs:latest"
+   "nodejs-base:latest" -> "brunch:latest"
+   "nodejs-base:latest" -> "ruby-base:latest"
+   "ruby-base:latest" -> "ruby:latest"
+   "ruby-base:latest" -> "rails:latest"
+   "ruby-base:latest" -> "jekyll:latest"
+   "ruby-base:latest" -> "middleman:latest"
+   "nodejs-base:latest" -> "python-base:latest"
+   "python-base:latest" -> "python:latest"
+   "python-base:latest" -> "mkdocs:latest"
+   "python-base:latest" -> "django:latest"
+   "nodejs-base:latest" -> "rust:latest"
+   "nodejs-base:latest" -> "nginx:latest"
+   "nodejs-base:latest" -> "golang:latest"
+   "nodejs-base:latest" -> "hugo:latest"
+   "nodejs-base:latest" -> "java:latest"
+   "nodejs-base:latest" -> "meteor:latest"
+   "nodejs-base:latest" -> "php:latest"
+   "php:latest" -> "php-apache:latest"
+   "php:latest" -> "php-nginx:latest"
+
+}

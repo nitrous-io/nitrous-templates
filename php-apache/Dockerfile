@@ -3,7 +3,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2015-12-29
 # apache2               2.4.7-1ubuntu4.9
-# libapache2-mod-php5   7.0.6-1+donate.sury.org~trusty+1
+# libapache2-mod-php7   7.0.6-8+donate.sury.org~trusty+1
 # heroku-toolbelt       3.42.25
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -14,7 +14,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apache2=2.4.7-1ubuntu4.9 \
-    libapache2-mod-php7.0=7.0.6-1+donate.sury.org~trusty+1 && \
+    libapache2-mod-php7.0=7.0.6-8+donate.sury.org~trusty+1 && \
   apt-get clean
 
 # setup public_html dir
@@ -44,5 +44,8 @@ RUN \
   sed -i 's|VirtualHost \*:80|VirtualHost *:3000|g' /etc/apache2/sites-available/000-default.conf
 
 EXPOSE $NITROUS_PREVIEW_PORT
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-apache.2015-04-01.html

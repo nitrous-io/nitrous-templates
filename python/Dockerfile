@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/python-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -7,14 +7,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # python-virtualenv   1.11.4-1ubuntu1
 # virtualenvwrapper   4.1.1-1
 
-RUN \
-  apt-get update && \
-  apt-get install -yy \
-    python3.4-dev=3.4.3-1ubuntu1~14.04.3 \
-    python2.7-dev=2.7.6-8ubuntu0.2 \
-    python-virtualenv=1.11.4-1ubuntu1 \
-    virtualenvwrapper=4.1.1-1 && \
-  apt-get clean && \
-  echo 'source /etc/bash_completion.d/virtualenvwrapper' >> /etc/zsh/zprofile
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/python.2015-08-06.html

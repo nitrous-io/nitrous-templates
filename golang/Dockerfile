@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/nodejs:latest
+FROM quay.io/nitrous/nodejs-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28

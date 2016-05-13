@@ -1,4 +1,4 @@
-FROM quay.io/nitrous/ruby:latest
+FROM quay.io/nitrous/ruby-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
@@ -11,6 +11,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 ENV NITROUS_PREVIEW_PORT 3000
 
 # set up postgres
+USER root
 RUN \
   echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" | tee /etc/apt/sources.list.d/postgresql.list && \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
@@ -45,6 +46,9 @@ USER root
 
 COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
 RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
+
+USER root
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 EXPOSE $NITROUS_PREVIEW_PORT
 EXPOSE 5000

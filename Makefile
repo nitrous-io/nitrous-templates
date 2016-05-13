@@ -5,13 +5,13 @@ build-all: build-base build-basic build-stacks build-advanced build-migrate
 
 build-migrate: migrate
 
-build-base: ubuntu-bare ubuntu
+build-base: ubuntu-bare ubuntu nodejs-base ruby-base python-base
 .PHONY: build-base
 
 build-basic: nodejs golang php python ruby rust nginx
 .PHONY: build-basic
 
-build-stacks: django php-apache php-nginx laravel meteor rails gcloud wordpress discourse jekyll middleman
+build-stacks: django php-apache php-nginx meteor rails wordpress jekyll middleman
 .PHONY: build-stacks
 
 build-advanced: docker
@@ -23,6 +23,9 @@ push-all: push-migrate push-base push-basic push-stacks push-advanced
 push-base:
 	@./script/dpush ubuntu-bare
 	@./script/dpush ubuntu
+	@./script/dpush nodejs-base
+	@./script/dpush ruby-base
+	@./script/dpush python-base
 .PHONY: push-base
 
 push-migrate:
@@ -43,16 +46,17 @@ push-stacks:
 	@./script/dpush django
 	@./script/dpush php-apache
 	@./script/dpush php-nginx
-	@./script/dpush laravel
+	# @./script/dpush laravel Not public
 	@./script/dpush meteor
 	@./script/dpush rails
-	@./script/dpush gcloud
+	# @./script/dpush gcloud
 	@./script/dpush wordpress
-	@./script/dpush discourse
+	# @./script/dpush discourse
 	@./script/dpush brunch
 	@./script/dpush hugo
 	@./script/dpush jekyll
 	@./script/dpush middleman
+	@./script/dpush mkdocs
 .PHONY: push-stacks
 
 push-advanced: docker
@@ -76,6 +80,18 @@ ubuntu-bare:
 ubuntu:
 	@./script/dbuild ubuntu
 .PHONY: ubuntu
+
+nodejs-base:
+	@./script/dbuild nodejs-base
+.PHONY: nodejs-base
+
+ruby-base:
+	@./script/dbuild ruby-base
+.PHONY: ruby-base
+
+python-base:
+	@./script/dbuild python-base
+.PHONY: python-base
 
 ### Build language images
 
