@@ -1,11 +1,11 @@
 FROM quay.io/nitrous/ruby-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2016-04-28
+# 2016-05-11
 # rails                   4.2.6
-# postgresql-9.5          9.5.2-1.pgdg14.04+1
-# postgresql-contrib-9.5  9.5.2-1.pgdg14.04+1
-# libpq-dev               9.5.2-1.pgdg14.04+1
+# postgresql-9.5          9.5.3-1.pgdg14.04+1
+# postgresql-contrib-9.5  9.5.3-1.pgdg14.04+1
+# libpq-dev               9.5.3-1.pgdg14.04+1
 # heroku-toolbelt         3.42.25 (inherited from nodejs)
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -17,9 +17,11 @@ RUN \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
   apt-get update && \
   apt-get install -y \
-    postgresql-9.5=9.5.2-1.pgdg14.04+1 \
-    postgresql-contrib-9.5=9.5.2-1.pgdg14.04+1 \
-    libpq-dev=9.5.2-1.pgdg14.04+1 && \
+    postgresql-9.5=9.5.3-1.pgdg14.04+1 \
+    postgresql-contrib-9.5=9.5.3-1.pgdg14.04+1 \
+    libpq-dev=9.5.3-1.pgdg14.04+1 \
+    sqlite3 \
+    libsqlite3-dev && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
