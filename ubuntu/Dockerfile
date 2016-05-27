@@ -63,4 +63,9 @@ RUN \
 
 USER root
 
+# Upgrade package in the latest step to avoid massive downloads when
+# we create a new image
+
+RUN apt-get update && apt-get -y upgrade && apt-get clean && apt-get autoremove -y
+
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/ubuntu.2015-03-02.html

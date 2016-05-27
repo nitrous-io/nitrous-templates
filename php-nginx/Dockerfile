@@ -1,10 +1,10 @@
 FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-07-14
+# 2016-06-27
 # nginx           1.10.0-0+trusty0
-# php             7.0.6-8+donate.sury.org~trusty+1
-# php7-fpm        7.0.6-8+donate.sury.org~trusty+1
+# php             7.0.7-1+donate.sury.org~trusty+1
+# php7-fpm        7.0.7-1+donate.sury.org~trusty+1
 # heroku-toolbelt 3.42.25
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -16,8 +16,8 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
     nginx=1.10.0-0+trusty0 \
-    php7.0=7.0.6-8+donate.sury.org~trusty+1 \
-    php7.0-fpm=7.0.6-8+donate.sury.org~trusty+1 && \
+    php7.0=7.0.7-1+donate.sury.org~trusty+1 \
+    php7.0-fpm=7.0.7-1+donate.sury.org~trusty+1 && \
   apt-get clean
 
 # nginx upstart conf scripts are still buggy and doesn't work, use sysvinit instead
