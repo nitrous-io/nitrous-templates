@@ -1,9 +1,9 @@
 FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2015-12-29
+# 2016-05-27
 # apache2               2.4.7-1ubuntu4.9
-# libapache2-mod-php7   7.0.6-8+donate.sury.org~trusty+1
+# libapache2-mod-php7   7.0.7-1+donate.sury.org~trusty+1
 # heroku-toolbelt       3.42.25
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -14,7 +14,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apache2=2.4.7-1ubuntu4.9 \
-    libapache2-mod-php7.0=7.0.6-8+donate.sury.org~trusty+1 && \
+    libapache2-mod-php7.0=7.0.7-1+donate.sury.org~trusty+1 && \
   apt-get clean
 
 # setup public_html dir
