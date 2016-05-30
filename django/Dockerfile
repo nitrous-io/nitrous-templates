@@ -2,9 +2,9 @@ FROM quay.io/nitrous/python-base:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
 # 2016-04-28
-# postgresql-9.5          9.5.2-1.pgdg14.04+1
-# postgresql-contrib-9.5  9.5.2-1.pgdg14.04+1
-# libpq-dev               9.5.2-1.pgdg14.04+1
+# postgresql-9.5          9.5.3-1.pgdg14.04+1
+# postgresql-contrib-9.5  9.5.3-1.pgdg14.04+1
+# libpq-dev               9.5.3-1.pgdg14.04+1
 # heroku-toolbelt         3.42.25
 #
 # requirements.txt:
@@ -21,9 +21,9 @@ RUN \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
   apt-get update && \
   apt-get install -y \
-    postgresql-9.5=9.5.2-1.pgdg14.04+1 \
-    postgresql-contrib-9.5=9.5.2-1.pgdg14.04+1 \
-    libpq-dev=9.5.2-1.pgdg14.04+1 && \
+    postgresql-9.5=9.5.3-1.pgdg14.04+1 \
+    postgresql-contrib-9.5=9.5.3-1.pgdg14.04+1 \
+    libpq-dev=9.5.3-1.pgdg14.04+1 && \
   apt-get clean
 
 COPY support/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
