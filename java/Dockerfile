@@ -23,5 +23,5 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
 RUN echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile
 
-USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
+USER nitrous
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'

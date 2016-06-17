@@ -49,8 +49,8 @@ USER root
 COPY support/start-app /home/$NITROUS_USERNAME/code/example/start-app
 RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERNAME/code/example/start-app'
 
-USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
+USER nitrous
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
 EXPOSE $NITROUS_PREVIEW_PORT
 EXPOSE 5000

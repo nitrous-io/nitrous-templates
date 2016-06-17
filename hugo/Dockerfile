@@ -33,7 +33,7 @@ RUN /bin/bash -c 'chown $NITROUS_USERNAME:$NITROUS_USERNAME /home/$NITROUS_USERN
 ENV NITROUS_PREVIEW_PORT 1313
 EXPOSE $NITROUS_PREVIEW_PORT
 
-USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
+USER nitrous
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/hugo.2016-05-03.html
