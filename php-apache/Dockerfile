@@ -45,7 +45,9 @@ RUN \
 
 EXPOSE $NITROUS_PREVIEW_PORT
 
+USER nitrous
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
+
 USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
 
 ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-apache.2015-04-01.html

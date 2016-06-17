@@ -7,7 +7,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 # python-virtualenv   1.11.4-1ubuntu1
 # virtualenvwrapper   4.1.1-1
 
-USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
+USER nitrous
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/python.2015-08-06.html

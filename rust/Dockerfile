@@ -22,7 +22,7 @@ RUN \
     cd && \
     SHELL=/bin/bash multirust default 1.8.0'
 
-USER root
-RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.2'
+USER nitrous
+RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/rust.2015-06-29.html
