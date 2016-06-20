@@ -59,6 +59,9 @@ RUN /bin/bash -c 'wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh'
 USER nitrous
 RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
+# init should be executed by root
+USER root
+
 EXPOSE $NITROUS_PREVIEW_PORT
 
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/django.2015-06-29.html

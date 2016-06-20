@@ -36,4 +36,7 @@ EXPOSE $NITROUS_PREVIEW_PORT
 USER nitrous
 RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
+# init should be executed by root
+USER root
+
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/hugo.2016-05-03.html

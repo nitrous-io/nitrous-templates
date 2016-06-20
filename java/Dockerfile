@@ -25,3 +25,6 @@ RUN echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile
 
 USER nitrous
 RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
+
+# init should be executed by root
+USER root

@@ -57,4 +57,7 @@ RUN /bin/bash -c \
 USER nitrous
 RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
+# init should be executed by root
+USER root
+
 EXPOSE $NITROUS_PREVIEW_PORT

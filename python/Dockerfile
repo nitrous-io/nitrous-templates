@@ -10,4 +10,7 @@ MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 USER nitrous
 RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 
+# init should be executed by root
+USER root
+
 ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/python.2015-08-06.html
