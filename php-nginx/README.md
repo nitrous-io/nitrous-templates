@@ -5,7 +5,7 @@ applications as quickly as possible.
 
 Software already installed:
 
-- PHP 5.5.9 (Composer 1.0, MySQL 5.5)
+- PHP 7.0.9 (Composer 1.0, MySQL 5.5)
 - Nginx with php-fpm
 
 ### Previewing your app
@@ -19,7 +19,7 @@ menu.
 
 ### Customizing the server setup
 
-You can customize your server settings by editing `/etc/php5/fpm/php.ini` and `/etc/nginx/sites-available/default`.
+You can customize your server settings by editing `/etc/php/7.0/fpm/php.ini` and `/etc/nginx/sites-available/default`.
 
 Remember to restart Nginx with `sudo service nginx restart` after editing
 those files so that your changes are applied.
