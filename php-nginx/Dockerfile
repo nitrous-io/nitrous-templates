@@ -1,10 +1,10 @@
 FROM quay.io/nitrous/php:latest
 MAINTAINER Nitrous, Inc. <eng@nitrous.io>
 
-# 2016-06-27
-# nginx           1.10.0-0+trusty0
-# php             7.0.7-1+donate.sury.org~trusty+1
-# php7-fpm        7.0.7-1+donate.sury.org~trusty+1
+# 2016-07-28
+# nginx           1.10.1-0+trusty0
+# php             7.0.9-1+donate.sury.org~trusty+1
+# php7-fpm        7.0.9-1+donate.sury.org~trusty+1
 # heroku-toolbelt 3.42.25
 
 ENV NITROUS_PREVIEW_PORT 3000
@@ -15,9 +15,9 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    nginx=1.10.0-0+trusty0 \
-    php7.0=7.0.7-1+donate.sury.org~trusty+1 \
-    php7.0-fpm=7.0.7-1+donate.sury.org~trusty+1 && \
+    nginx=1.10.1-0+trusty0 \
+    php7.0=7.0.9-1+deb.sury.org~trusty+1 \
+    php7.0-fpm=7.0.9-1+deb.sury.org~trusty+1 && \
   apt-get clean
 
 # nginx upstart conf scripts are still buggy and doesn't work, use sysvinit instead
@@ -58,4 +58,4 @@ RUN /bin/bash -l -c 'npm install -g pubstorm@0.1.3'
 # init should be executed by root
 USER root
 
-ENV NITROUS_README_URL https://s3.amazonaws.com/nitrous-readmes/php-nginx.2015-06-29.html
+ENV NITROUS_README_URL https://nitrous-readmes.s3.amazonaws.com/php-nginx.2016-07-28.html
